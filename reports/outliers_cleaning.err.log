@@ -19,23 +19,13 @@ Traceback (most recent call last):
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
 from pycaret.anomaly import *
-
-s = setup(data=numeric_iris_df)
-
-abod_model = create_model("abod", fraction=0.05)
-
-df_abod = assign_model(abod_model)
-
-df_abod
 ------------------
 
 
 [1;31m---------------------------------------------------------------------------[0m
 [1;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Cell [1;32mIn[3], line 1[0m
+Cell [1;32mIn[1], line 1[0m
 [1;32m----> 1[0m [38;5;28;01mfrom[39;00m [38;5;21;01mpycaret[39;00m[38;5;21;01m.[39;00m[38;5;21;01manomaly[39;00m [38;5;28;01mimport[39;00m [38;5;241m*[39m
-[0;32m      3[0m s [38;5;241m=[39m setup(data[38;5;241m=[39mnumeric_iris_df)
-[0;32m      5[0m abod_model [38;5;241m=[39m create_model([38;5;124m"[39m[38;5;124mabod[39m[38;5;124m"[39m, fraction[38;5;241m=[39m[38;5;241m0.05[39m)
 
 [1;31mModuleNotFoundError[0m: No module named 'pycaret'
 

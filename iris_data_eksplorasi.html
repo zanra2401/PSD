@@ -57,6 +57,8 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'iris_data_eksplorasi';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -405,6 +407,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#outliers-detection-dengan-lof">Outliers Detection dengan (LOF)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#menyiapkan-model-lof">Menyiapkan model LOF</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#data-outliers">Data Outliers</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lof-dataframe">lof Dataframe</a></li>
 </ul>
@@ -583,6 +586,17 @@ dtype: int64
 </section>
 <section id="outliers-detection-dengan-abod">
 <h3>Outliers Detection Dengan (ABOD)<a class="headerlink" href="#outliers-detection-dengan-abod" title="Link to this heading">#</a></h3>
+<p>ABOD adalah metode yang sangat berguna untuk mendeteksi outlier dalam data berdimensi tinggi. Ide utamanya adalah bahwa titik data normal membentuk berbagai macam sudut dengan tetangganya, sedangkan outlier cenderung membentuk sudut yang lebih kecil dan konsisten dengan titik-titik lain. Hal ini karena outlier berada di “ujung” atau pinggiran data, sehingga sudut yang terbentuk antara sebuah outlier dengan dua titik lainnya akan sangat sempit.</p>
+<p>Langkah Langkah:</p>
+<ol class="arabic simple">
+<li><p>hitung seluruh vektor dari titik pi ke titik lainya<br />
+<span class="math notranslate nohighlight">\(\vec{v}_{ij} = p_j - p_i\)</span></p></li>
+<li><p>hitung sudut pasangan vector<br />
+<span class="math notranslate nohighlight">\(\cos(\theta_{ijk})=\frac{\vec{v}_{ij}\cdot\vec{v}_{ik}}{\|\vec{v}_{ij}\|\cdot\|\vec{v}_{ik}\|}\)</span></p></li>
+<li><p>Varian Suduh<br />
+<span class="math notranslate nohighlight">\(\text{ABOD}(p_i)=\text{Var}(\theta_{ijk})\quad\text{untuk semua }j,k\neq i\)</span></p></li>
+</ol>
+<p>Titik dengan Varian tertinggi adalah Outlier</p>
 <section id="menyiapkan-model-abod">
 <h4>Menyiapkan model (ABOD)<a class="headerlink" href="#menyiapkan-model-abod" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
@@ -980,6 +994,16 @@ dtype: int64
 </section>
 <section id="outliers-detection-dengan-knn">
 <h3>Outliers Detection Dengan (KNN)<a class="headerlink" href="#outliers-detection-dengan-knn" title="Link to this heading">#</a></h3>
+<p>Metode ini adalah salah satu yang paling sederhana dan intuitif untuk deteksi outlier. Pendekatan ini didasarkan pada asumsi bahwa outlier adalah titik data yang letaknya jauh dari sebagian besar titik lainnya. Untuk mendeteksinya, algoritma KNN mengukur jarak dari sebuah titik ke k tetangga terdekatnya. Jika jarak rata-rata ke tetangga-tetangga tersebut sangat besar, titik itu dianggap sebagai outlier.</p>
+<p>Langkah Langkah:</p>
+<ol class="arabic simple">
+<li><p>Tentukan Nilai K</p></li>
+<li><p>Hitung jarak titik xi ke titik lain menggunakan <strong>Euclidean Distance</strong> dan ambil K jarak terkecil<br />
+<span class="math notranslate nohighlight">\(d(x_i,x_j)=\sqrt{\sum_{k=1}^{n}(x_{ik}-x_{jk})^2}\)</span></p></li>
+<li><p>hitung KNN distance
+<span class="math notranslate nohighlight">\(\text{KNN-Distance}(x_i)=\text{rata-rata jarak ke K tetangga terdekat}\)</span><br />
+Titik dengan KNN-Distance tertinggi dianggap anomali.</p></li>
+</ol>
 <section id="menyiapkan-model-knn">
 <h4>Menyiapkan Model KNN<a class="headerlink" href="#menyiapkan-model-knn" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
@@ -1354,6 +1378,27 @@ dtype: int64
 </section>
 <section id="outliers-detection-dengan-lof">
 <h3>Outliers Detection dengan (LOF)<a class="headerlink" href="#outliers-detection-dengan-lof" title="Link to this heading">#</a></h3>
+<p>LOF mengatasi keterbatasan KNN dengan memperkenalkan konsep kepadatan lokal. Alih-alih hanya mengandalkan jarak, LOF membandingkan kepadatan sebuah titik dengan kepadatan tetangganya. Titik data dianggap sebagai outlier jika kepadatan di sekitarnya secara signifikan lebih rendah daripada kepadatan di sekitar tetangga-tetangganya.</p>
+<p>Langkah Langkah:</p>
+<ol class="arabic simple">
+<li><p>Tentukan Nilai K</p></li>
+<li><p>Hitung jarak titik xi ke titik lain menggunakan <strong>Euclidean Distance</strong> dan ambil K jarak terkecil<br />
+<span class="math notranslate nohighlight">\(d(x_i,x_j)=\sqrt{\sum_{k=1}^{n}(x_{ik}-x_{jk})^2}\)</span></p></li>
+<li><p>Hitung reachability distance dari titik A ke titik B:
+<span class="math notranslate nohighlight">\(\text{reach-dist}_k(A,B)=\max(\text{k-distance}(B),d(A,B))\)</span></p></li>
+<li><p>Hitung local reachability density (lrd) dari titik A:
+<span class="math notranslate nohighlight">\(\text{lrd}_k(A)=\frac{1}{\frac{\sum_{B \in N_k(A)} \text{reach-dist}_k(A,B)}{|N_k(A)|}}\)</span></p></li>
+<li><p>Hitung LOF score dari titik A:
+<span class="math notranslate nohighlight">\(\text{LOF}_k(A)=\frac{\sum_{B \in N_k(A)} \frac{\text{lrd}_k(B)}{\text{lrd}_k(A)}}{|N_k(A)|}\)</span></p></li>
+</ol>
+<p>Interpretasi LOF:</p>
+<ul class="simple">
+<li><p>LOF ≈ 1: kerapatan mirip tetangga → normal</p></li>
+<li><p>LOF &gt;&gt; 1: kerapatan jauh lebih rendah → anomali</p></li>
+<li><p>LOF &lt;&lt; 1: lebih padat daripada tetangga → kemungkinan cluster dalam</p></li>
+</ul>
+<section id="menyiapkan-model-lof">
+<h4>Menyiapkan model LOF<a class="headerlink" href="#menyiapkan-model-lof" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">setup</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">numeric_iris_data</span><span class="p">)</span>
@@ -1447,6 +1492,7 @@ dtype: int64
 </table>
 </div><div class="output text_html"></div><div class="output text_html"></div><div class="output text_html"></div></div>
 </div>
+</section>
 <section id="data-outliers">
 <h4>Data Outliers<a class="headerlink" href="#data-outliers" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
@@ -1839,6 +1885,7 @@ dtype: int64
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#outliers-detection-dengan-lof">Outliers Detection dengan (LOF)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#menyiapkan-model-lof">Menyiapkan model LOF</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#data-outliers">Data Outliers</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lof-dataframe">lof Dataframe</a></li>
 </ul>

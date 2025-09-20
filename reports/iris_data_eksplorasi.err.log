@@ -19,7 +19,6 @@ Traceback (most recent call last):
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
 from pycaret.anomaly import *
-
 ------------------
 
 
