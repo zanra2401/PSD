@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -375,7 +375,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -391,6 +393,17 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-hasil-eksperimen">Kesimpulan Hasil Eksperimen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan">Ringkasan</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -466,37 +479,37 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
 </style>
-<table id="T_a0f0b">
+<table id="T_97cda">
   <thead>
     <tr>
-      <th id="T_a0f0b_level0_col0" class="col_heading level0 col0" >Data</th>
-      <th id="T_a0f0b_level0_col1" class="col_heading level0 col1" >Naive Bayes Akurasi</th>
-      <th id="T_a0f0b_level0_col2" class="col_heading level0 col2" >Random Forest Akurasi</th>
-      <th id="T_a0f0b_level0_col3" class="col_heading level0 col3" >Bagging Naive Bayes Akurasi</th>
-      <th id="T_a0f0b_level0_col4" class="col_heading level0 col4" >Bagging Deccision Tree Akurasi</th>
+      <th id="T_97cda_level0_col0" class="col_heading level0 col0" >Data</th>
+      <th id="T_97cda_level0_col1" class="col_heading level0 col1" >Naive Bayes Akurasi</th>
+      <th id="T_97cda_level0_col2" class="col_heading level0 col2" >Random Forest Akurasi</th>
+      <th id="T_97cda_level0_col3" class="col_heading level0 col3" >Bagging Naive Bayes Akurasi</th>
+      <th id="T_97cda_level0_col4" class="col_heading level0 col4" >Bagging Deccision Tree Akurasi</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td id="T_a0f0b_row0_col0" class="data row0 col0" >Imbalance</td>
-      <td id="T_a0f0b_row0_col1" class="data row0 col1" >0.792</td>
-      <td id="T_a0f0b_row0_col2" class="data row0 col2" >0.822</td>
-      <td id="T_a0f0b_row0_col3" class="data row0 col3" >0.822</td>
-      <td id="T_a0f0b_row0_col4" class="data row0 col4" >0.822</td>
+      <td id="T_97cda_row0_col0" class="data row0 col0" >Imbalance</td>
+      <td id="T_97cda_row0_col1" class="data row0 col1" >0.792</td>
+      <td id="T_97cda_row0_col2" class="data row0 col2" >0.822</td>
+      <td id="T_97cda_row0_col3" class="data row0 col3" >0.822</td>
+      <td id="T_97cda_row0_col4" class="data row0 col4" >0.822</td>
     </tr>
     <tr>
-      <td id="T_a0f0b_row1_col0" class="data row1 col0" >SMOTE</td>
-      <td id="T_a0f0b_row1_col1" class="data row1 col1" >0.825</td>
-      <td id="T_a0f0b_row1_col2" class="data row1 col2" >0.974</td>
-      <td id="T_a0f0b_row1_col3" class="data row1 col3" >0.830</td>
-      <td id="T_a0f0b_row1_col4" class="data row1 col4" >0.965</td>
+      <td id="T_97cda_row1_col0" class="data row1 col0" >SMOTE</td>
+      <td id="T_97cda_row1_col1" class="data row1 col1" >0.825</td>
+      <td id="T_97cda_row1_col2" class="data row1 col2" >0.965</td>
+      <td id="T_97cda_row1_col3" class="data row1 col3" >0.830</td>
+      <td id="T_97cda_row1_col4" class="data row1 col4" >0.965</td>
     </tr>
     <tr>
-      <td id="T_a0f0b_row2_col0" class="data row2 col0" >ADASYN</td>
-      <td id="T_a0f0b_row2_col1" class="data row2 col1" >0.835</td>
-      <td id="T_a0f0b_row2_col2" class="data row2 col2" >0.965</td>
-      <td id="T_a0f0b_row2_col3" class="data row2 col3" >0.840</td>
-      <td id="T_a0f0b_row2_col4" class="data row2 col4" >0.948</td>
+      <td id="T_97cda_row2_col0" class="data row2 col0" >ADASYN</td>
+      <td id="T_97cda_row2_col1" class="data row2 col1" >0.818</td>
+      <td id="T_97cda_row2_col2" class="data row2 col2" >0.944</td>
+      <td id="T_97cda_row2_col3" class="data row2 col3" >0.823</td>
+      <td id="T_97cda_row2_col4" class="data row2 col4" >0.944</td>
     </tr>
   </tbody>
 </table>
@@ -536,9 +549,46 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/455c8c812e722c1a1be882c19f4bb45926e25f4ddf4fbac04e514b0e56ae6f53.png" src="../_images/455c8c812e722c1a1be882c19f4bb45926e25f4ddf4fbac04e514b0e56ae6f53.png" />
+<img alt="../_images/6cad0519f79ecfc8cb8ab12e43ea1c91cf4cd9a59f36985afb37daa65031c675.png" src="../_images/6cad0519f79ecfc8cb8ab12e43ea1c91cf4cd9a59f36985afb37daa65031c675.png" />
 </div>
 </div>
+<section id="kesimpulan-hasil-eksperimen">
+<h2>Kesimpulan Hasil Eksperimen<a class="headerlink" href="#kesimpulan-hasil-eksperimen" title="Link to this heading">#</a></h2>
+<p>Berdasarkan tabel hasil akurasi model dengan berbagai kondisi data, diperoleh beberapa poin penting:</p>
+<ol class="arabic simple">
+<li><p><strong>Data Imbalance</strong></p>
+<ul class="simple">
+<li><p>Naive Bayes menghasilkan akurasi terendah (<strong>0.792</strong>) dibanding model lain.</p></li>
+<li><p>Random Forest, Bagging Naive Bayes, dan Bagging Decision Tree berada di kisaran <strong>0.822</strong>.</p></li>
+</ul>
+</li>
+<li><p><strong>SMOTE (Synthetic Minority Over-sampling Technique)</strong></p>
+<ul class="simple">
+<li><p>Semua model mengalami peningkatan akurasi.</p></li>
+<li><p>Random Forest menunjukkan peningkatan signifikan dengan akurasi tertinggi (<strong>0.969</strong>).</p></li>
+<li><p>Bagging Decision Tree juga memiliki akurasi tinggi (<strong>0.965</strong>).</p></li>
+<li><p>Naive Bayes meningkat menjadi <strong>0.825</strong>, sementara Bagging Naive Bayes menjadi <strong>0.830</strong>.</p></li>
+</ul>
+</li>
+<li><p><strong>ADASYN (Adaptive Synthetic Sampling)</strong></p>
+<ul class="simple">
+<li><p>Secara umum, hasil hampir sebanding dengan SMOTE, meskipun sedikit lebih rendah pada Random Forest dan Bagging Decision Tree.</p></li>
+<li><p>Naive Bayes (<strong>0.835</strong>) dan Bagging Naive Bayes (<strong>0.840</strong>) menunjukkan hasil sedikit lebih baik dibanding SMOTE.</p></li>
+<li><p>Random Forest tetap unggul dengan <strong>0.965</strong>, meski sedikit turun dari SMOTE.</p></li>
+<li><p>Bagging Decision Tree berada di <strong>0.948</strong>.</p></li>
+</ul>
+</li>
+</ol>
+<section id="ringkasan">
+<h3>Ringkasan<a class="headerlink" href="#ringkasan" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Random Forest</strong> secara konsisten| menjadi model terbaik dengan akurasi tertinggi, terutama pada data dengan SMOTE.</p></li>
+<li><p><strong>Naive Bayes</strong> memiliki performa terendah dibanding model lain, namun tetap meningkat dengan SMOTE dan ADASYN.</p></li>
+<li><p><strong>Bagging</strong> memberikan peningkatan stabil, khususnya pada Naive Bayes.</p></li>
+<li><p>Teknik <strong>SMOTE dan ADASYN</strong> terbukti efektif dalam meningkatkan akurasi model pada data tidak seimbang.</p></li>
+</ul>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -586,6 +636,24 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-hasil-eksperimen">Kesimpulan Hasil Eksperimen</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan">Ringkasan</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

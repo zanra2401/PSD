@@ -60,7 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'penyeimbangan_data_ecoli';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="MODEL Klasifikasi" href="pemodelan/klasifikasi.html" />
+    <link rel="next" title="MODEL Klasifikasi (ECOLI)" href="pemodelan/klasifikasi.html" />
     <link rel="prev" title="Pembersihan Outliers" href="outliers_cleaning.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -693,6 +693,67 @@ Jika tidak, akibatnya:</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">MySQLInterfaceError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="nn">File C:\Python312\Lib\site-packages\mysql\connector\connection_cext.py:354,</span> in <span class="ni">CMySQLConnection._open_connection</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">353</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">354</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_cmysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">**</span><span class="n">cnx_kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">355</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_cmysql</span><span class="o">.</span><span class="n">converter_str_fallback</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_converter_str_fallback</span>
+
+<span class="ne">MySQLInterfaceError</span>: Can&#39;t connect to MySQL server on &#39;localhost:3306&#39; (10061)
+
+<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
+
+<span class="ne">DatabaseError</span><span class="g g-Whitespace">                             </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">mysql.connector</span> <span class="k">as</span> <span class="nn">myconnector</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">myconnector</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">host</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">port</span><span class="o">=</span><span class="mi">3306</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="n">user</span><span class="o">=</span><span class="s2">&quot;root&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">password</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="n">database</span><span class="o">=</span><span class="s2">&quot;imbalance&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;DROP TABLE IF EXISTS ecoli_data&#39;&#39;&#39;</span><span class="p">)</span>
+
+<span class="nn">File C:\Python312\Lib\site-packages\mysql\connector\pooling.py:322,</span> in <span class="ni">connect</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">319</span>         <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="n">ERROR_NO_CEXT</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">321</span> <span class="k">if</span> <span class="n">CMySQLConnection</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">use_pure</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">322</span>     <span class="k">return</span> <span class="n">CMySQLConnection</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">323</span> <span class="k">return</span> <span class="n">MySQLConnection</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File C:\Python312\Lib\site-packages\mysql\connector\connection_cext.py:142,</span> in <span class="ni">CMySQLConnection.__init__</span><span class="nt">(self, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">140</span> <span class="k">if</span> <span class="n">kwargs</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">141</span>     <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">142</span>         <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">143</span>     <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">144</span>         <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="nn">File C:\Python312\Lib\site-packages\mysql\connector\abstracts.py:1604,</span> in <span class="ni">MySQLConnectionAbstract.connect</span><span class="nt">(self, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1601</span>     <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1603</span> <span class="bp">self</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
+<span class="ne">-&gt; </span><span class="mi">1604</span> <span class="bp">self</span><span class="o">.</span><span class="n">_open_connection</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1606</span> <span class="n">charset</span><span class="p">,</span> <span class="n">collation</span> <span class="o">=</span> <span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1607</span>     <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;charset&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1608</span>     <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;collation&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1609</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1610</span> <span class="k">if</span> <span class="n">charset</span> <span class="ow">or</span> <span class="n">collation</span><span class="p">:</span>
+
+<span class="nn">File C:\Python312\Lib\site-packages\mysql\connector\connection_cext.py:360,</span> in <span class="ni">CMySQLConnection._open_connection</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">358</span> <span class="k">except</span> <span class="n">MySQLInterfaceError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">359</span>     <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="s2">&quot;errno&quot;</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">360</span>         <span class="k">raise</span> <span class="n">get_mysql_exception</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">361</span>             <span class="n">err</span><span class="o">.</span><span class="n">errno</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="n">err</span><span class="o">.</span><span class="n">msg</span><span class="p">,</span> <span class="n">sqlstate</span><span class="o">=</span><span class="n">err</span><span class="o">.</span><span class="n">sqlstate</span>
+<span class="g g-Whitespace">    </span><span class="mi">362</span>         <span class="p">)</span> <span class="kn">from</span> <span class="nn">err</span>
+<span class="g g-Whitespace">    </span><span class="mi">363</span>     <span class="k">raise</span> <span class="n">InterfaceError</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">))</span> <span class="kn">from</span> <span class="nn">err</span>
+<span class="g g-Whitespace">    </span><span class="mi">365</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_handshake</span><span class="p">()</span>
+
+<span class="ne">DatabaseError</span>: 2003 (HY000): Can&#39;t connect to MySQL server on &#39;localhost:3306&#39; (10061)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -734,7 +795,7 @@ Jika tidak, akibatnya:</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Distribusi Kelas di Data Ecoli&#39;)
 </pre></div>
 </div>
-<img alt="_images/aaa02e0760185673cb37dd47e0b726f0e3398c1d4c66a3da6dff6112d6bf3d03.png" src="_images/aaa02e0760185673cb37dd47e0b726f0e3398c1d4c66a3da6dff6112d6bf3d03.png" />
+<img alt="_images/bdf6d89c87a3bcfe8b3fcc810b36d8fee2d28c66c98421535a80bb5687123602.png" src="_images/bdf6d89c87a3bcfe8b3fcc810b36d8fee2d28c66c98421535a80bb5687123602.png" />
 </div>
 </div>
 </section>
@@ -765,7 +826,7 @@ Jika tidak, akibatnya:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e51ef01afb018575b00a62194fb293475c1e1b4ab123e20903f04e54dda0da0e.png" src="_images/e51ef01afb018575b00a62194fb293475c1e1b4ab123e20903f04e54dda0da0e.png" />
+<img alt="_images/5024774b063fbdf29e2ce299961ef562ff66128d8cc5dba1b9fd66127f6b5b66.png" src="_images/5024774b063fbdf29e2ce299961ef562ff66128d8cc5dba1b9fd66127f6b5b66.png" />
 </div>
 </div>
 </section>
@@ -784,7 +845,7 @@ ADASYN menyesuaikan jumlah data sintetis per-sampel minoritas berdasarkan tingka
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">imblearn.over_sampling</span> <span class="kn">import</span> <span class="n">ADASYN</span>
 
-<span class="n">X</span> <span class="o">=</span> <span class="n">ecoli_df</span><span class="p">[</span><span class="n">fitur</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">ecoli_df</span><span class="p">[</span> <span class="p">()</span>          <span class="p">]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">ecoli_df</span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">]</span>
 
 <span class="n">n_neigbors</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">51</span><span class="p">,</span> <span class="mi">76</span><span class="p">]</span>
@@ -906,63 +967,63 @@ ADASYN menyesuaikan jumlah data sintetis per-sampel minoritas berdasarkan tingka
       <td>...</td>
     </tr>
     <tr>
-      <th>1146</th>
-      <td>0.409801</td>
-      <td>0.55196</td>
+      <th>1151</th>
+      <td>0.272446</td>
+      <td>0.498212</td>
       <td>0.48</td>
       <td>0.5</td>
-      <td>0.642351</td>
-      <td>0.62353</td>
-      <td>0.558526</td>
+      <td>0.541388</td>
+      <td>0.8096</td>
+      <td>0.735551</td>
       <td>im</td>
     </tr>
     <tr>
-      <th>1147</th>
-      <td>0.38607</td>
-      <td>0.53869</td>
+      <th>1152</th>
+      <td>0.449398</td>
+      <td>0.554819</td>
       <td>0.48</td>
       <td>0.5</td>
-      <td>0.454428</td>
-      <td>0.627214</td>
-      <td>0.446153</td>
+      <td>0.636627</td>
+      <td>0.61</td>
+      <td>0.579037</td>
       <td>im</td>
     </tr>
     <tr>
-      <th>1148</th>
-      <td>0.417045</td>
-      <td>0.508591</td>
+      <th>1153</th>
+      <td>0.494741</td>
+      <td>0.421976</td>
       <td>0.48</td>
       <td>0.5</td>
-      <td>0.511331</td>
-      <td>0.751761</td>
-      <td>0.763797</td>
+      <td>0.50906</td>
+      <td>0.790395</td>
+      <td>0.79064</td>
       <td>im</td>
     </tr>
     <tr>
-      <th>1149</th>
-      <td>0.539631</td>
-      <td>0.536987</td>
+      <th>1154</th>
+      <td>0.54686</td>
+      <td>0.657622</td>
       <td>0.48</td>
       <td>0.5</td>
-      <td>0.568996</td>
-      <td>0.76873</td>
-      <td>0.756824</td>
+      <td>0.609977</td>
+      <td>0.739238</td>
+      <td>0.690023</td>
       <td>im</td>
     </tr>
     <tr>
-      <th>1150</th>
-      <td>0.619961</td>
-      <td>0.458395</td>
+      <th>1155</th>
+      <td>0.659789</td>
+      <td>0.664356</td>
       <td>0.48</td>
       <td>0.5</td>
-      <td>0.644739</td>
-      <td>0.862572</td>
-      <td>0.866789</td>
+      <td>0.64</td>
+      <td>0.830538</td>
+      <td>0.78288</td>
       <td>im</td>
     </tr>
   </tbody>
 </table>
-<p>1151 rows × 8 columns</p>
+<p>1156 rows × 8 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -984,7 +1045,7 @@ ADASYN menyesuaikan jumlah data sintetis per-sampel minoritas berdasarkan tingka
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/954510a07bfbadfa1eb0011846e2323f7448145853303af8c7e0e68f20aa0548.png" src="_images/954510a07bfbadfa1eb0011846e2323f7448145853303af8c7e0e68f20aa0548.png" />
+<img alt="_images/70e88f302ec64a4df91df155dcac5ef33e4e97eaa426dfa5c2ed0ba5208075ad.png" src="_images/70e88f302ec64a4df91df155dcac5ef33e4e97eaa426dfa5c2ed0ba5208075ad.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1014,7 +1075,7 @@ ADASYN menyesuaikan jumlah data sintetis per-sampel minoritas berdasarkan tingka
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0eafae840d8ac8e7e6a3162cf6a87b168c012cc411856e3180e63d7b2133962a.png" src="_images/0eafae840d8ac8e7e6a3162cf6a87b168c012cc411856e3180e63d7b2133962a.png" />
+<img alt="_images/5a91f81beb3827673aa360697ced9d049f0adfb107827fdc9a9739ecf5fcc51c.png" src="_images/5a91f81beb3827673aa360697ced9d049f0adfb107827fdc9a9739ecf5fcc51c.png" />
 </div>
 </div>
 </section>
@@ -1221,7 +1282,7 @@ Alih-alih hanya menggandakan data minoritas, SMOTE membuat data sintetis baru de
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;BarContainer object of 8 artists&gt;
 </pre></div>
 </div>
-<img alt="_images/d9aaa22e7aa8c32947c3aae99452ea3735100e181a117afbed8d2029b4d65385.png" src="_images/d9aaa22e7aa8c32947c3aae99452ea3735100e181a117afbed8d2029b4d65385.png" />
+<img alt="_images/32e816c428acc1fd0d2a5845628de49814be5314694c264463c3deb807d5c4bf.png" src="_images/32e816c428acc1fd0d2a5845628de49814be5314694c264463c3deb807d5c4bf.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1251,7 +1312,7 @@ Alih-alih hanya menggandakan data minoritas, SMOTE membuat data sintetis baru de
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f8b5bf2326ec6428c873edc794525e680c78bcb613a56c995053533f61f83471.png" src="_images/f8b5bf2326ec6428c873edc794525e680c78bcb613a56c995053533f61f83471.png" />
+<img alt="_images/693fb3696dce9e2989ca8877087ac263cd28d40ea0917c692f0db65b1ec31745.png" src="_images/693fb3696dce9e2989ca8877087ac263cd28d40ea0917c692f0db65b1ec31745.png" />
 </div>
 </div>
 </section>
@@ -1278,7 +1339,7 @@ Alih-alih hanya menggandakan data minoritas, SMOTE membuat data sintetis baru de
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/01c1e676c47e491c98a8a20dee56e9854e0f692a7eaa8fb8cdb1d7a700d9df31.png" src="_images/01c1e676c47e491c98a8a20dee56e9854e0f692a7eaa8fb8cdb1d7a700d9df31.png" />
+<img alt="_images/cdc2f2c1d18357e79f2a29952e4fb3bb0a71620ac5885558c5ec54e00158fed3.png" src="_images/cdc2f2c1d18357e79f2a29952e4fb3bb0a71620ac5885558c5ec54e00158fed3.png" />
 </div>
 </div>
 </section>
@@ -1329,7 +1390,7 @@ Alih-alih hanya menggandakan data minoritas, SMOTE membuat data sintetis baru de
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">MODEL Klasifikasi</p>
+        <p class="prev-next-title">MODEL Klasifikasi (ECOLI)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
