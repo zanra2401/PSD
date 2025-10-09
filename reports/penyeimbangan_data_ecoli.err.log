@@ -18,93 +18,49 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import mysql.connector as myconnector
-
-conn = myconnector.connect(
-    host="localhost",
-    port=3306,
-    user="root",
-    password="",
-    database="imbalance"
-)
-
-cursor = conn.cursor()
-
-cursor.execute('''DROP TABLE IF EXISTS ecoli_data''')
-cursor.execute('''
-    CREATE TABLE ecoli_data (
-        id INT PRIMARY KEY AUTO_INCREMENT,
-        name VARCHAR(50),
-        mcg DECIMAL(5, 2),
-        gvh DECIMAL(5, 2),
-        lip DECIMAL(5, 2),
-        chg DECIMAL(5, 2),
-        aac DECIMAL(5, 2),
-        alm1 DECIMAL(5, 2),
-        alm2 DECIMAL(5, 2),
-        class VARCHAR(3)
-    )
-''')
-
-conn.commit()
+# IMPORT LIBRARY
+from sklearn.decomposition import PCA
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from collections import Counter
 ------------------
 
 
 [1;31m---------------------------------------------------------------------------[0m
-[1;31mMySQLInterfaceError[0m                       Traceback (most recent call last)
-File [1;32mC:\Python312\Lib\site-packages\mysql\connector\connection_cext.py:354[0m, in [0;36mCMySQLConnection._open_connection[1;34m(self)[0m
-[0;32m    353[0m [38;5;28;01mtry[39;00m:
-[1;32m--> 354[0m     [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_cmysql[49m[38;5;241;43m.[39;49m[43mconnect[49m[43m([49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mcnx_kwargs[49m[43m)[49m
-[0;32m    355[0m     [38;5;28mself[39m[38;5;241m.[39m_cmysql[38;5;241m.[39mconverter_str_fallback [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39m_converter_str_fallback
+[1;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Cell [1;32mIn[1], line 2[0m
+[0;32m      1[0m [38;5;66;03m# IMPORT LIBRARY[39;00m
+[1;32m----> 2[0m [38;5;28;01mfrom[39;00m [38;5;21;01msklearn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mdecomposition[39;00m [38;5;28;01mimport[39;00m PCA
+[0;32m      3[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
+[0;32m      4[0m [38;5;28;01mimport[39;00m [38;5;21;01mpandas[39;00m [38;5;28;01mas[39;00m [38;5;21;01mpd[39;00m
 
-[1;31mMySQLInterfaceError[0m: Can't connect to MySQL server on 'localhost:3306' (10061)
+File [1;32mC:\Python312\Lib\site-packages\sklearn\__init__.py:84[0m
+[0;32m     70[0m     [38;5;66;03m# We are not importing the rest of scikit-learn during the build[39;00m
+[0;32m     71[0m     [38;5;66;03m# process, as it may not be compiled yet[39;00m
+[0;32m     72[0m [38;5;28;01melse[39;00m:
+[1;32m   (...)[0m
+[0;32m     78[0m     [38;5;66;03m# later is linked to the OpenMP runtime to make it possible to introspect[39;00m
+[0;32m     79[0m     [38;5;66;03m# it and importing it first would fail if the OpenMP dll cannot be found.[39;00m
+[0;32m     80[0m     [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m [38;5;28;01mimport[39;00m (
+[0;32m     81[0m         __check_build,  [38;5;66;03m# noqa: F401[39;00m
+[0;32m     82[0m         _distributor_init,  [38;5;66;03m# noqa: F401[39;00m
+[0;32m     83[0m     )
+[1;32m---> 84[0m     [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mbase[39;00m [38;5;28;01mimport[39;00m clone
+[0;32m     85[0m     [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mutils[39;00m[38;5;21;01m.[39;00m[38;5;21;01m_show_versions[39;00m [38;5;28;01mimport[39;00m show_versions
+[0;32m     87[0m     __all__ [38;5;241m=[39m [
+[0;32m     88[0m         [38;5;124m"[39m[38;5;124mcalibration[39m[38;5;124m"[39m,
+[0;32m     89[0m         [38;5;124m"[39m[38;5;124mcluster[39m[38;5;124m"[39m,
+[1;32m   (...)[0m
+[0;32m    130[0m         [38;5;124m"[39m[38;5;124mshow_versions[39m[38;5;124m"[39m,
+[0;32m    131[0m     ]
 
-The above exception was the direct cause of the following exception:
+File [1;32mC:\Python312\Lib\site-packages\sklearn\base.py:14[0m
+[0;32m     11[0m [38;5;28;01mimport[39;00m [38;5;21;01mwarnings[39;00m
+[0;32m     12[0m [38;5;28;01mfrom[39;00m [38;5;21;01mcollections[39;00m [38;5;28;01mimport[39;00m defaultdict
+[1;32m---> 14[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
+[0;32m     16[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m [38;5;28;01mimport[39;00m __version__
+[0;32m     17[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01m_config[39;00m [38;5;28;01mimport[39;00m config_context, get_config
 
-[1;31mDatabaseError[0m                             Traceback (most recent call last)
-Cell [1;32mIn[4], line 3[0m
-[0;32m      1[0m [38;5;28;01mimport[39;00m [38;5;21;01mmysql[39;00m[38;5;21;01m.[39;00m[38;5;21;01mconnector[39;00m [38;5;28;01mas[39;00m [38;5;21;01mmyconnector[39;00m
-[1;32m----> 3[0m conn [38;5;241m=[39m [43mmyconnector[49m[38;5;241;43m.[39;49m[43mconnect[49m[43m([49m
-[0;32m      4[0m [43m    [49m[43mhost[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43mlocalhost[39;49m[38;5;124;43m"[39;49m[43m,[49m
-[0;32m      5[0m [43m    [49m[43mport[49m[38;5;241;43m=[39;49m[38;5;241;43m3306[39;49m[43m,[49m
-[0;32m      6[0m [43m    [49m[43muser[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43mroot[39;49m[38;5;124;43m"[39;49m[43m,[49m
-[0;32m      7[0m [43m    [49m[43mpassword[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43m"[39;49m[43m,[49m
-[0;32m      8[0m [43m    [49m[43mdatabase[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43mimbalance[39;49m[38;5;124;43m"[39;49m
-[0;32m      9[0m [43m)[49m
-[0;32m     11[0m cursor [38;5;241m=[39m conn[38;5;241m.[39mcursor()
-[0;32m     13[0m cursor[38;5;241m.[39mexecute([38;5;124m'''[39m[38;5;124mDROP TABLE IF EXISTS ecoli_data[39m[38;5;124m'''[39m)
-
-File [1;32mC:\Python312\Lib\site-packages\mysql\connector\pooling.py:322[0m, in [0;36mconnect[1;34m(*args, **kwargs)[0m
-[0;32m    319[0m         [38;5;28;01mraise[39;00m [38;5;167;01mImportError[39;00m(ERROR_NO_CEXT)
-[0;32m    321[0m [38;5;28;01mif[39;00m CMySQLConnection [38;5;129;01mand[39;00m [38;5;129;01mnot[39;00m use_pure:
-[1;32m--> 322[0m     [38;5;28;01mreturn[39;00m [43mCMySQLConnection[49m[43m([49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
-[0;32m    323[0m [38;5;28;01mreturn[39;00m MySQLConnection([38;5;241m*[39margs, [38;5;241m*[39m[38;5;241m*[39mkwargs)
-
-File [1;32mC:\Python312\Lib\site-packages\mysql\connector\connection_cext.py:142[0m, in [0;36mCMySQLConnection.__init__[1;34m(self, **kwargs)[0m
-[0;32m    140[0m [38;5;28;01mif[39;00m kwargs:
-[0;32m    141[0m     [38;5;28;01mtry[39;00m:
-[1;32m--> 142[0m         [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mconnect[49m[43m([49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
-[0;32m    143[0m     [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m:
-[0;32m    144[0m         [38;5;28mself[39m[38;5;241m.[39mclose()
-
-File [1;32mC:\Python312\Lib\site-packages\mysql\connector\abstracts.py:1604[0m, in [0;36mMySQLConnectionAbstract.connect[1;34m(self, **kwargs)[0m
-[0;32m   1601[0m     [38;5;28mself[39m[38;5;241m.[39mconfig([38;5;241m*[39m[38;5;241m*[39mkwargs)
-[0;32m   1603[0m [38;5;28mself[39m[38;5;241m.[39mdisconnect()
-[1;32m-> 1604[0m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_open_connection[49m[43m([49m[43m)[49m
-[0;32m   1606[0m charset, collation [38;5;241m=[39m (
-[0;32m   1607[0m     kwargs[38;5;241m.[39mpop([38;5;124m"[39m[38;5;124mcharset[39m[38;5;124m"[39m, [38;5;28;01mNone[39;00m),
-[0;32m   1608[0m     kwargs[38;5;241m.[39mpop([38;5;124m"[39m[38;5;124mcollation[39m[38;5;124m"[39m, [38;5;28;01mNone[39;00m),
-[0;32m   1609[0m )
-[0;32m   1610[0m [38;5;28;01mif[39;00m charset [38;5;129;01mor[39;00m collation:
-
-File [1;32mC:\Python312\Lib\site-packages\mysql\connector\connection_cext.py:360[0m, in [0;36mCMySQLConnection._open_connection[1;34m(self)[0m
-[0;32m    358[0m [38;5;28;01mexcept[39;00m MySQLInterfaceError [38;5;28;01mas[39;00m err:
-[0;32m    359[0m     [38;5;28;01mif[39;00m [38;5;28mhasattr[39m(err, [38;5;124m"[39m[38;5;124merrno[39m[38;5;124m"[39m):
-[1;32m--> 360[0m         [38;5;28;01mraise[39;00m get_mysql_exception(
-[0;32m    361[0m             err[38;5;241m.[39merrno, msg[38;5;241m=[39merr[38;5;241m.[39mmsg, sqlstate[38;5;241m=[39merr[38;5;241m.[39msqlstate
-[0;32m    362[0m         ) [38;5;28;01mfrom[39;00m [38;5;21;01merr[39;00m
-[0;32m    363[0m     [38;5;28;01mraise[39;00m InterfaceError([38;5;28mstr[39m(err)) [38;5;28;01mfrom[39;00m [38;5;21;01merr[39;00m
-[0;32m    365[0m [38;5;28mself[39m[38;5;241m.[39m_do_handshake()
-
-[1;31mDatabaseError[0m: 2003 (HY000): Can't connect to MySQL server on 'localhost:3306' (10061)
+[1;31mModuleNotFoundError[0m: No module named 'numpy'
 

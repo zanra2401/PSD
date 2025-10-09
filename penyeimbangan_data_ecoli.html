@@ -202,6 +202,7 @@
 <li class="toctree-l2"><a class="reference internal" href="pemodelan/nb_smote.html">SMOTE DATA</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pemodelan/nb_adasyn.html">ADASYN DATA</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pemodelan/perbandingan_keseluruhan.html">Perbandingan Model dan Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="KNIME/dokumentasi_workflow.html">Projek Pra UTS PSD</a></li>
 </ul>
 </details></li>
 </ul>
@@ -457,6 +458,46 @@ Jika tidak, akibatnya:</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># IMPORT LIBRARY</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">File</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Python312</span>\<span class="n">Lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">sklearn</span>\<span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">84</span>
+<span class="g g-Whitespace">     </span><span class="mi">70</span>     <span class="c1"># We are not importing the rest of scikit-learn during the build</span>
+<span class="g g-Whitespace">     </span><span class="mi">71</span>     <span class="c1"># process, as it may not be compiled yet</span>
+<span class="g g-Whitespace">     </span><span class="mi">72</span> <span class="k">else</span><span class="p">:</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">78</span>     <span class="c1"># later is linked to the OpenMP runtime to make it possible to introspect</span>
+<span class="g g-Whitespace">     </span><span class="mi">79</span>     <span class="c1"># it and importing it first would fail if the OpenMP dll cannot be found.</span>
+<span class="g g-Whitespace">     </span><span class="mi">80</span>     <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">81</span>         <span class="n">__check_build</span><span class="p">,</span>  <span class="c1"># noqa: F401</span>
+<span class="g g-Whitespace">     </span><span class="mi">82</span>         <span class="n">_distributor_init</span><span class="p">,</span>  <span class="c1"># noqa: F401</span>
+<span class="g g-Whitespace">     </span><span class="mi">83</span>     <span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">84</span>     <span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">clone</span>
+<span class="g g-Whitespace">     </span><span class="mi">85</span>     <span class="kn">from</span> <span class="nn">.utils._show_versions</span> <span class="kn">import</span> <span class="n">show_versions</span>
+<span class="g g-Whitespace">     </span><span class="mi">87</span>     <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+<span class="g g-Whitespace">     </span><span class="mi">88</span>         <span class="s2">&quot;calibration&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">89</span>         <span class="s2">&quot;cluster&quot;</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">130</span>         <span class="s2">&quot;show_versions&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">131</span>     <span class="p">]</span>
+
+<span class="n">File</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Python312</span>\<span class="n">Lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">sklearn</span>\<span class="n">base</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">14</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="kn">import</span> <span class="nn">warnings</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="ne">---&gt; </span><span class="mi">14</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">__version__</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="kn">from</span> <span class="nn">._config</span> <span class="kn">import</span> <span class="n">config_context</span><span class="p">,</span> <span class="n">get_config</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;numpy&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -674,6 +715,7 @@ Jika tidak, akibatnya:</p>
 <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
 
 <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;DROP TABLE IF EXISTS ecoli_data&#39;&#39;&#39;</span><span class="p">)</span>
+
 <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span>
 <span class="s1">    CREATE TABLE ecoli_data (</span>
 <span class="s1">        id INT PRIMARY KEY AUTO_INCREMENT,</span>
@@ -690,67 +732,6 @@ Jika tidak, akibatnya:</p>
 <span class="s1">&#39;&#39;&#39;</span><span class="p">)</span>
 
 <span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">MySQLInterfaceError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="nn">File C:\Python312\Lib\site-packages\mysql\connector\connection_cext.py:354,</span> in <span class="ni">CMySQLConnection._open_connection</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">353</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">354</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_cmysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">**</span><span class="n">cnx_kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">355</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_cmysql</span><span class="o">.</span><span class="n">converter_str_fallback</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_converter_str_fallback</span>
-
-<span class="ne">MySQLInterfaceError</span>: Can&#39;t connect to MySQL server on &#39;localhost:3306&#39; (10061)
-
-<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
-
-<span class="ne">DatabaseError</span><span class="g g-Whitespace">                             </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">mysql.connector</span> <span class="k">as</span> <span class="nn">myconnector</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">myconnector</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">host</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">port</span><span class="o">=</span><span class="mi">3306</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="n">user</span><span class="o">=</span><span class="s2">&quot;root&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">password</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="n">database</span><span class="o">=</span><span class="s2">&quot;imbalance&quot;</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;DROP TABLE IF EXISTS ecoli_data&#39;&#39;&#39;</span><span class="p">)</span>
-
-<span class="nn">File C:\Python312\Lib\site-packages\mysql\connector\pooling.py:322,</span> in <span class="ni">connect</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">319</span>         <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="n">ERROR_NO_CEXT</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">321</span> <span class="k">if</span> <span class="n">CMySQLConnection</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">use_pure</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">322</span>     <span class="k">return</span> <span class="n">CMySQLConnection</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">323</span> <span class="k">return</span> <span class="n">MySQLConnection</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File C:\Python312\Lib\site-packages\mysql\connector\connection_cext.py:142,</span> in <span class="ni">CMySQLConnection.__init__</span><span class="nt">(self, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">140</span> <span class="k">if</span> <span class="n">kwargs</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">141</span>     <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">142</span>         <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">143</span>     <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">144</span>         <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-
-<span class="nn">File C:\Python312\Lib\site-packages\mysql\connector\abstracts.py:1604,</span> in <span class="ni">MySQLConnectionAbstract.connect</span><span class="nt">(self, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1601</span>     <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1603</span> <span class="bp">self</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
-<span class="ne">-&gt; </span><span class="mi">1604</span> <span class="bp">self</span><span class="o">.</span><span class="n">_open_connection</span><span class="p">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">1606</span> <span class="n">charset</span><span class="p">,</span> <span class="n">collation</span> <span class="o">=</span> <span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1607</span>     <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;charset&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1608</span>     <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;collation&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1609</span> <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1610</span> <span class="k">if</span> <span class="n">charset</span> <span class="ow">or</span> <span class="n">collation</span><span class="p">:</span>
-
-<span class="nn">File C:\Python312\Lib\site-packages\mysql\connector\connection_cext.py:360,</span> in <span class="ni">CMySQLConnection._open_connection</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">358</span> <span class="k">except</span> <span class="n">MySQLInterfaceError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">359</span>     <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="s2">&quot;errno&quot;</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">360</span>         <span class="k">raise</span> <span class="n">get_mysql_exception</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">361</span>             <span class="n">err</span><span class="o">.</span><span class="n">errno</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="n">err</span><span class="o">.</span><span class="n">msg</span><span class="p">,</span> <span class="n">sqlstate</span><span class="o">=</span><span class="n">err</span><span class="o">.</span><span class="n">sqlstate</span>
-<span class="g g-Whitespace">    </span><span class="mi">362</span>         <span class="p">)</span> <span class="kn">from</span> <span class="nn">err</span>
-<span class="g g-Whitespace">    </span><span class="mi">363</span>     <span class="k">raise</span> <span class="n">InterfaceError</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">))</span> <span class="kn">from</span> <span class="nn">err</span>
-<span class="g g-Whitespace">    </span><span class="mi">365</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_handshake</span><span class="p">()</span>
-
-<span class="ne">DatabaseError</span>: 2003 (HY000): Can&#39;t connect to MySQL server on &#39;localhost:3306&#39; (10061)
 </pre></div>
 </div>
 </div>
@@ -818,7 +799,7 @@ Jika tidak, akibatnya:</p>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Y&quot;</span><span class="p">)</span>
-
+    
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Class&quot;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.12</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper right&quot;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -845,7 +826,7 @@ ADASYN menyesuaikan jumlah data sintetis per-sampel minoritas berdasarkan tingka
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">imblearn.over_sampling</span> <span class="kn">import</span> <span class="n">ADASYN</span>
 
-<span class="n">X</span> <span class="o">=</span> <span class="n">ecoli_df</span><span class="p">[</span> <span class="p">()</span>          <span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">ecoli_df</span><span class="p">[</span><span class="n">fitur</span><span class="p">]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">ecoli_df</span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">]</span>
 
 <span class="n">n_neigbors</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">51</span><span class="p">,</span> <span class="mi">76</span><span class="p">]</span>
@@ -1097,7 +1078,7 @@ Alih-alih hanya menggandakan data minoritas, SMOTE membuat data sintetis baru de
 
 <span class="n">p</span> <span class="o">=</span> <span class="n">ecoli_df</span><span class="p">[</span><span class="n">fitur</span><span class="p">]</span>
 <span class="n">q</span> <span class="o">=</span> <span class="n">ecoli_df</span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">]</span>
-
+    
 <span class="n">p_resampled</span><span class="p">,</span> <span class="n">q_resampled</span> <span class="o">=</span> <span class="n">SMOTE</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">k_neighbors</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">fit_resample</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
 <span class="n">merge_smote</span> <span class="o">=</span> <span class="n">p_resampled</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">q_resampled</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
