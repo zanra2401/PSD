@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -57,6 +57,8 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'NO2/modeling';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -416,11 +418,14 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-dengan-lag-5">Model dengan Lag 5</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-dengan-lag-10">Model dengan Lag 10</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evalusi-setiap-model-dengan-lag-berbeda">Evalusi setiap model dengan lag berbeda</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-dengan-metrik-r-2">Evaluasi dengan Metrik <span class="math notranslate nohighlight">\(R^2\)</span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-hasil-evaluasi-model-knn-berdasarkan-lag">Kesimpulan Hasil Evaluasi Model KNN Berdasarkan Lag</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis">Analisis</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-dengan-metrik-mape">Evaluasi dengan Metrik MAPE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Kesimpulan</a></li>
 </ul>
 </li>
 </ul>
@@ -446,6 +451,7 @@ Berbeda dengan model berbasis fungsi matematis, KNN tidak membuat asumsi bentuk 
 <span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsRegressor</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_percentage_error</span>
 </pre></div>
 </div>
 </div>
@@ -504,12 +510,18 @@ Saya normalisasi data dengan StandardScaler dari sklearn</p>
 <span class="n">model_lag1</span> <span class="o">=</span> <span class="n">KNeighborsRegressor</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">model_lag1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model_lag1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">mape_lag1</span> <span class="o">=</span> <span class="n">mean_absolute_percentage_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mape_lag1</span><span class="p">)</span>
 <span class="n">score_lag1</span> <span class="o">=</span> <span class="n">model_lag1</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
 <span class="n">score_lag1</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.03428513453243376
+</pre></div>
+</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.982895855192723
 </pre></div>
 </div>
@@ -520,7 +532,7 @@ Saya normalisasi data dengan StandardScaler dari sklearn</p>
 <h2>Model dengan data Lag 2<a class="headerlink" href="#model-dengan-data-lag-2" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">supervised_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;no2_bojonegoro_post/supervised_data_lag_3.csv&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">supervised_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;no2_bojonegoro_post/supervised_data_lag_2.csv&quot;</span><span class="p">)</span>
 
 <span class="n">X</span> <span class="o">=</span> <span class="n">supervised_df</span><span class="p">[</span><span class="n">create_columns</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span>
 
@@ -536,13 +548,19 @@ Saya normalisasi data dengan StandardScaler dari sklearn</p>
 <span class="n">model_lag2</span> <span class="o">=</span> <span class="n">KNeighborsRegressor</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">model_lag2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model_lag2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">mape_lag2</span> <span class="o">=</span> <span class="n">mean_absolute_percentage_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mape_lag2</span><span class="p">)</span>
 <span class="n">score_lag2</span> <span class="o">=</span> <span class="n">model_lag2</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
 <span class="n">score_lag2</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8582308424026023
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.08466262656670394
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8767054925575326
 </pre></div>
 </div>
 </div>
@@ -568,12 +586,18 @@ Saya normalisasi data dengan StandardScaler dari sklearn</p>
 <span class="n">model_lag3</span> <span class="o">=</span> <span class="n">KNeighborsRegressor</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">model_lag3</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model_lag3</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">mape_lag3</span> <span class="o">=</span> <span class="n">mean_absolute_percentage_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mape_lag3</span><span class="p">)</span>
 <span class="n">score_lag3</span> <span class="o">=</span> <span class="n">model_lag3</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
 <span class="n">score_lag3</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.07007481899600325
+</pre></div>
+</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8227990868861905
 </pre></div>
 </div>
@@ -600,12 +624,18 @@ Saya normalisasi data dengan StandardScaler dari sklearn</p>
 <span class="n">model_lag4</span> <span class="o">=</span> <span class="n">KNeighborsRegressor</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">model_lag4</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model_lag4</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">mape_lag4</span> <span class="o">=</span> <span class="n">mean_absolute_percentage_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mape_lag4</span><span class="p">)</span>
 <span class="n">score_lag4</span> <span class="o">=</span> <span class="n">model_lag4</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
 <span class="n">score_lag4</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.08038229945136457
+</pre></div>
+</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8667684312322501
 </pre></div>
 </div>
@@ -632,12 +662,18 @@ Saya normalisasi data dengan StandardScaler dari sklearn</p>
 <span class="n">model_lag5</span> <span class="o">=</span> <span class="n">KNeighborsRegressor</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">model_lag5</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model_lag5</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">mape_lag5</span> <span class="o">=</span> <span class="n">mean_absolute_percentage_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mape_lag5</span><span class="p">)</span>
 <span class="n">score_lag5</span> <span class="o">=</span> <span class="n">model_lag5</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
 <span class="n">score_lag5</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.06459424176666838
+</pre></div>
+</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8970300222214518
 </pre></div>
 </div>
@@ -664,12 +700,18 @@ Saya normalisasi data dengan StandardScaler dari sklearn</p>
 <span class="n">model_lag10</span> <span class="o">=</span> <span class="n">KNeighborsRegressor</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">model_lag10</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model_lag10</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">mape_lag10</span> <span class="o">=</span> <span class="n">mean_absolute_percentage_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mape_lag10</span><span class="p">)</span>
 <span class="n">score_lag10</span> <span class="o">=</span> <span class="n">model_lag10</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
 <span class="n">score_lag10</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.12272261219609952
+</pre></div>
+</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5817857129078882
 </pre></div>
 </div>
@@ -678,6 +720,8 @@ Saya normalisasi data dengan StandardScaler dari sklearn</p>
 </section>
 <section id="evalusi-setiap-model-dengan-lag-berbeda">
 <h2>Evalusi setiap model dengan lag berbeda<a class="headerlink" href="#evalusi-setiap-model-dengan-lag-berbeda" title="Link to this heading">#</a></h2>
+<section id="evaluasi-dengan-metrik-r-2">
+<h3>Evaluasi dengan Metrik <span class="math notranslate nohighlight">\(R^2\)</span><a class="headerlink" href="#evaluasi-dengan-metrik-r-2" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -694,13 +738,15 @@ Saya normalisasi data dengan StandardScaler dari sklearn</p>
 
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">score</span><span class="p">):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">v</span><span class="si">:</span><span class="s2">.3</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/553f8decc916cc94d91f112ea6baffd9a84986fa5f92ce231454e24550c09fce.png" src="../_images/553f8decc916cc94d91f112ea6baffd9a84986fa5f92ce231454e24550c09fce.png" />
+<img alt="../_images/90980015597dcd58fdf7d17578ae4a0f4b1f60b737a966d13762c940a8b99c14.png" src="../_images/90980015597dcd58fdf7d17578ae4a0f4b1f60b737a966d13762c940a8b99c14.png" />
 </div>
 </div>
+</section>
 <section id="kesimpulan-hasil-evaluasi-model-knn-berdasarkan-lag">
 <h3>Kesimpulan Hasil Evaluasi Model KNN Berdasarkan Lag<a class="headerlink" href="#kesimpulan-hasil-evaluasi-model-knn-berdasarkan-lag" title="Link to this heading">#</a></h3>
 <p>Grafik menunjukkan performa model <strong>K-Nearest Neighbors (KNN)</strong> dengan berbagai nilai <em>lag</em> (lag_1 hingga lag_5, dan lag_10).<br />
@@ -708,10 +754,10 @@ Nilai yang ditampilkan pada batang adalah <strong>skor akurasi (atau koefisien d
 <section id="analisis">
 <h4>Analisis<a class="headerlink" href="#analisis" title="Link to this heading">#</a></h4>
 <ul class="simple">
-<li><p><strong>KNN lag_1</strong> memiliki performa terbaik dengan skor <strong>0.934</strong>, menunjukkan hubungan paling kuat antara fitur dan target ketika hanya menggunakan 1 lag sebelumnya.</p></li>
-<li><p><strong>KNN lag_2</strong> sedikit menurun menjadi <strong>0.895</strong>, namun masih tergolong sangat baik.</p></li>
-<li><p>Setelah itu, performa terus menurun hingga <strong>lag_4 (0.786)</strong> dan <strong>lag_5 (0.798)</strong>.</p></li>
-<li><p>lalu paling rendah di lag_10 dengan <strong>lag_10 (0.515)</strong></p></li>
+<li><p><strong>KNN lag_1</strong> memiliki performa terbaik dengan skor <strong>0.983</strong>, menunjukkan hubungan paling kuat antara fitur dan target ketika hanya menggunakan 1 lag sebelumnya.</p></li>
+<li><p><strong>KNN lag_2</strong> sedikit menurun menjadi <strong>0.877</strong>, namun masih tergolong sangat baik.</p></li>
+<li><p>Setelah itu, performa terus menurun hingga <strong>lag_4 (0.867)</strong> dan <strong>lag_5 (0.897)</strong>.</p></li>
+<li><p>lalu paling rendah di lag_10 dengan <strong>lag_10 (0.582)</strong></p></li>
 </ul>
 </section>
 <section id="kesimpulan">
@@ -722,6 +768,38 @@ Nilai yang ditampilkan pada batang adalah <strong>skor akurasi (atau koefisien d
 <li><p>Model <strong>KNN dengan lag_1</strong> merupakan konfigurasi <strong>paling optimal</strong> untuk dataset ini.</p></li>
 </ul>
 </section>
+</section>
+<section id="evaluasi-dengan-metrik-mape">
+<h3>Evaluasi dengan Metrik MAPE<a class="headerlink" href="#evaluasi-dengan-metrik-mape" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mape</span> <span class="o">=</span> <span class="p">[</span><span class="n">mape_lag1</span><span class="p">,</span> <span class="n">mape_lag2</span><span class="p">,</span> <span class="n">mape_lag3</span><span class="p">,</span> <span class="n">mape_lag4</span><span class="p">,</span> <span class="n">mape_lag5</span><span class="p">,</span> <span class="n">mape_lag10</span><span class="p">]</span>
+<span class="n">label</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;KNN lag_1&quot;</span><span class="p">,</span> <span class="s2">&quot;KNN lag_2&quot;</span><span class="p">,</span> <span class="s2">&quot;KNN lag_3&quot;</span><span class="p">,</span> <span class="s2">&quot;KNN lag_4&quot;</span><span class="p">,</span> <span class="s2">&quot;KNN lag_5&quot;</span><span class="p">,</span> <span class="s2">&quot;KNN lag_10&quot;</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">mape</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;#b983ff&quot;</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">mape</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="o">-</span> <span class="mf">0.02</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">v</span><span class="si">:</span><span class="s2">.3</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/adcc813b224d6212dcefa26e3639e3a8ba8055e16e2bc48bc305166588778f9b.png" src="../_images/adcc813b224d6212dcefa26e3639e3a8ba8055e16e2bc48bc305166588778f9b.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>Semakin kecil nilai MAPE</strong>, semakin <strong>baik akurasi model</strong> dalam memprediksi data.</p></li>
+<li><p>Dari grafik, model dengan <strong>lag_1</strong> memiliki MAPE paling rendah (<strong>0.0343</strong>), sehingga <strong>prediksinya paling akurat</strong>.</p></li>
+<li><p>Sebaliknya, <strong>lag_10</strong> memiliki MAPE tertinggi (<strong>0.123</strong>), menandakan model tersebut memiliki kesalahan prediksi paling besar.</p></li>
+<li><p>Secara umum, peningkatan jumlah lag tidak selalu memperbaiki akurasi. Terlalu banyak lag justru bisa membuat model <strong>overfitting</strong> atau menangkap <strong>noise</strong> pada data.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="id1">
+<h3>Kesimpulan<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>Model <strong>KNN lag_1</strong> adalah model terbaik berdasarkan metrik MAPE, karena memiliki tingkat kesalahan terendah dibandingkan model dengan lag lainnya.<br />
+Nilai MAPE yang rendah (<strong>3.43%</strong>) menunjukkan bahwa rata-rata prediksi model hanya meleset sekitar <strong>3.43% dari nilai sebenarnya</strong>, yang dapat dikategorikan <strong>sangat baik</strong>.</p>
 </section>
 </section>
 </section>
@@ -789,11 +867,14 @@ Nilai yang ditampilkan pada batang adalah <strong>skor akurasi (atau koefisien d
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-dengan-lag-5">Model dengan Lag 5</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-dengan-lag-10">Model dengan Lag 10</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evalusi-setiap-model-dengan-lag-berbeda">Evalusi setiap model dengan lag berbeda</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-dengan-metrik-r-2">Evaluasi dengan Metrik <span class="math notranslate nohighlight">\(R^2\)</span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-hasil-evaluasi-model-knn-berdasarkan-lag">Kesimpulan Hasil Evaluasi Model KNN Berdasarkan Lag</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis">Analisis</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-dengan-metrik-mape">Evaluasi dengan Metrik MAPE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Kesimpulan</a></li>
 </ul>
 </li>
 </ul>
