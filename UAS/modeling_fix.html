@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -482,6 +482,324 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_train_time_domain</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>att1</th>
+      <th>att2</th>
+      <th>att3</th>
+      <th>att4</th>
+      <th>att5</th>
+      <th>att6</th>
+      <th>att7</th>
+      <th>att8</th>
+      <th>att9</th>
+      <th>att10</th>
+      <th>...</th>
+      <th>att592</th>
+      <th>att593</th>
+      <th>att594</th>
+      <th>att595</th>
+      <th>att596</th>
+      <th>att597</th>
+      <th>att598</th>
+      <th>att599</th>
+      <th>att600</th>
+      <th>target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.000153</td>
+      <td>-6.578439e-05</td>
+      <td>0.000038</td>
+      <td>-0.000029</td>
+      <td>0.000020</td>
+      <td>-0.000006</td>
+      <td>0.000004</td>
+      <td>0.000002</td>
+      <td>0.000003</td>
+      <td>-0.000003</td>
+      <td>...</td>
+      <td>-0.000003</td>
+      <td>0.000010</td>
+      <td>-0.000006</td>
+      <td>-0.000006</td>
+      <td>-0.000010</td>
+      <td>0.000011</td>
+      <td>-4.337056e-07</td>
+      <td>0.000013</td>
+      <td>-0.000024</td>
+      <td>Aedes_female</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-0.000029</td>
+      <td>6.673935e-07</td>
+      <td>0.000035</td>
+      <td>-0.000119</td>
+      <td>-0.000141</td>
+      <td>-0.000131</td>
+      <td>-0.000251</td>
+      <td>-0.000253</td>
+      <td>-0.000261</td>
+      <td>-0.000309</td>
+      <td>...</td>
+      <td>0.001548</td>
+      <td>0.001509</td>
+      <td>0.001564</td>
+      <td>0.001499</td>
+      <td>0.001487</td>
+      <td>0.001473</td>
+      <td>1.498447e-03</td>
+      <td>0.001388</td>
+      <td>0.001597</td>
+      <td>Aedes_female</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-0.019499</td>
+      <td>4.194278e-02</td>
+      <td>0.192660</td>
+      <td>0.232282</td>
+      <td>0.132188</td>
+      <td>0.013040</td>
+      <td>-0.035715</td>
+      <td>-0.066381</td>
+      <td>-0.070153</td>
+      <td>-0.050134</td>
+      <td>...</td>
+      <td>0.087443</td>
+      <td>0.234516</td>
+      <td>0.242373</td>
+      <td>0.130852</td>
+      <td>0.042257</td>
+      <td>-0.005834</td>
+      <td>-7.398573e-02</td>
+      <td>-0.047510</td>
+      <td>-0.037126</td>
+      <td>Aedes_female</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.000000</td>
+      <td>0.000000e+00</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000e+00</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>Aedes_female</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.000023</td>
+      <td>-7.772223e-05</td>
+      <td>0.000111</td>
+      <td>-0.000096</td>
+      <td>0.000043</td>
+      <td>0.000023</td>
+      <td>-0.000083</td>
+      <td>0.000119</td>
+      <td>-0.000104</td>
+      <td>0.000058</td>
+      <td>...</td>
+      <td>-0.000201</td>
+      <td>-0.000108</td>
+      <td>-0.000037</td>
+      <td>0.000045</td>
+      <td>0.000112</td>
+      <td>0.000165</td>
+      <td>2.464727e-04</td>
+      <td>0.000267</td>
+      <td>0.000361</td>
+      <td>Aedes_female</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>24995</th>
+      <td>-0.038172</td>
+      <td>-6.510722e-02</td>
+      <td>-0.050728</td>
+      <td>-0.057015</td>
+      <td>-0.059738</td>
+      <td>-0.062525</td>
+      <td>-0.041550</td>
+      <td>-0.029602</td>
+      <td>-0.071081</td>
+      <td>-0.085259</td>
+      <td>...</td>
+      <td>0.015370</td>
+      <td>0.011291</td>
+      <td>0.007858</td>
+      <td>0.000036</td>
+      <td>-0.009820</td>
+      <td>-0.016796</td>
+      <td>-2.788711e-02</td>
+      <td>-0.035114</td>
+      <td>-0.043915</td>
+      <td>Tarsalis_male</td>
+    </tr>
+    <tr>
+      <th>24996</th>
+      <td>-0.004521</td>
+      <td>-5.507769e-03</td>
+      <td>-0.003324</td>
+      <td>-0.002715</td>
+      <td>-0.001349</td>
+      <td>-0.000586</td>
+      <td>0.000324</td>
+      <td>0.000365</td>
+      <td>0.000511</td>
+      <td>0.000505</td>
+      <td>...</td>
+      <td>-0.002677</td>
+      <td>-0.002820</td>
+      <td>-0.002841</td>
+      <td>-0.002871</td>
+      <td>-0.002874</td>
+      <td>-0.002720</td>
+      <td>-2.747607e-03</td>
+      <td>-0.002502</td>
+      <td>-0.002782</td>
+      <td>Tarsalis_male</td>
+    </tr>
+    <tr>
+      <th>24997</th>
+      <td>0.000001</td>
+      <td>1.723497e-05</td>
+      <td>0.000005</td>
+      <td>-0.000009</td>
+      <td>-0.000001</td>
+      <td>-0.000002</td>
+      <td>-0.000010</td>
+      <td>0.000010</td>
+      <td>-0.000008</td>
+      <td>0.000007</td>
+      <td>...</td>
+      <td>-0.007817</td>
+      <td>-0.007665</td>
+      <td>-0.007593</td>
+      <td>-0.007307</td>
+      <td>-0.007141</td>
+      <td>-0.006762</td>
+      <td>-6.597169e-03</td>
+      <td>-0.005984</td>
+      <td>-0.006218</td>
+      <td>Tarsalis_male</td>
+    </tr>
+    <tr>
+      <th>24998</th>
+      <td>-0.000047</td>
+      <td>-5.119860e-05</td>
+      <td>-0.000045</td>
+      <td>-0.000071</td>
+      <td>-0.000065</td>
+      <td>-0.000030</td>
+      <td>-0.000031</td>
+      <td>-0.000056</td>
+      <td>-0.000067</td>
+      <td>-0.000051</td>
+      <td>...</td>
+      <td>-0.130079</td>
+      <td>-0.118307</td>
+      <td>-0.106510</td>
+      <td>-0.110060</td>
+      <td>-0.106163</td>
+      <td>-0.085816</td>
+      <td>-6.483196e-02</td>
+      <td>-0.050146</td>
+      <td>-0.114638</td>
+      <td>Tarsalis_male</td>
+    </tr>
+    <tr>
+      <th>24999</th>
+      <td>-0.011246</td>
+      <td>-1.924826e-02</td>
+      <td>-0.020571</td>
+      <td>-0.023844</td>
+      <td>-0.025468</td>
+      <td>-0.026934</td>
+      <td>-0.027441</td>
+      <td>-0.028248</td>
+      <td>-0.028063</td>
+      <td>-0.027184</td>
+      <td>...</td>
+      <td>-0.000118</td>
+      <td>0.000033</td>
+      <td>0.000108</td>
+      <td>-0.000019</td>
+      <td>-0.000115</td>
+      <td>0.000014</td>
+      <td>8.791329e-05</td>
+      <td>-0.000013</td>
+      <td>-0.000106</td>
+      <td>Tarsalis_male</td>
+    </tr>
+  </tbody>
+</table>
+<p>25000 rows × 601 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.fft</span><span class="w"> </span><span class="kn">import</span> <span class="n">rfft</span><span class="p">,</span> <span class="n">rfftfreq</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">extract_features_v2</span><span class="p">(</span><span class="n">signal</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
@@ -523,21 +841,21 @@ document.write(`
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">X_train</span> <span class="o">=</span> <span class="n">df_train_time_domain</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;target&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">df_train_time_domain</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span>
 <span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">X_train</span> <span class="o">=</span> <span class="n">build_feature_df_v2</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">df_test_time_domain</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;target&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">df_train_time_domain</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span>
 
-<span class="nn">Cell In[4], line 15,</span> in <span class="ni">build_feature_df_v2</span><span class="nt">(df_in)</span>
+<span class="nn">Cell In[5], line 15,</span> in <span class="ni">build_feature_df_v2</span><span class="nt">(df_in)</span>
 <span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df_in</span><span class="o">.</span><span class="n">itertuples</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span> 
 <span class="g g-Whitespace">     </span><span class="mi">14</span>     <span class="n">signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span> 
 <span class="ne">---&gt; </span><span class="mi">15</span>     <span class="n">feats</span> <span class="o">=</span> <span class="n">extract_features_v2</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span> 
 <span class="g g-Whitespace">     </span><span class="mi">16</span>     <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">feats</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
 
-<span class="nn">Cell In[4], line 6,</span> in <span class="ni">extract_features_v2</span><span class="nt">(signal)</span>
+<span class="nn">Cell In[5], line 6,</span> in <span class="ni">extract_features_v2</span><span class="nt">(signal)</span>
 <span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">fft_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">rfft</span><span class="p">(</span><span class="n">signal</span><span class="p">))</span>
 <span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">fft_freqs</span> <span class="o">=</span> <span class="n">rfftfreq</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="p">),</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">6000</span><span class="p">)</span>
 <span class="ne">----&gt; </span><span class="mi">6</span> <span class="n">mfcc</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">mfcc</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">signal</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">6000</span><span class="p">,</span> <span class="n">n_mfcc</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
@@ -557,88 +875,347 @@ document.write(`
 <span class="g g-Whitespace">   </span><span class="mi">1997</span>     <span class="o">...</span><span class="p">,</span> <span class="p">:</span><span class="n">n_mfcc</span><span class="p">,</span> <span class="p">:</span>
 <span class="g g-Whitespace">   </span><span class="mi">1998</span> <span class="p">]</span>
 
-<span class="nn">File ~\AppData\Roaming\Python\Python312\site-packages\librosa\feature\spectral.py:2135,</span> in <span class="ni">melspectrogram</span><span class="nt">(y, sr, S, n_fft, hop_length, win_length, window, center, pad_mode, power, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2013</span> <span class="k">def</span><span class="w"> </span><span class="nf">melspectrogram</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">2014</span>     <span class="o">*</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2015</span>     <span class="n">y</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>   <span class="mi">2025</span>     <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2026</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">2027</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Compute a mel-scaled spectrogram.</span>
-<span class="g g-Whitespace">   </span><span class="mi">2028</span><span class="sd"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">2029</span><span class="sd">     If a spectrogram input ``S`` is provided, then it is mapped directly onto</span>
-<span class="sd">   (...)   2133     &gt;&gt;&gt; ax.set(title=&#39;Mel-frequency spectrogram&#39;)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2134</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">2135</span>     <span class="n">S</span><span class="p">,</span> <span class="n">n_fft</span> <span class="o">=</span> <span class="n">_spectrogram</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">2136</span>         <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2137</span>         <span class="n">S</span><span class="o">=</span><span class="n">S</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2138</span>         <span class="n">n_fft</span><span class="o">=</span><span class="n">n_fft</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2139</span>         <span class="n">hop_length</span><span class="o">=</span><span class="n">hop_length</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2140</span>         <span class="n">power</span><span class="o">=</span><span class="n">power</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2141</span>         <span class="n">win_length</span><span class="o">=</span><span class="n">win_length</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2142</span>         <span class="n">window</span><span class="o">=</span><span class="n">window</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2143</span>         <span class="n">center</span><span class="o">=</span><span class="n">center</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2144</span>         <span class="n">pad_mode</span><span class="o">=</span><span class="n">pad_mode</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2145</span>     <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2147</span>     <span class="c1"># Build a Mel filter</span>
-<span class="g g-Whitespace">   </span><span class="mi">2148</span>     <span class="n">mel_basis</span> <span class="o">=</span> <span class="n">filters</span><span class="o">.</span><span class="n">mel</span><span class="p">(</span><span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="n">n_fft</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="nn">File ~\AppData\Roaming\Python\Python312\site-packages\librosa\feature\spectral.py:2148,</span> in <span class="ni">melspectrogram</span><span class="nt">(y, sr, S, n_fft, hop_length, win_length, window, center, pad_mode, power, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2135</span> <span class="n">S</span><span class="p">,</span> <span class="n">n_fft</span> <span class="o">=</span> <span class="n">_spectrogram</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2136</span>     <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2137</span>     <span class="n">S</span><span class="o">=</span><span class="n">S</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>   <span class="mi">2144</span>     <span class="n">pad_mode</span><span class="o">=</span><span class="n">pad_mode</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2145</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2147</span> <span class="c1"># Build a Mel filter</span>
+<span class="ne">-&gt; </span><span class="mi">2148</span> <span class="n">mel_basis</span> <span class="o">=</span> <span class="n">filters</span><span class="o">.</span><span class="n">mel</span><span class="p">(</span><span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="n">n_fft</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2150</span> <span class="n">melspec</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;...ft,mf-&gt;...mt&quot;</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">mel_basis</span><span class="p">,</span> <span class="n">optimize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2151</span> <span class="k">return</span> <span class="n">melspec</span>
 
-<span class="nn">File ~\AppData\Roaming\Python\Python312\site-packages\librosa\core\spectrum.py:2945,</span> in <span class="ni">_spectrogram</span><span class="nt">(y, S, n_fft, hop_length, power, win_length, window, center, pad_mode)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2939</span>     <span class="k">if</span> <span class="n">y</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">2940</span>         <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">2941</span>             <span class="s2">&quot;Input signal must be provided to compute a spectrogram&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">2942</span>         <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2943</span>     <span class="n">S</span> <span class="o">=</span> <span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">2944</span>         <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span>
-<span class="ne">-&gt; </span><span class="mi">2945</span>             <span class="n">stft</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">2946</span>                 <span class="n">y</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2947</span>                 <span class="n">n_fft</span><span class="o">=</span><span class="n">n_fft</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2948</span>                 <span class="n">hop_length</span><span class="o">=</span><span class="n">hop_length</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2949</span>                 <span class="n">win_length</span><span class="o">=</span><span class="n">win_length</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2950</span>                 <span class="n">center</span><span class="o">=</span><span class="n">center</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2951</span>                 <span class="n">window</span><span class="o">=</span><span class="n">window</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2952</span>                 <span class="n">pad_mode</span><span class="o">=</span><span class="n">pad_mode</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2953</span>             <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2954</span>         <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2955</span>         <span class="o">**</span> <span class="n">power</span>
-<span class="g g-Whitespace">   </span><span class="mi">2956</span>     <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2958</span> <span class="k">return</span> <span class="n">S</span><span class="p">,</span> <span class="n">n_fft</span>
-
-<span class="nn">File ~\AppData\Roaming\Python\Python312\site-packages\librosa\core\spectrum.py:387,</span> in <span class="ni">stft</span><span class="nt">(y, n_fft, hop_length, win_length, window, center, dtype, pad_mode, out)</span>
-<span class="g g-Whitespace">    </span><span class="mi">384</span> <span class="k">for</span> <span class="n">bl_s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">y_frames</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">n_columns</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">385</span>     <span class="n">bl_t</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">bl_s</span> <span class="o">+</span> <span class="n">n_columns</span><span class="p">,</span> <span class="n">y_frames</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-<span class="ne">--&gt; </span><span class="mi">387</span>     <span class="n">stft_matrix</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">bl_s</span> <span class="o">+</span> <span class="n">off_start</span> <span class="p">:</span> <span class="n">bl_t</span> <span class="o">+</span> <span class="n">off_start</span><span class="p">]</span> <span class="o">=</span> <span class="n">fft</span><span class="o">.</span><span class="n">rfft</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">388</span>         <span class="n">fft_window</span> <span class="o">*</span> <span class="n">y_frames</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">bl_s</span><span class="p">:</span><span class="n">bl_t</span><span class="p">],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">2</span>
-<span class="g g-Whitespace">    </span><span class="mi">389</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">390</span> <span class="k">return</span> <span class="n">stft_matrix</span>
-
-<span class="nn">File ~\AppData\Roaming\Python\Python312\site-packages\scipy\fft\_backend.py:28,</span> in <span class="ni">_ScipyBackend.__ua_function__</span><span class="nt">(method, args, kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">26</span> <span class="k">if</span> <span class="n">fn</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">27</span>     <span class="k">return</span> <span class="bp">NotImplemented</span>
-<span class="ne">---&gt; </span><span class="mi">28</span> <span class="k">return</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File ~\AppData\Roaming\Python\Python312\site-packages\scipy\fft\_basic_backend.py:91,</span> in <span class="ni">rfft</span><span class="nt">(x, n, axis, norm, overwrite_x, workers, plan)</span>
-<span class="g g-Whitespace">     </span><span class="mi">89</span> <span class="k">def</span><span class="w"> </span><span class="nf">rfft</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">90</span>          <span class="n">overwrite_x</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">workers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">plan</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="ne">---&gt; </span><span class="mi">91</span>     <span class="k">return</span> <span class="n">_execute_1D</span><span class="p">(</span><span class="s1">&#39;rfft&#39;</span><span class="p">,</span> <span class="n">_pocketfft</span><span class="o">.</span><span class="n">rfft</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">92</span>                        <span class="n">overwrite_x</span><span class="o">=</span><span class="n">overwrite_x</span><span class="p">,</span> <span class="n">workers</span><span class="o">=</span><span class="n">workers</span><span class="p">,</span> <span class="n">plan</span><span class="o">=</span><span class="n">plan</span><span class="p">)</span>
-
-<span class="nn">File ~\AppData\Roaming\Python\Python312\site-packages\scipy\fft\_basic_backend.py:32,</span> in <span class="ni">_execute_1D</span><span class="nt">(func_str, pocketfft_func, x, n, axis, norm, overwrite_x, workers, plan)</span>
-<span class="g g-Whitespace">     </span><span class="mi">30</span> <span class="k">if</span> <span class="n">is_numpy</span><span class="p">(</span><span class="n">xp</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">31</span>     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">32</span>     <span class="k">return</span> <span class="n">pocketfft_func</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">33</span>                           <span class="n">overwrite_x</span><span class="o">=</span><span class="n">overwrite_x</span><span class="p">,</span> <span class="n">workers</span><span class="o">=</span><span class="n">workers</span><span class="p">,</span> <span class="n">plan</span><span class="o">=</span><span class="n">plan</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">35</span> <span class="n">norm</span> <span class="o">=</span> <span class="n">_validate_fft_args</span><span class="p">(</span><span class="n">workers</span><span class="p">,</span> <span class="n">plan</span><span class="p">,</span> <span class="n">norm</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">36</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span> <span class="s1">&#39;fft&#39;</span><span class="p">):</span>
-
-<span class="nn">File ~\AppData\Roaming\Python\Python312\site-packages\scipy\fft\_pocketfft\basic.py:61,</span> in <span class="ni">r2c</span><span class="nt">(forward, x, n, axis, norm, overwrite_x, workers, plan)</span>
-<span class="g g-Whitespace">     </span><span class="mi">58</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;invalid number of data points (</span><span class="si">{</span><span class="n">tmp</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span><span class="si">}</span><span class="s2">) specified&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">60</span> <span class="c1"># Note: overwrite_x is not utilised</span>
-<span class="ne">---&gt; </span><span class="mi">61</span> <span class="k">return</span> <span class="n">pfft</span><span class="o">.</span><span class="n">r2c</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="p">(</span><span class="n">axis</span><span class="p">,),</span> <span class="n">forward</span><span class="p">,</span> <span class="n">norm</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">workers</span><span class="p">)</span>
+<span class="nn">File ~\AppData\Roaming\Python\Python312\site-packages\librosa\filters.py:239,</span> in <span class="ni">mel</span><span class="nt">(sr, n_fft, n_mels, fmin, fmax, htk, norm, dtype)</span>
+<span class="g g-Whitespace">    </span><span class="mi">236</span>     <span class="n">upper</span> <span class="o">=</span> <span class="n">ramps</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span> <span class="o">/</span> <span class="n">fdiff</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">238</span>     <span class="c1"># .. then intersect them with each other and zero</span>
+<span class="ne">--&gt; </span><span class="mi">239</span>     <span class="n">weights</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">241</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">norm</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">242</span>     <span class="k">if</span> <span class="n">norm</span> <span class="o">==</span> <span class="s2">&quot;slaney&quot;</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">243</span>         <span class="c1"># Slaney-style mel is scaled to be approx constant energy per channel</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>...</th>
+      <th>317</th>
+      <th>318</th>
+      <th>319</th>
+      <th>320</th>
+      <th>321</th>
+      <th>322</th>
+      <th>323</th>
+      <th>324</th>
+      <th>325</th>
+      <th>326</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.005107</td>
+      <td>0.003539</td>
+      <td>0.004149</td>
+      <td>0.011252</td>
+      <td>0.003870</td>
+      <td>0.003155</td>
+      <td>0.042232</td>
+      <td>0.154303</td>
+      <td>0.345499</td>
+      <td>0.599401</td>
+      <td>...</td>
+      <td>-4.095212</td>
+      <td>-4.197743</td>
+      <td>62.648136</td>
+      <td>63.888668</td>
+      <td>-63.474093</td>
+      <td>-64.317209</td>
+      <td>-3.816917</td>
+      <td>-6.269735</td>
+      <td>19.317396</td>
+      <td>20.483596</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.276832</td>
+      <td>0.890035</td>
+      <td>1.616741</td>
+      <td>2.549686</td>
+      <td>1.589538</td>
+      <td>0.527910</td>
+      <td>0.680788</td>
+      <td>0.465630</td>
+      <td>0.519724</td>
+      <td>0.369701</td>
+      <td>...</td>
+      <td>-28.675469</td>
+      <td>-28.785781</td>
+      <td>-6.357625</td>
+      <td>-8.372556</td>
+      <td>70.978469</td>
+      <td>71.827293</td>
+      <td>111.085970</td>
+      <td>109.507699</td>
+      <td>-2.204282</td>
+      <td>-3.515510</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.534062</td>
+      <td>1.852436</td>
+      <td>2.883891</td>
+      <td>2.586658</td>
+      <td>0.420808</td>
+      <td>1.707434</td>
+      <td>1.508141</td>
+      <td>0.309464</td>
+      <td>0.939695</td>
+      <td>0.622383</td>
+      <td>...</td>
+      <td>-20.226410</td>
+      <td>-18.691676</td>
+      <td>-0.325396</td>
+      <td>-3.622865</td>
+      <td>9.973030</td>
+      <td>14.435670</td>
+      <td>62.655595</td>
+      <td>59.141480</td>
+      <td>35.095852</td>
+      <td>38.291816</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.401689</td>
+      <td>1.139451</td>
+      <td>5.240613</td>
+      <td>4.823131</td>
+      <td>1.369612</td>
+      <td>3.438861</td>
+      <td>3.060122</td>
+      <td>1.713568</td>
+      <td>0.930940</td>
+      <td>0.727151</td>
+      <td>...</td>
+      <td>-13.368533</td>
+      <td>-18.459821</td>
+      <td>-9.010316</td>
+      <td>-8.754565</td>
+      <td>2.842191</td>
+      <td>1.929718</td>
+      <td>133.361574</td>
+      <td>139.556724</td>
+      <td>84.108706</td>
+      <td>85.742414</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.053369</td>
+      <td>1.676477</td>
+      <td>4.024979</td>
+      <td>3.542231</td>
+      <td>0.911268</td>
+      <td>1.725657</td>
+      <td>2.026754</td>
+      <td>1.463920</td>
+      <td>0.787932</td>
+      <td>0.433794</td>
+      <td>...</td>
+      <td>2.970260</td>
+      <td>2.488006</td>
+      <td>-1.869456</td>
+      <td>-2.324577</td>
+      <td>52.999338</td>
+      <td>53.163958</td>
+      <td>76.691293</td>
+      <td>75.682660</td>
+      <td>-7.602454</td>
+      <td>-8.448108</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>24995</th>
+      <td>2.373291</td>
+      <td>3.465740</td>
+      <td>4.685130</td>
+      <td>4.794371</td>
+      <td>4.013827</td>
+      <td>3.043128</td>
+      <td>2.308609</td>
+      <td>1.751479</td>
+      <td>1.221384</td>
+      <td>0.754629</td>
+      <td>...</td>
+      <td>58.792026</td>
+      <td>54.990256</td>
+      <td>-30.014661</td>
+      <td>-34.719269</td>
+      <td>-23.941354</td>
+      <td>-24.767210</td>
+      <td>24.524109</td>
+      <td>31.091952</td>
+      <td>-27.659927</td>
+      <td>-26.416182</td>
+    </tr>
+    <tr>
+      <th>24996</th>
+      <td>0.110527</td>
+      <td>4.393731</td>
+      <td>6.324274</td>
+      <td>11.898503</td>
+      <td>5.066463</td>
+      <td>2.787707</td>
+      <td>7.776737</td>
+      <td>3.446319</td>
+      <td>0.985013</td>
+      <td>2.038244</td>
+      <td>...</td>
+      <td>47.063761</td>
+      <td>52.634117</td>
+      <td>70.114603</td>
+      <td>72.722794</td>
+      <td>-9.059812</td>
+      <td>-9.802853</td>
+      <td>-27.146194</td>
+      <td>-27.419409</td>
+      <td>10.995747</td>
+      <td>11.449263</td>
+    </tr>
+    <tr>
+      <th>24997</th>
+      <td>0.175345</td>
+      <td>0.318406</td>
+      <td>0.576880</td>
+      <td>1.069494</td>
+      <td>1.796735</td>
+      <td>2.453382</td>
+      <td>2.704819</td>
+      <td>2.427631</td>
+      <td>1.809450</td>
+      <td>1.220844</td>
+      <td>...</td>
+      <td>116.719365</td>
+      <td>110.201192</td>
+      <td>37.700392</td>
+      <td>33.032443</td>
+      <td>-33.700549</td>
+      <td>-34.871602</td>
+      <td>4.067087</td>
+      <td>4.590823</td>
+      <td>-10.879973</td>
+      <td>-8.847670</td>
+    </tr>
+    <tr>
+      <th>24998</th>
+      <td>1.169293</td>
+      <td>1.949760</td>
+      <td>2.118444</td>
+      <td>2.599885</td>
+      <td>3.938090</td>
+      <td>6.307116</td>
+      <td>9.738017</td>
+      <td>11.861605</td>
+      <td>11.155698</td>
+      <td>8.172643</td>
+      <td>...</td>
+      <td>20.472523</td>
+      <td>22.400071</td>
+      <td>-22.952498</td>
+      <td>-22.139587</td>
+      <td>-1.884693</td>
+      <td>-2.953150</td>
+      <td>14.719894</td>
+      <td>13.974854</td>
+      <td>-30.441784</td>
+      <td>-26.188216</td>
+    </tr>
+    <tr>
+      <th>24999</th>
+      <td>0.251705</td>
+      <td>0.244470</td>
+      <td>0.950827</td>
+      <td>1.741800</td>
+      <td>1.954889</td>
+      <td>2.095265</td>
+      <td>0.871725</td>
+      <td>0.766267</td>
+      <td>0.760063</td>
+      <td>0.858038</td>
+      <td>...</td>
+      <td>75.309056</td>
+      <td>79.487740</td>
+      <td>-14.016013</td>
+      <td>-12.566909</td>
+      <td>-48.364157</td>
+      <td>-50.297442</td>
+      <td>29.330572</td>
+      <td>30.634593</td>
+      <td>-16.067811</td>
+      <td>-17.850980</td>
+    </tr>
+  </tbody>
+</table>
+<p>25000 rows × 327 columns</p>
+</div></div></div>
 </div>
 </section>
 <section id="modeling-random-forest">
@@ -654,7 +1231,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-container-id-10 {
+<div class="output text_html"><style>#sk-container-id-1 {
   /* Definition of color scheme common for light and dark mode */
   --sklearn-color-text: #000;
   --sklearn-color-text-muted: #666;
@@ -685,15 +1262,15 @@ document.write(`
   }
 }
 
-#sk-container-id-10 {
+#sk-container-id-1 {
   color: var(--sklearn-color-text);
 }
 
-#sk-container-id-10 pre {
+#sk-container-id-1 pre {
   padding: 0;
 }
 
-#sk-container-id-10 input.sk-hidden--visually {
+#sk-container-id-1 input.sk-hidden--visually {
   border: 0;
   clip: rect(1px 1px 1px 1px);
   clip: rect(1px, 1px, 1px, 1px);
@@ -705,7 +1282,7 @@ document.write(`
   width: 1px;
 }
 
-#sk-container-id-10 div.sk-dashed-wrapped {
+#sk-container-id-1 div.sk-dashed-wrapped {
   border: 1px dashed var(--sklearn-color-line);
   margin: 0 0.4em 0.5em 0.4em;
   box-sizing: border-box;
@@ -713,7 +1290,7 @@ document.write(`
   background-color: var(--sklearn-color-background);
 }
 
-#sk-container-id-10 div.sk-container {
+#sk-container-id-1 div.sk-container {
   /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
      but bootstrap.min.css set `[hidden] { display: none !important; }`
      so we also need the `!important` here to be able to override the
@@ -723,7 +1300,7 @@ document.write(`
   position: relative;
 }
 
-#sk-container-id-10 div.sk-text-repr-fallback {
+#sk-container-id-1 div.sk-text-repr-fallback {
   display: none;
 }
 
@@ -739,14 +1316,14 @@ div.sk-item {
 
 /* Parallel-specific style estimator block */
 
-#sk-container-id-10 div.sk-parallel-item::after {
+#sk-container-id-1 div.sk-parallel-item::after {
   content: "";
   width: 100%;
   border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
   flex-grow: 1;
 }
 
-#sk-container-id-10 div.sk-parallel {
+#sk-container-id-1 div.sk-parallel {
   display: flex;
   align-items: stretch;
   justify-content: center;
@@ -754,28 +1331,28 @@ div.sk-item {
   position: relative;
 }
 
-#sk-container-id-10 div.sk-parallel-item {
+#sk-container-id-1 div.sk-parallel-item {
   display: flex;
   flex-direction: column;
 }
 
-#sk-container-id-10 div.sk-parallel-item:first-child::after {
+#sk-container-id-1 div.sk-parallel-item:first-child::after {
   align-self: flex-end;
   width: 50%;
 }
 
-#sk-container-id-10 div.sk-parallel-item:last-child::after {
+#sk-container-id-1 div.sk-parallel-item:last-child::after {
   align-self: flex-start;
   width: 50%;
 }
 
-#sk-container-id-10 div.sk-parallel-item:only-child::after {
+#sk-container-id-1 div.sk-parallel-item:only-child::after {
   width: 0;
 }
 
 /* Serial-specific style estimator block */
 
-#sk-container-id-10 div.sk-serial {
+#sk-container-id-1 div.sk-serial {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -793,14 +1370,14 @@ clickable and can be expanded/collapsed.
 
 /* Pipeline and ColumnTransformer style (default) */
 
-#sk-container-id-10 div.sk-toggleable {
+#sk-container-id-1 div.sk-toggleable {
   /* Default theme specific background. It is overwritten whether we have a
   specific estimator or a Pipeline/ColumnTransformer */
   background-color: var(--sklearn-color-background);
 }
 
 /* Toggleable label */
-#sk-container-id-10 label.sk-toggleable__label {
+#sk-container-id-1 label.sk-toggleable__label {
   cursor: pointer;
   display: flex;
   width: 100%;
@@ -813,13 +1390,13 @@ clickable and can be expanded/collapsed.
   gap: 0.5em;
 }
 
-#sk-container-id-10 label.sk-toggleable__label .caption {
+#sk-container-id-1 label.sk-toggleable__label .caption {
   font-size: 0.6rem;
   font-weight: lighter;
   color: var(--sklearn-color-text-muted);
 }
 
-#sk-container-id-10 label.sk-toggleable__label-arrow:before {
+#sk-container-id-1 label.sk-toggleable__label-arrow:before {
   /* Arrow on the left of the label */
   content: "▸";
   float: left;
@@ -827,25 +1404,25 @@ clickable and can be expanded/collapsed.
   color: var(--sklearn-color-icon);
 }
 
-#sk-container-id-10 label.sk-toggleable__label-arrow:hover:before {
+#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
   color: var(--sklearn-color-text);
 }
 
 /* Toggleable content - dropdown */
 
-#sk-container-id-10 div.sk-toggleable__content {
+#sk-container-id-1 div.sk-toggleable__content {
   display: none;
   text-align: left;
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-10 div.sk-toggleable__content.fitted {
+#sk-container-id-1 div.sk-toggleable__content.fitted {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
-#sk-container-id-10 div.sk-toggleable__content pre {
+#sk-container-id-1 div.sk-toggleable__content pre {
   margin: 0.2em;
   border-radius: 0.25em;
   color: var(--sklearn-color-text);
@@ -853,79 +1430,79 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-10 div.sk-toggleable__content.fitted pre {
+#sk-container-id-1 div.sk-toggleable__content.fitted pre {
   /* unfitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
-#sk-container-id-10 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
   /* Expand drop-down */
   display: block;
   width: 100%;
   overflow: visible;
 }
 
-#sk-container-id-10 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
   content: "▾";
 }
 
 /* Pipeline/ColumnTransformer-specific style */
 
-#sk-container-id-10 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-10 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
 /* Estimator-specific style */
 
 /* Colorize estimator box */
-#sk-container-id-10 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-10 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
-#sk-container-id-10 div.sk-label label.sk-toggleable__label,
-#sk-container-id-10 div.sk-label label {
+#sk-container-id-1 div.sk-label label.sk-toggleable__label,
+#sk-container-id-1 div.sk-label label {
   /* The background is the default theme color */
   color: var(--sklearn-color-text-on-default-background);
 }
 
 /* On hover, darken the color of the background */
-#sk-container-id-10 div.sk-label:hover label.sk-toggleable__label {
+#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
 /* Label box, darken color on hover, fitted */
-#sk-container-id-10 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
 /* Estimator label */
 
-#sk-container-id-10 div.sk-label label {
+#sk-container-id-1 div.sk-label label {
   font-family: monospace;
   font-weight: bold;
   display: inline-block;
   line-height: 1.2em;
 }
 
-#sk-container-id-10 div.sk-label-container {
+#sk-container-id-1 div.sk-label-container {
   text-align: center;
 }
 
 /* Estimator-specific */
-#sk-container-id-10 div.sk-estimator {
+#sk-container-id-1 div.sk-estimator {
   font-family: monospace;
   border: 1px dotted var(--sklearn-color-border-box);
   border-radius: 0.25em;
@@ -935,18 +1512,18 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-10 div.sk-estimator.fitted {
+#sk-container-id-1 div.sk-estimator.fitted {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
 /* on hover */
-#sk-container-id-10 div.sk-estimator:hover {
+#sk-container-id-1 div.sk-estimator:hover {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-10 div.sk-estimator.fitted:hover {
+#sk-container-id-1 div.sk-estimator.fitted:hover {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-2);
 }
@@ -1034,7 +1611,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 
 /* "?"-specific style due to the `<a>` HTML tag */
 
-#sk-container-id-10 a.estimator_doc_link {
+#sk-container-id-1 a.estimator_doc_link {
   float: right;
   font-size: 1rem;
   line-height: 1em;
@@ -1049,21 +1626,21 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
   border: var(--sklearn-color-unfitted-level-1) 1pt solid;
 }
 
-#sk-container-id-10 a.estimator_doc_link.fitted {
+#sk-container-id-1 a.estimator_doc_link.fitted {
   /* fitted */
   border: var(--sklearn-color-fitted-level-1) 1pt solid;
   color: var(--sklearn-color-fitted-level-1);
 }
 
 /* On hover */
-#sk-container-id-10 a.estimator_doc_link:hover {
+#sk-container-id-1 a.estimator_doc_link:hover {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-3);
   color: var(--sklearn-color-background);
   text-decoration: none;
 }
 
-#sk-container-id-10 a.estimator_doc_link.fitted:hover {
+#sk-container-id-1 a.estimator_doc_link.fitted:hover {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-3);
 }
@@ -1131,7 +1708,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
     height: 14px;
     cursor: pointer;
 }
-</style><body><div id="sk-container-id-10" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>RandomForestClassifier(random_state=42)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-10" type="checkbox" checked><label for="sk-estimator-id-10" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>RandomForestClassifier</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.ensemble.RandomForestClassifier.html">?<span>Documentation for RandomForestClassifier</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
+</style><body><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>RandomForestClassifier(random_state=42)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>RandomForestClassifier</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.ensemble.RandomForestClassifier.html">?<span>Documentation for RandomForestClassifier</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
         <div class="estimator-table">
             <details>
                 <summary>Parameters</summary>
@@ -1475,7 +2052,7 @@ Tarsalis_female       0.87      0.78      0.82      2500
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-container-id-11 {
+<div class="output text_html"><style>#sk-container-id-2 {
   /* Definition of color scheme common for light and dark mode */
   --sklearn-color-text: #000;
   --sklearn-color-text-muted: #666;
@@ -1506,15 +2083,15 @@ Tarsalis_female       0.87      0.78      0.82      2500
   }
 }
 
-#sk-container-id-11 {
+#sk-container-id-2 {
   color: var(--sklearn-color-text);
 }
 
-#sk-container-id-11 pre {
+#sk-container-id-2 pre {
   padding: 0;
 }
 
-#sk-container-id-11 input.sk-hidden--visually {
+#sk-container-id-2 input.sk-hidden--visually {
   border: 0;
   clip: rect(1px 1px 1px 1px);
   clip: rect(1px, 1px, 1px, 1px);
@@ -1526,7 +2103,7 @@ Tarsalis_female       0.87      0.78      0.82      2500
   width: 1px;
 }
 
-#sk-container-id-11 div.sk-dashed-wrapped {
+#sk-container-id-2 div.sk-dashed-wrapped {
   border: 1px dashed var(--sklearn-color-line);
   margin: 0 0.4em 0.5em 0.4em;
   box-sizing: border-box;
@@ -1534,7 +2111,7 @@ Tarsalis_female       0.87      0.78      0.82      2500
   background-color: var(--sklearn-color-background);
 }
 
-#sk-container-id-11 div.sk-container {
+#sk-container-id-2 div.sk-container {
   /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
      but bootstrap.min.css set `[hidden] { display: none !important; }`
      so we also need the `!important` here to be able to override the
@@ -1544,7 +2121,7 @@ Tarsalis_female       0.87      0.78      0.82      2500
   position: relative;
 }
 
-#sk-container-id-11 div.sk-text-repr-fallback {
+#sk-container-id-2 div.sk-text-repr-fallback {
   display: none;
 }
 
@@ -1560,14 +2137,14 @@ div.sk-item {
 
 /* Parallel-specific style estimator block */
 
-#sk-container-id-11 div.sk-parallel-item::after {
+#sk-container-id-2 div.sk-parallel-item::after {
   content: "";
   width: 100%;
   border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
   flex-grow: 1;
 }
 
-#sk-container-id-11 div.sk-parallel {
+#sk-container-id-2 div.sk-parallel {
   display: flex;
   align-items: stretch;
   justify-content: center;
@@ -1575,28 +2152,28 @@ div.sk-item {
   position: relative;
 }
 
-#sk-container-id-11 div.sk-parallel-item {
+#sk-container-id-2 div.sk-parallel-item {
   display: flex;
   flex-direction: column;
 }
 
-#sk-container-id-11 div.sk-parallel-item:first-child::after {
+#sk-container-id-2 div.sk-parallel-item:first-child::after {
   align-self: flex-end;
   width: 50%;
 }
 
-#sk-container-id-11 div.sk-parallel-item:last-child::after {
+#sk-container-id-2 div.sk-parallel-item:last-child::after {
   align-self: flex-start;
   width: 50%;
 }
 
-#sk-container-id-11 div.sk-parallel-item:only-child::after {
+#sk-container-id-2 div.sk-parallel-item:only-child::after {
   width: 0;
 }
 
 /* Serial-specific style estimator block */
 
-#sk-container-id-11 div.sk-serial {
+#sk-container-id-2 div.sk-serial {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1614,14 +2191,14 @@ clickable and can be expanded/collapsed.
 
 /* Pipeline and ColumnTransformer style (default) */
 
-#sk-container-id-11 div.sk-toggleable {
+#sk-container-id-2 div.sk-toggleable {
   /* Default theme specific background. It is overwritten whether we have a
   specific estimator or a Pipeline/ColumnTransformer */
   background-color: var(--sklearn-color-background);
 }
 
 /* Toggleable label */
-#sk-container-id-11 label.sk-toggleable__label {
+#sk-container-id-2 label.sk-toggleable__label {
   cursor: pointer;
   display: flex;
   width: 100%;
@@ -1634,13 +2211,13 @@ clickable and can be expanded/collapsed.
   gap: 0.5em;
 }
 
-#sk-container-id-11 label.sk-toggleable__label .caption {
+#sk-container-id-2 label.sk-toggleable__label .caption {
   font-size: 0.6rem;
   font-weight: lighter;
   color: var(--sklearn-color-text-muted);
 }
 
-#sk-container-id-11 label.sk-toggleable__label-arrow:before {
+#sk-container-id-2 label.sk-toggleable__label-arrow:before {
   /* Arrow on the left of the label */
   content: "▸";
   float: left;
@@ -1648,25 +2225,25 @@ clickable and can be expanded/collapsed.
   color: var(--sklearn-color-icon);
 }
 
-#sk-container-id-11 label.sk-toggleable__label-arrow:hover:before {
+#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {
   color: var(--sklearn-color-text);
 }
 
 /* Toggleable content - dropdown */
 
-#sk-container-id-11 div.sk-toggleable__content {
+#sk-container-id-2 div.sk-toggleable__content {
   display: none;
   text-align: left;
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-11 div.sk-toggleable__content.fitted {
+#sk-container-id-2 div.sk-toggleable__content.fitted {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
-#sk-container-id-11 div.sk-toggleable__content pre {
+#sk-container-id-2 div.sk-toggleable__content pre {
   margin: 0.2em;
   border-radius: 0.25em;
   color: var(--sklearn-color-text);
@@ -1674,79 +2251,79 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-11 div.sk-toggleable__content.fitted pre {
+#sk-container-id-2 div.sk-toggleable__content.fitted pre {
   /* unfitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
-#sk-container-id-11 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {
   /* Expand drop-down */
   display: block;
   width: 100%;
   overflow: visible;
 }
 
-#sk-container-id-11 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
   content: "▾";
 }
 
 /* Pipeline/ColumnTransformer-specific style */
 
-#sk-container-id-11 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-11 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-2 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
 /* Estimator-specific style */
 
 /* Colorize estimator box */
-#sk-container-id-11 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-11 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-2 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
-#sk-container-id-11 div.sk-label label.sk-toggleable__label,
-#sk-container-id-11 div.sk-label label {
+#sk-container-id-2 div.sk-label label.sk-toggleable__label,
+#sk-container-id-2 div.sk-label label {
   /* The background is the default theme color */
   color: var(--sklearn-color-text-on-default-background);
 }
 
 /* On hover, darken the color of the background */
-#sk-container-id-11 div.sk-label:hover label.sk-toggleable__label {
+#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
 /* Label box, darken color on hover, fitted */
-#sk-container-id-11 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+#sk-container-id-2 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
 /* Estimator label */
 
-#sk-container-id-11 div.sk-label label {
+#sk-container-id-2 div.sk-label label {
   font-family: monospace;
   font-weight: bold;
   display: inline-block;
   line-height: 1.2em;
 }
 
-#sk-container-id-11 div.sk-label-container {
+#sk-container-id-2 div.sk-label-container {
   text-align: center;
 }
 
 /* Estimator-specific */
-#sk-container-id-11 div.sk-estimator {
+#sk-container-id-2 div.sk-estimator {
   font-family: monospace;
   border: 1px dotted var(--sklearn-color-border-box);
   border-radius: 0.25em;
@@ -1756,18 +2333,18 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-11 div.sk-estimator.fitted {
+#sk-container-id-2 div.sk-estimator.fitted {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
 /* on hover */
-#sk-container-id-11 div.sk-estimator:hover {
+#sk-container-id-2 div.sk-estimator:hover {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-11 div.sk-estimator.fitted:hover {
+#sk-container-id-2 div.sk-estimator.fitted:hover {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-2);
 }
@@ -1855,7 +2432,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 
 /* "?"-specific style due to the `<a>` HTML tag */
 
-#sk-container-id-11 a.estimator_doc_link {
+#sk-container-id-2 a.estimator_doc_link {
   float: right;
   font-size: 1rem;
   line-height: 1em;
@@ -1870,21 +2447,21 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
   border: var(--sklearn-color-unfitted-level-1) 1pt solid;
 }
 
-#sk-container-id-11 a.estimator_doc_link.fitted {
+#sk-container-id-2 a.estimator_doc_link.fitted {
   /* fitted */
   border: var(--sklearn-color-fitted-level-1) 1pt solid;
   color: var(--sklearn-color-fitted-level-1);
 }
 
 /* On hover */
-#sk-container-id-11 a.estimator_doc_link:hover {
+#sk-container-id-2 a.estimator_doc_link:hover {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-3);
   color: var(--sklearn-color-background);
   text-decoration: none;
 }
 
-#sk-container-id-11 a.estimator_doc_link.fitted:hover {
+#sk-container-id-2 a.estimator_doc_link.fitted:hover {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-3);
 }
@@ -1952,10 +2529,10 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
     height: 14px;
     cursor: pointer;
 }
-</style><body><div id="sk-container-id-11" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[(&#x27;scaler&#x27;, StandardScaler()),
+</style><body><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[(&#x27;scaler&#x27;, StandardScaler()),
                 (&#x27;svm&#x27;,
                  SVC(class_weight=&#x27;balanced&#x27;, probability=True,
-                     random_state=42))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-11" type="checkbox" ><label for="sk-estimator-id-11" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>Pipeline</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.pipeline.Pipeline.html">?<span>Documentation for Pipeline</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
+                     random_state=42))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" ><label for="sk-estimator-id-2" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>Pipeline</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.pipeline.Pipeline.html">?<span>Documentation for Pipeline</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
         <div class="estimator-table">
             <details>
                 <summary>Parameters</summary>
@@ -2005,7 +2582,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
                 </table>
             </details>
         </div>
-    </div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-12" type="checkbox" ><label for="sk-estimator-id-12" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>StandardScaler</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></div></label><div class="sk-toggleable__content fitted" data-param-prefix="scaler__">
+    </div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" ><label for="sk-estimator-id-3" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>StandardScaler</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></div></label><div class="sk-toggleable__content fitted" data-param-prefix="scaler__">
         <div class="estimator-table">
             <details>
                 <summary>Parameters</summary>
@@ -2045,7 +2622,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
                 </table>
             </details>
         </div>
-    </div></div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-13" type="checkbox" ><label for="sk-estimator-id-13" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>SVC</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.svm.SVC.html">?<span>Documentation for SVC</span></a></div></label><div class="sk-toggleable__content fitted" data-param-prefix="svm__">
+    </div></div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" ><label for="sk-estimator-id-4" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>SVC</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.svm.SVC.html">?<span>Documentation for SVC</span></a></div></label><div class="sk-toggleable__content fitted" data-param-prefix="svm__">
         <div class="estimator-table">
             <details>
                 <summary>Parameters</summary>
@@ -2287,13 +2864,16 @@ weighted avg       0.77      0.77      0.77      5000
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
-<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_qva_test</span><span class="p">,</span> <span class="n">y_qva_pred</span><span class="p">),</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="n">xticklabels</span><span class="o">=</span><span class="n">random_forest</span><span class="o">.</span><span class="n">classes_</span><span class="p">,</span> <span class="n">yticklabels</span><span class="o">=</span><span class="n">random_forest</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_qva_test</span><span class="p">,</span> <span class="n">y_qva_pred</span><span class="p">),</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="n">xticklabels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Aedes_female&#39;</span><span class="p">,</span> <span class="s1">&#39;Quinx_female&#39;</span><span class="p">],</span> <span class="n">yticklabels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Aedes_female&#39;</span><span class="p">,</span> <span class="s1">&#39;Quinx_female&#39;</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Predicted&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Actual&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Confusion Matrix&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/9031554de2832d19fb3a49cba20437657fad161f5732191a99fdb1388c9f8fc2.png" src="../_images/9031554de2832d19fb3a49cba20437657fad161f5732191a99fdb1388c9f8fc2.png" />
 </div>
 </div>
 </section>
@@ -2338,6 +2918,18 @@ weighted avg       0.77      0.77      0.77      5000
 <span class="p">})</span>
 
 <span class="n">y_pred_new</span> <span class="o">=</span> <span class="n">classifiier</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">joblib</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">classifiier</span><span class="p">,</span> <span class="s1">&#39;serangga.pkl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;serangga.pkl&#39;]
 </pre></div>
 </div>
 </div>
