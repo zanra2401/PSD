@@ -1,0 +1,1498 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Penyeimbangan data Ecoli &#8212; Proyek Sains Data</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'penyeimbangan_data_ecoli';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="MODEL Klasifikasi (ECOLI)" href="pemodelan/klasifikasi.html" />
+    <link rel="prev" title="Pembersihan Outliers" href="outliers_cleaning.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="profile.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/foto.jpg" class="logo__image only-light" alt="Proyek Sains Data - Home"/>
+    <script>document.write(`<img src="_static/foto.jpg" class="logo__image only-dark" alt="Proyek Sains Data - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="profile.html">
+                    Profile
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Bussiness Understanding</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="iris_bussiness_understanding.html">Business Understanding</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Understanding</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="iris_get_data.html">Mendapatkan data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iris_data_description.html">Deskripsi Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iris_data_eksplorasi.html">Data Ekplorasi</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Preprosessing</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="outliers_cleaning.html">Pembersihan Outliers</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Penyeimbangan data Ecoli</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Pemodelan</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="pemodelan/klasifikasi.html">MODEL KLASIFIKASI (ECOLI)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="pemodelan/nb_imbalance.html">IMBALANCE DATA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pemodelan/nb_smote.html">SMOTE DATA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pemodelan/nb_adasyn.html">ADASYN DATA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pemodelan/perbandingan_keseluruhan.html">Perbandingan Model dan Data</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">KNIME</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="KNIME/dokumentasi_workflow.html">Projek Pra UTS PSD</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Forecasting Kepadatan NO2 di Kabupaten Bojonegoro</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="NO2/pengumpulan_data.html">Pengumpulan Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NO2/preprocess.html">Preprocessing Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NO2/modeling.html">Modeling dengan KNN Regression</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">IDENTIFIKASI SUARA</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="timeseries_deteksi_suara/suara_buka_tutup.html">IDENTIFIKASI SUARA BUKA DAN TUTUP</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Klasifikasi Serangga</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="UAS/bussines_understanding.html">BUSSINES Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UAS/data_understanding.html">DATA Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UAS/modeling_fix.html">PREPROCESS, MODELING &amp; EVALUASI</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fpenyeimbangan_data_ecoli.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/penyeimbangan_data_ecoli.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Penyeimbangan data Ecoli</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-library">IMPORT LIBRARY</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menyimpan-data-ke-database-mysql">Menyimpan data ke database mysql</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribusi-kelas-pada-data-ecoli">Distribusi Kelas Pada Data Ecoli</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plot-dari-data-ecoli">Scatter Plot dari Data Ecoli</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penyeimbangan-data-menggunakan-adasyn">Penyeimbangan Data menggunakan ADASYN</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penyeimbangan-data-menggunakan-smote">Penyeimbangan data menggunakan SMOTE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan">Perbandingan</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-distribusi-kelas-data-asli-adasyn-smote">Perbandingan Distribusi kelas Data Asli, ADASYN, SMOTE</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="penyeimbangan-data-ecoli">
+<h1>Penyeimbangan data Ecoli<a class="headerlink" href="#penyeimbangan-data-ecoli" title="Link to this heading">#</a></h1>
+<p><strong>Apa itu Penyeimbangan Data?</strong></p>
+<p>Penyeimbangan data adalah proses mengatasi ketidakseimbangan distribusi kelas (class imbalance) pada dataset.
+Masalah ini terjadi ketika satu kelas jauh lebih banyak dibanding kelas lain, sehingga model cenderung bias ke kelas mayoritas dan mengabaikan kelas minoritas.</p>
+<p>Contoh:</p>
+<ul class="simple">
+<li><p>Dataset fraud: 99% transaksi normal, 1% transaksi fraud.</p></li>
+<li><p>Jika model hanya menebak “normal” terus, akurasinya 99%, tapi tidak berguna.</p></li>
+</ul>
+<p><strong>Mengapa Perlu Penyeimbangan Data?</strong></p>
+<p>Model machine learning biasanya mengasumsikan distribusi kelas relatif seimbang.
+Jika tidak, akibatnya:</p>
+<ul class="simple">
+<li><p>Model tidak mengenali pola penting pada kelas minoritas.</p></li>
+<li><p>Prediksi kelas minoritas menjadi buruk.</p></li>
+</ul>
+<p>Karena itu, dataset perlu diseimbangkan agar model:</p>
+<ul class="simple">
+<li><p>Lebih adil (fair).</p></li>
+<li><p>Bisa mempelajari pola minoritas lebih baik.</p></li>
+<li><p>Mengurangi bias pada prediksi.</p></li>
+</ul>
+<section id="import-library">
+<h2>IMPORT LIBRARY<a class="headerlink" href="#import-library" title="Link to this heading">#</a></h2>
+<p><strong>ABAIKAN ERROR SAAT IMPORT LIBRARY</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># IMPORT LIBRARY</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.decomposition</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">Counter</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fitur</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;mcg&quot;</span><span class="p">,</span> <span class="s2">&quot;gvh&quot;</span><span class="p">,</span> <span class="s2">&quot;lip&quot;</span><span class="p">,</span> <span class="s2">&quot;chg&quot;</span><span class="p">,</span> <span class="s2">&quot;aac&quot;</span><span class="p">,</span> <span class="s2">&quot;alm1&quot;</span><span class="p">,</span> <span class="s2">&quot;alm2&quot;</span><span class="p">]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">remove_empty</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+
+    <span class="n">hasil</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">kal</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">kal</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">))</span>
+        <span class="n">hasil</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">a</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">hasil</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;mcg&quot;</span><span class="p">,</span> <span class="s2">&quot;gvh&quot;</span><span class="p">,</span> <span class="s2">&quot;lip&quot;</span><span class="p">,</span> <span class="s2">&quot;chg&quot;</span><span class="p">,</span> <span class="s2">&quot;aac&quot;</span><span class="p">,</span> <span class="s2">&quot;alm1&quot;</span><span class="p">,</span> <span class="s2">&quot;alm2&quot;</span><span class="p">,</span> <span class="s2">&quot;class&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ecoli_df</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;ecoli.data&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">())</span>
+    <span class="n">ecoli_df</span> <span class="o">=</span> <span class="n">remove_empty</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+
+<span class="n">ecoli_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;dataset/ecoli.csv&quot;</span><span class="p">)</span>
+<span class="n">ecoli_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>mcg</th>
+      <th>gvh</th>
+      <th>lip</th>
+      <th>chg</th>
+      <th>aac</th>
+      <th>alm1</th>
+      <th>alm2</th>
+      <th>class</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>AAT_ECOLI</td>
+      <td>0.49</td>
+      <td>0.29</td>
+      <td>0.48</td>
+      <td>0.50</td>
+      <td>0.56</td>
+      <td>0.24</td>
+      <td>0.35</td>
+      <td>cp</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ACEA_ECOLI</td>
+      <td>0.07</td>
+      <td>0.40</td>
+      <td>0.48</td>
+      <td>0.50</td>
+      <td>0.54</td>
+      <td>0.35</td>
+      <td>0.44</td>
+      <td>cp</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ACEK_ECOLI</td>
+      <td>0.56</td>
+      <td>0.40</td>
+      <td>0.48</td>
+      <td>0.50</td>
+      <td>0.49</td>
+      <td>0.37</td>
+      <td>0.46</td>
+      <td>cp</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>ACKA_ECOLI</td>
+      <td>0.59</td>
+      <td>0.49</td>
+      <td>0.48</td>
+      <td>0.50</td>
+      <td>0.52</td>
+      <td>0.45</td>
+      <td>0.36</td>
+      <td>cp</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>ADI_ECOLI</td>
+      <td>0.23</td>
+      <td>0.32</td>
+      <td>0.48</td>
+      <td>0.50</td>
+      <td>0.55</td>
+      <td>0.25</td>
+      <td>0.35</td>
+      <td>cp</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>331</th>
+      <td>TREA_ECOLI</td>
+      <td>0.74</td>
+      <td>0.56</td>
+      <td>0.48</td>
+      <td>0.50</td>
+      <td>0.47</td>
+      <td>0.68</td>
+      <td>0.30</td>
+      <td>pp</td>
+    </tr>
+    <tr>
+      <th>332</th>
+      <td>UGPB_ECOLI</td>
+      <td>0.71</td>
+      <td>0.57</td>
+      <td>0.48</td>
+      <td>0.50</td>
+      <td>0.48</td>
+      <td>0.35</td>
+      <td>0.32</td>
+      <td>pp</td>
+    </tr>
+    <tr>
+      <th>333</th>
+      <td>USHA_ECOLI</td>
+      <td>0.61</td>
+      <td>0.60</td>
+      <td>0.48</td>
+      <td>0.50</td>
+      <td>0.44</td>
+      <td>0.39</td>
+      <td>0.38</td>
+      <td>pp</td>
+    </tr>
+    <tr>
+      <th>334</th>
+      <td>XYLF_ECOLI</td>
+      <td>0.59</td>
+      <td>0.61</td>
+      <td>0.48</td>
+      <td>0.50</td>
+      <td>0.42</td>
+      <td>0.42</td>
+      <td>0.37</td>
+      <td>pp</td>
+    </tr>
+    <tr>
+      <th>335</th>
+      <td>YTFQ_ECOLI</td>
+      <td>0.74</td>
+      <td>0.74</td>
+      <td>0.48</td>
+      <td>0.50</td>
+      <td>0.31</td>
+      <td>0.53</td>
+      <td>0.52</td>
+      <td>pp</td>
+    </tr>
+  </tbody>
+</table>
+<p>336 rows × 9 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="menyimpan-data-ke-database-mysql">
+<h2>Menyimpan data ke database mysql<a class="headerlink" href="#menyimpan-data-ke-database-mysql" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">mysql.connector</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">myconnector</span>
+
+<span class="n">conn</span> <span class="o">=</span> <span class="n">myconnector</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+    <span class="n">host</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
+    <span class="n">port</span><span class="o">=</span><span class="mi">3306</span><span class="p">,</span>
+    <span class="n">user</span><span class="o">=</span><span class="s2">&quot;root&quot;</span><span class="p">,</span>
+    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="n">database</span><span class="o">=</span><span class="s2">&quot;imbalance&quot;</span>
+<span class="p">)</span>
+
+<span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+
+<span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;DROP TABLE IF EXISTS ecoli_data&#39;&#39;&#39;</span><span class="p">)</span>
+
+<span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">    CREATE TABLE ecoli_data (</span>
+<span class="s1">        id INT PRIMARY KEY AUTO_INCREMENT,</span>
+<span class="s1">        name VARCHAR(50),</span>
+<span class="s1">        mcg DECIMAL(5, 2),</span>
+<span class="s1">        gvh DECIMAL(5, 2),</span>
+<span class="s1">        lip DECIMAL(5, 2),</span>
+<span class="s1">        chg DECIMAL(5, 2),</span>
+<span class="s1">        aac DECIMAL(5, 2),</span>
+<span class="s1">        alm1 DECIMAL(5, 2),</span>
+<span class="s1">        alm2 DECIMAL(5, 2),</span>
+<span class="s1">        class VARCHAR(3)</span>
+<span class="s1">    )</span>
+<span class="s1">&#39;&#39;&#39;</span><span class="p">)</span>
+
+<span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">MySQLInterfaceError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="nn">File C:\Python312\Lib\site-packages\mysql\connector\connection_cext.py:354,</span> in <span class="ni">CMySQLConnection._open_connection</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">353</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">354</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_cmysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">**</span><span class="n">cnx_kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">355</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_cmysql</span><span class="o">.</span><span class="n">converter_str_fallback</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_converter_str_fallback</span>
+
+<span class="ne">MySQLInterfaceError</span>: Can&#39;t connect to MySQL server on &#39;localhost:3306&#39; (10061)
+
+<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
+
+<span class="ne">DatabaseError</span><span class="g g-Whitespace">                             </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">mysql.connector</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">myconnector</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">myconnector</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">host</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">port</span><span class="o">=</span><span class="mi">3306</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="n">user</span><span class="o">=</span><span class="s2">&quot;root&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">password</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="n">database</span><span class="o">=</span><span class="s2">&quot;imbalance&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;DROP TABLE IF EXISTS ecoli_data&#39;&#39;&#39;</span><span class="p">)</span>
+
+<span class="nn">File C:\Python312\Lib\site-packages\mysql\connector\pooling.py:322,</span> in <span class="ni">connect</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">319</span>         <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="n">ERROR_NO_CEXT</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">321</span> <span class="k">if</span> <span class="n">CMySQLConnection</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">use_pure</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">322</span>     <span class="k">return</span> <span class="n">CMySQLConnection</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">323</span> <span class="k">return</span> <span class="n">MySQLConnection</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File C:\Python312\Lib\site-packages\mysql\connector\connection_cext.py:142,</span> in <span class="ni">CMySQLConnection.__init__</span><span class="nt">(self, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">140</span> <span class="k">if</span> <span class="n">kwargs</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">141</span>     <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">142</span>         <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">143</span>     <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">144</span>         <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="nn">File C:\Python312\Lib\site-packages\mysql\connector\abstracts.py:1604,</span> in <span class="ni">MySQLConnectionAbstract.connect</span><span class="nt">(self, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1601</span>     <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1603</span> <span class="bp">self</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
+<span class="ne">-&gt; </span><span class="mi">1604</span> <span class="bp">self</span><span class="o">.</span><span class="n">_open_connection</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1606</span> <span class="n">charset</span><span class="p">,</span> <span class="n">collation</span> <span class="o">=</span> <span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1607</span>     <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;charset&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1608</span>     <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;collation&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1609</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1610</span> <span class="k">if</span> <span class="n">charset</span> <span class="ow">or</span> <span class="n">collation</span><span class="p">:</span>
+
+<span class="nn">File C:\Python312\Lib\site-packages\mysql\connector\connection_cext.py:360,</span> in <span class="ni">CMySQLConnection._open_connection</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">358</span> <span class="k">except</span> <span class="n">MySQLInterfaceError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">359</span>     <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="s2">&quot;errno&quot;</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">360</span>         <span class="k">raise</span> <span class="n">get_mysql_exception</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">361</span>             <span class="n">err</span><span class="o">.</span><span class="n">errno</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="n">err</span><span class="o">.</span><span class="n">msg</span><span class="p">,</span> <span class="n">sqlstate</span><span class="o">=</span><span class="n">err</span><span class="o">.</span><span class="n">sqlstate</span>
+<span class="g g-Whitespace">    </span><span class="mi">362</span>         <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">err</span>
+<span class="g g-Whitespace">    </span><span class="mi">363</span>     <span class="k">raise</span> <span class="n">InterfaceError</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">))</span> <span class="kn">from</span><span class="w"> </span><span class="nn">err</span>
+<span class="g g-Whitespace">    </span><span class="mi">365</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_handshake</span><span class="p">()</span>
+
+<span class="ne">DatabaseError</span>: 2003 (HY000): Can&#39;t connect to MySQL server on &#39;localhost:3306&#39; (10061)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">data_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ecoli_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">ecoli_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">data_index</span><span class="p">]</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;VALUES(&#39;</span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&#39;, </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;mcg&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;gvh&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;lip&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;chg&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;aac&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;alm1&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;alm2&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, &#39;</span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&#39;)&quot;</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;INSERT INTO ecoli_data(name, mcg, gvh, lip, chg, aac, alm1, alm2, class) </span><span class="si">{</span><span class="n">values</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+<span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="distribusi-kelas-pada-data-ecoli">
+<h2>Distribusi Kelas Pada Data Ecoli<a class="headerlink" href="#distribusi-kelas-pada-data-ecoli" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">class_ecoli</span> <span class="o">=</span> <span class="n">ecoli_df</span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<span class="n">distributed_data</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">clas</span> <span class="ow">in</span> <span class="n">class_ecoli</span><span class="p">:</span>
+    <span class="n">distributed_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ecoli_df</span><span class="p">[</span><span class="n">ecoli_df</span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">]</span>  <span class="o">==</span> <span class="n">clas</span><span class="p">]))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">class_ecoli</span><span class="p">,</span> <span class="n">distributed_data</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">distributed_data</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="o">+</span> <span class="mf">1.2</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Kelas&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Jumlah Data&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribusi Kelas di Data Ecoli&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Distribusi Kelas di Data Ecoli&#39;)
+</pre></div>
+</div>
+<img alt="_images/bdf6d89c87a3bcfe8b3fcc810b36d8fee2d28c66c98421535a80bb5687123602.png" src="_images/bdf6d89c87a3bcfe8b3fcc810b36d8fee2d28c66c98421535a80bb5687123602.png" />
+</div>
+</div>
+</section>
+<section id="scatter-plot-dari-data-ecoli">
+<h2>Scatter Plot dari Data Ecoli<a class="headerlink" href="#scatter-plot-dari-data-ecoli" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">reduced</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">ecoli_df</span><span class="p">[</span><span class="n">fitur</span><span class="p">]))</span>
+
+<span class="c1"># merge = np.hstack((reduced, ecoli_df[&quot;class&quot;]))</span>
+
+
+<span class="n">reduced</span> <span class="o">=</span> <span class="n">reduced</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">ecoli_df</span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">],</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">reduced</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">reduced</span><span class="p">[</span><span class="n">reduced</span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">reduced</span><span class="p">[</span><span class="n">reduced</span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Y&quot;</span><span class="p">)</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Class&quot;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.12</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper right&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/5024774b063fbdf29e2ce299961ef562ff66128d8cc5dba1b9fd66127f6b5b66.png" src="_images/5024774b063fbdf29e2ce299961ef562ff66128d8cc5dba1b9fd66127f6b5b66.png" />
+</div>
+</div>
+</section>
+<section id="penyeimbangan-data-menggunakan-adasyn">
+<h2>Penyeimbangan Data menggunakan ADASYN<a class="headerlink" href="#penyeimbangan-data-menggunakan-adasyn" title="Link to this heading">#</a></h2>
+<p>ADASYN (Adaptive Synthetic Sampling) adalah pengembangan dari SMOTE.
+Kalau SMOTE menambah data sintetis secara merata untuk semua sampel minoritas,
+ADASYN menyesuaikan jumlah data sintetis per-sampel minoritas berdasarkan tingkat kesulitan sampel tersebut dipelajari (learning difficulty).</p>
+<p>Intinya:</p>
+<ul class="simple">
+<li><p>Sampel minoritas yang lingkungannya lebih banyak mayoritas → dibuat lebih banyak titik sintetis.</p></li>
+<li><p>Sampel minoritas yang lingkungannya relatif aman → dibuat lebih sedikit titik sintetis.</p></li>
+<li><p>Ini membuat model lebih fokus pada area minoritas yang sulit diklasifikasikan.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">imblearn.over_sampling</span><span class="w"> </span><span class="kn">import</span> <span class="n">ADASYN</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">ecoli_df</span><span class="p">[</span><span class="n">fitur</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">ecoli_df</span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">]</span>
+
+<span class="n">n_neigbors</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">51</span><span class="p">,</span> <span class="mi">76</span><span class="p">]</span>
+
+<span class="n">adasyn</span> <span class="o">=</span> <span class="n">ADASYN</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sampling_strategy</span><span class="o">=</span><span class="s2">&quot;minority&quot;</span><span class="p">)</span>
+<span class="n">x_resampled</span><span class="p">,</span> <span class="n">y_resampled</span> <span class="o">=</span> <span class="n">adasyn</span><span class="o">.</span><span class="n">fit_resample</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">n_neigbors</span><span class="p">:</span>
+    <span class="n">x_resampled</span><span class="p">,</span> <span class="n">y_resampled</span> <span class="o">=</span> <span class="n">ADASYN</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">sampling_strategy</span><span class="o">=</span><span class="s2">&quot;minority&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fit_resample</span><span class="p">(</span><span class="n">x_resampled</span><span class="p">,</span> <span class="n">y_resampled</span><span class="p">)</span>
+
+<span class="n">merge</span> <span class="o">=</span> <span class="n">x_resampled</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">y_resampled</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">n_original</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">n_total</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_resampled</span><span class="p">)</span>
+
+<span class="n">idx_original</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_original</span><span class="p">)</span>
+<span class="n">idx_sintetis</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_original</span><span class="p">,</span> <span class="n">n_total</span><span class="p">)</span>
+
+<span class="n">merge</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;./dataset/ecoli_ADASYN.csv&quot;</span><span class="p">)</span>
+
+<span class="n">merge</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mcg</th>
+      <th>gvh</th>
+      <th>lip</th>
+      <th>chg</th>
+      <th>aac</th>
+      <th>alm1</th>
+      <th>alm2</th>
+      <th>class</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.49</td>
+      <td>0.29</td>
+      <td>0.48</td>
+      <td>0.5</td>
+      <td>0.56</td>
+      <td>0.24</td>
+      <td>0.35</td>
+      <td>cp</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.07</td>
+      <td>0.4</td>
+      <td>0.48</td>
+      <td>0.5</td>
+      <td>0.54</td>
+      <td>0.35</td>
+      <td>0.44</td>
+      <td>cp</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.56</td>
+      <td>0.4</td>
+      <td>0.48</td>
+      <td>0.5</td>
+      <td>0.49</td>
+      <td>0.37</td>
+      <td>0.46</td>
+      <td>cp</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.59</td>
+      <td>0.49</td>
+      <td>0.48</td>
+      <td>0.5</td>
+      <td>0.52</td>
+      <td>0.45</td>
+      <td>0.36</td>
+      <td>cp</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.23</td>
+      <td>0.32</td>
+      <td>0.48</td>
+      <td>0.5</td>
+      <td>0.55</td>
+      <td>0.25</td>
+      <td>0.35</td>
+      <td>cp</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1151</th>
+      <td>0.272446</td>
+      <td>0.498212</td>
+      <td>0.48</td>
+      <td>0.5</td>
+      <td>0.541388</td>
+      <td>0.8096</td>
+      <td>0.735551</td>
+      <td>im</td>
+    </tr>
+    <tr>
+      <th>1152</th>
+      <td>0.449398</td>
+      <td>0.554819</td>
+      <td>0.48</td>
+      <td>0.5</td>
+      <td>0.636627</td>
+      <td>0.61</td>
+      <td>0.579037</td>
+      <td>im</td>
+    </tr>
+    <tr>
+      <th>1153</th>
+      <td>0.494741</td>
+      <td>0.421976</td>
+      <td>0.48</td>
+      <td>0.5</td>
+      <td>0.50906</td>
+      <td>0.790395</td>
+      <td>0.79064</td>
+      <td>im</td>
+    </tr>
+    <tr>
+      <th>1154</th>
+      <td>0.54686</td>
+      <td>0.657622</td>
+      <td>0.48</td>
+      <td>0.5</td>
+      <td>0.609977</td>
+      <td>0.739238</td>
+      <td>0.690023</td>
+      <td>im</td>
+    </tr>
+    <tr>
+      <th>1155</th>
+      <td>0.659789</td>
+      <td>0.664356</td>
+      <td>0.48</td>
+      <td>0.5</td>
+      <td>0.64</td>
+      <td>0.830538</td>
+      <td>0.78288</td>
+      <td>im</td>
+    </tr>
+  </tbody>
+</table>
+<p>1156 rows × 8 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bar</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">Counter</span><span class="p">(</span><span class="n">y_resampled</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+<span class="n">kelas_adasyn</span><span class="p">,</span> <span class="n">dist_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hsplit</span><span class="p">(</span><span class="n">bar</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">kelas_adasyn</span> <span class="o">=</span> <span class="n">kelas_adasyn</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">dist_data</span> <span class="o">=</span> <span class="n">dist_data</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">kelas_adasyn</span><span class="p">,</span> <span class="n">dist_data</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Kelas&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Jumlah Data&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribusi Data Setelah dioversampling menggunakan ADASYN&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dist_data</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="o">-</span> <span class="mi">30</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/70e88f302ec64a4df91df155dcac5ef33e4e97eaa426dfa5c2ed0ba5208075ad.png" src="_images/70e88f302ec64a4df91df155dcac5ef33e4e97eaa426dfa5c2ed0ba5208075ad.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_asli</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">pca_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">x_resampled</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;PC1&#39;</span><span class="p">,</span><span class="s1">&#39;PC2&#39;</span><span class="p">])</span>
+<span class="n">pca_data</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_resampled</span><span class="o">.</span><span class="n">values</span>
+
+<span class="n">pca_data</span><span class="p">[</span><span class="s1">&#39;tipe&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Asli&#39;</span>
+<span class="n">pca_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">n_asli</span><span class="p">:,</span> <span class="s1">&#39;tipe&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Sintetis&#39;</span>   
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">kelas</span> <span class="ow">in</span> <span class="n">pca_data</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+    <span class="n">asli</span> <span class="o">=</span> <span class="n">pca_data</span><span class="p">[(</span><span class="n">pca_data</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">kelas</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">pca_data</span><span class="p">[</span><span class="s1">&#39;tipe&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Asli&#39;</span><span class="p">)]</span>
+    <span class="n">sintetis</span> <span class="o">=</span> <span class="n">pca_data</span><span class="p">[(</span><span class="n">pca_data</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">kelas</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">pca_data</span><span class="p">[</span><span class="s1">&#39;tipe&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Sintetis&#39;</span><span class="p">)]</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">asli</span><span class="p">[</span><span class="s1">&#39;PC1&#39;</span><span class="p">],</span> <span class="n">asli</span><span class="p">[</span><span class="s1">&#39;PC2&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">kelas</span><span class="si">}</span><span class="s2"> (asli)&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">sintetis</span><span class="p">[</span><span class="s1">&#39;PC1&#39;</span><span class="p">],</span> <span class="n">sintetis</span><span class="p">[</span><span class="s1">&#39;PC2&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">kelas</span><span class="si">}</span><span class="s2"> (sintetis)&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Plotting Data yang telah dioversampling menggunakan ADASYN&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Class + Tipe&quot;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.25</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper right&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/5a91f81beb3827673aa360697ced9d049f0adfb107827fdc9a9739ecf5fcc51c.png" src="_images/5a91f81beb3827673aa360697ced9d049f0adfb107827fdc9a9739ecf5fcc51c.png" />
+</div>
+</div>
+</section>
+<section id="penyeimbangan-data-menggunakan-smote">
+<h2>Penyeimbangan data menggunakan SMOTE<a class="headerlink" href="#penyeimbangan-data-menggunakan-smote" title="Link to this heading">#</a></h2>
+<p>SMOTE (Synthetic Minority Over-sampling Technique) adalah teknik untuk menangani masalah class imbalance (ketidakseimbangan jumlah data antar kelas) pada pembelajaran mesin.
+Alih-alih hanya menggandakan data minoritas, SMOTE membuat data sintetis baru dengan cara interpolasi antar titik minoritas yang ada.</p>
+<p>Prinsip utamanya:</p>
+<ul class="simple">
+<li><p>Pilih satu sampel minoritas.</p></li>
+<li><p>Cari 𝑘</p></li>
+<li><p>k-nearest neighbor (sama-sama minoritas).</p></li>
+<li><p>Pilih salah satu tetangga secara acak.</p></li>
+<li><p>Buat titik baru di antara keduanya dengan interpolasi linier.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">imblearn.over_sampling</span><span class="w"> </span><span class="kn">import</span> <span class="n">SMOTE</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">ecoli_df</span><span class="p">[</span><span class="n">fitur</span><span class="p">]</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">ecoli_df</span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">]</span>
+    
+<span class="n">p_resampled</span><span class="p">,</span> <span class="n">q_resampled</span> <span class="o">=</span> <span class="n">SMOTE</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">k_neighbors</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">fit_resample</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="n">merge_smote</span> <span class="o">=</span> <span class="n">p_resampled</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">q_resampled</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">merge_smote</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;./dataset/ecoli_SMOTE.csv&quot;</span><span class="p">)</span>
+
+<span class="n">merge_smote</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mcg</th>
+      <th>gvh</th>
+      <th>lip</th>
+      <th>chg</th>
+      <th>aac</th>
+      <th>alm1</th>
+      <th>alm2</th>
+      <th>class</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.49</td>
+      <td>0.29</td>
+      <td>0.48</td>
+      <td>0.5</td>
+      <td>0.56</td>
+      <td>0.24</td>
+      <td>0.35</td>
+      <td>cp</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.07</td>
+      <td>0.4</td>
+      <td>0.48</td>
+      <td>0.5</td>
+      <td>0.54</td>
+      <td>0.35</td>
+      <td>0.44</td>
+      <td>cp</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.56</td>
+      <td>0.4</td>
+      <td>0.48</td>
+      <td>0.5</td>
+      <td>0.49</td>
+      <td>0.37</td>
+      <td>0.46</td>
+      <td>cp</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.59</td>
+      <td>0.49</td>
+      <td>0.48</td>
+      <td>0.5</td>
+      <td>0.52</td>
+      <td>0.45</td>
+      <td>0.36</td>
+      <td>cp</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.23</td>
+      <td>0.32</td>
+      <td>0.48</td>
+      <td>0.5</td>
+      <td>0.55</td>
+      <td>0.25</td>
+      <td>0.35</td>
+      <td>cp</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1139</th>
+      <td>0.660161</td>
+      <td>0.679839</td>
+      <td>0.48</td>
+      <td>0.5</td>
+      <td>0.61508</td>
+      <td>0.440214</td>
+      <td>0.400054</td>
+      <td>pp</td>
+    </tr>
+    <tr>
+      <th>1140</th>
+      <td>0.755882</td>
+      <td>0.732574</td>
+      <td>0.48</td>
+      <td>0.5</td>
+      <td>0.439485</td>
+      <td>0.392574</td>
+      <td>0.391544</td>
+      <td>pp</td>
+    </tr>
+    <tr>
+      <th>1141</th>
+      <td>0.632786</td>
+      <td>0.854427</td>
+      <td>0.48</td>
+      <td>0.5</td>
+      <td>0.384427</td>
+      <td>0.464427</td>
+      <td>0.356719</td>
+      <td>pp</td>
+    </tr>
+    <tr>
+      <th>1142</th>
+      <td>0.734496</td>
+      <td>0.747339</td>
+      <td>0.48</td>
+      <td>0.5</td>
+      <td>0.316421</td>
+      <td>0.541008</td>
+      <td>0.523669</td>
+      <td>pp</td>
+    </tr>
+    <tr>
+      <th>1143</th>
+      <td>0.682813</td>
+      <td>0.671978</td>
+      <td>0.48</td>
+      <td>0.5</td>
+      <td>0.41</td>
+      <td>0.5</td>
+      <td>0.273956</td>
+      <td>pp</td>
+    </tr>
+  </tbody>
+</table>
+<p>1144 rows × 8 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bar_smote</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">Counter</span><span class="p">(</span><span class="n">q_resampled</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+<span class="n">kelas_smote</span><span class="p">,</span> <span class="n">dist_smote</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hsplit</span><span class="p">(</span><span class="n">bar_smote</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">kelas_smote</span> <span class="o">=</span> <span class="n">kelas_smote</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">dist_smote</span> <span class="o">=</span> <span class="n">dist_smote</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dist_smote</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="o">-</span> <span class="mi">10</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">kelas_smote</span><span class="p">,</span> <span class="n">dist_smote</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;BarContainer object of 8 artists&gt;
+</pre></div>
+</div>
+<img alt="_images/32e816c428acc1fd0d2a5845628de49814be5314694c264463c3deb807d5c4bf.png" src="_images/32e816c428acc1fd0d2a5845628de49814be5314694c264463c3deb807d5c4bf.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_asli</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">pca_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">p_resampled</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;PC1&#39;</span><span class="p">,</span><span class="s1">&#39;PC2&#39;</span><span class="p">])</span>
+<span class="n">pca_data</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">q_resampled</span><span class="o">.</span><span class="n">values</span>
+
+<span class="n">pca_data</span><span class="p">[</span><span class="s1">&#39;tipe&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Asli&#39;</span>
+<span class="n">pca_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">n_asli</span><span class="p">:,</span> <span class="s1">&#39;tipe&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Sintetis&#39;</span>   
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">kelas</span> <span class="ow">in</span> <span class="n">pca_data</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+    <span class="n">asli</span> <span class="o">=</span> <span class="n">pca_data</span><span class="p">[(</span><span class="n">pca_data</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">kelas</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">pca_data</span><span class="p">[</span><span class="s1">&#39;tipe&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Asli&#39;</span><span class="p">)]</span>
+    <span class="n">sintetis</span> <span class="o">=</span> <span class="n">pca_data</span><span class="p">[(</span><span class="n">pca_data</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">kelas</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">pca_data</span><span class="p">[</span><span class="s1">&#39;tipe&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Sintetis&#39;</span><span class="p">)]</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">asli</span><span class="p">[</span><span class="s1">&#39;PC1&#39;</span><span class="p">],</span> <span class="n">asli</span><span class="p">[</span><span class="s1">&#39;PC2&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">kelas</span><span class="si">}</span><span class="s2"> (asli)&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">sintetis</span><span class="p">[</span><span class="s1">&#39;PC1&#39;</span><span class="p">],</span> <span class="n">sintetis</span><span class="p">[</span><span class="s1">&#39;PC2&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">kelas</span><span class="si">}</span><span class="s2"> (sintetis)&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Plotting Data yang telah dioversampling menggunakan SMOTE&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Class + Tipe&quot;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.25</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper right&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/693fb3696dce9e2989ca8877087ac263cd28d40ea0917c692f0db65b1ec31745.png" src="_images/693fb3696dce9e2989ca8877087ac263cd28d40ea0917c692f0db65b1ec31745.png" />
+</div>
+</div>
+</section>
+<section id="perbandingan">
+<h2>Perbandingan<a class="headerlink" href="#perbandingan" title="Link to this heading">#</a></h2>
+<section id="perbandingan-distribusi-kelas-data-asli-adasyn-smote">
+<h3>Perbandingan Distribusi kelas Data Asli, ADASYN, SMOTE<a class="headerlink" href="#perbandingan-distribusi-kelas-data-asli-adasyn-smote" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Distribusi Kelas Data Asli&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">class_ecoli</span><span class="p">,</span> <span class="n">distributed_data</span><span class="p">)</span>
+
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Distribusi Kelas Data ADASYN&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">kelas_adasyn</span><span class="p">,</span> <span class="n">dist_data</span><span class="p">)</span>
+
+
+<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Distribusi Kelas Data SMOTE&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">kelas_smote</span><span class="p">,</span> <span class="n">dist_smote</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/cdc2f2c1d18357e79f2a29952e4fb3bb0a71620ac5885558c5ec54e00158fed3.png" src="_images/cdc2f2c1d18357e79f2a29952e4fb3bb0a71620ac5885558c5ec54e00158fed3.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="outliers_cleaning.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Pembersihan Outliers</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="pemodelan/klasifikasi.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">MODEL Klasifikasi (ECOLI)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-library">IMPORT LIBRARY</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menyimpan-data-ke-database-mysql">Menyimpan data ke database mysql</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribusi-kelas-pada-data-ecoli">Distribusi Kelas Pada Data Ecoli</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plot-dari-data-ecoli">Scatter Plot dari Data Ecoli</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penyeimbangan-data-menggunakan-adasyn">Penyeimbangan Data menggunakan ADASYN</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penyeimbangan-data-menggunakan-smote">Penyeimbangan data menggunakan SMOTE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan">Perbandingan</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-distribusi-kelas-data-asli-adasyn-smote">Perbandingan Distribusi kelas Data Asli, ADASYN, SMOTE</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Zanuar Rikza Aditiya
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,3419 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Identifikasi Suara Pembicara da Buka Tutup &#8212; Proyek Sains Data</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'timeseries_deteksi_suara/suara_buka_tutup';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Bussiness Understanding" href="../UAS/bussines_understanding.html" />
+    <link rel="prev" title="Modeling dengan KNN Regression" href="../NO2/modeling.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../profile.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/foto.jpg" class="logo__image only-light" alt="Proyek Sains Data - Home"/>
+    <script>document.write(`<img src="../_static/foto.jpg" class="logo__image only-dark" alt="Proyek Sains Data - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../profile.html">
+                    Profile
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Bussiness Understanding</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../iris_bussiness_understanding.html">Business Understanding</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Understanding</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../iris_get_data.html">Mendapatkan data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iris_data_description.html">Deskripsi Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iris_data_eksplorasi.html">Data Ekplorasi</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Preprosessing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../outliers_cleaning.html">Pembersihan Outliers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../penyeimbangan_data_ecoli.html">Penyeimbangan data Ecoli</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Pemodelan</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pemodelan/klasifikasi.html">MODEL KLASIFIKASI (ECOLI)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pemodelan/nb_imbalance.html">IMBALANCE DATA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pemodelan/nb_smote.html">SMOTE DATA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pemodelan/nb_adasyn.html">ADASYN DATA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pemodelan/perbandingan_keseluruhan.html">Perbandingan Model dan Data</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">KNIME</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../KNIME/dokumentasi_workflow.html">Projek Pra UTS PSD</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Forecasting Kepadatan NO2 di Kabupaten Bojonegoro</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../NO2/pengumpulan_data.html">Pengumpulan Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../NO2/preprocess.html">Preprocessing Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../NO2/modeling.html">Modeling dengan KNN Regression</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">IDENTIFIKASI SUARA</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">IDENTIFIKASI SUARA BUKA DAN TUTUP</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Klasifikasi Serangga</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../UAS/bussines_understanding.html">BUSSINES Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UAS/data_understanding.html">DATA Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UAS/modeling_fix.html">PREPROCESS, MODELING &amp; EVALUASI</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ftimeseries_deteksi_suara/suara_buka_tutup.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/timeseries_deteksi_suara/suara_buka_tutup.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Identifikasi Suara Pembicara da Buka Tutup</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menyiapkan-data-audio">Menyiapkan Data Audio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-klasifikasi-suara-orang">Membuat Klasifikasi Suara Orang</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#outlier-detection">Outlier Detection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penyebaran-data">Penyebaran Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#korelasis-fitur">Korelasis Fitur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-training">Model Training</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menyimpan-model">Menyimpan Model</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-klasifikasi-suara-buka-tutup">Membuat Klasifikasi Suara Buka Tutup</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Outlier Detection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Penyebaran Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#korelasi-fitur">Korelasi Fitur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Model Training</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Menyimpan Model</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="identifikasi-suara-pembicara-da-buka-tutup">
+<h1>Identifikasi Suara Pembicara da Buka Tutup<a class="headerlink" href="#identifikasi-suara-pembicara-da-buka-tutup" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">librosa</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">soundfile</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sf</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">string</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurtosis</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">accuracy_score</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">joblib</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.svm</span><span class="w"> </span><span class="kn">import</span> <span class="n">SVC</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="menyiapkan-data-audio">
+<h2>Menyiapkan Data Audio<a class="headerlink" href="#menyiapkan-data-audio" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># buka_data_pitch_aug = &quot;./data_audio/aug/buka/pitch/&quot;</span>
+<span class="c1"># buka_data_stretch_aug = &quot;./data_audio/aug/buka/stretch/&quot;</span>
+<span class="c1"># buka_data_noise_aug = &quot;./data_audio/aug/buka/noise/&quot;aug</span>
+<span class="n">buka_data_real</span> <span class="o">=</span> <span class="s2">&quot;./data_audio/buka_wav_asli/&quot;</span>
+<span class="n">buka_aug</span> <span class="o">=</span> <span class="s2">&quot;./data_aug/buka_aug/&quot;</span>
+<span class="n">buka_data_fathan</span> <span class="o">=</span> <span class="s2">&quot;./data_audio/data_fathan/buka/&quot;</span>
+
+<span class="c1"># tutup_data_pitch_aug = &quot;./data_audio/aug/buka/pitch/&quot;</span>
+<span class="c1"># tutup_data_stretch_aug = &quot;./data_audio/aug/buka/stretch/&quot;</span>
+<span class="c1"># tutup_data_noise_aug = &quot;./data_audio/aug/buka/noise/&quot;</span>
+<span class="n">tutup_data_real</span> <span class="o">=</span> <span class="s2">&quot;./data_audio/tutup_wav_asli/&quot;</span>
+<span class="n">tutup_aug</span> <span class="o">=</span> <span class="s2">&quot;./data_aug/tutup_aug/&quot;</span>
+<span class="n">tutup_data_fathan</span> <span class="o">=</span> <span class="s2">&quot;./data_audio/data_fathan/tutup/&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_aug</span> <span class="o">=</span> <span class="s2">&quot;./data_aug/&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">buka_file_real</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;./data_audio/buka_wav_asli&quot;</span><span class="p">)</span>
+
+<span class="n">tutup_file_real</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;./data_audio/tutup_wav_asli&quot;</span><span class="p">)</span>
+
+<span class="n">tutup_file_fathan</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">tutup_data_fathan</span><span class="p">)</span>
+<span class="n">buka_file_fathan</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">buka_data_fathan</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># def augmentData(y, sr, path, name=&quot;buka&quot;, n_aug=3):</span>
+<span class="c1">#     # Pastikan folder ada</span>
+<span class="c1">#     for folder in [&quot;pitch&quot;, &quot;stretch&quot;, &quot;noise&quot;, &quot;combined&quot;]:</span>
+<span class="c1">#         os.makedirs(os.path.join(path, folder), exist_ok=True)</span>
+
+<span class="c1">#     for i in range(n_aug):</span>
+<span class="c1">#         random_string = &#39;&#39;.join(random.choices(string.ascii_letters + string.digits, k=5))</span>
+        
+<span class="c1">#         # Pitch shift ±1 sampai ±2 step</span>
+<span class="c1">#         n_steps = random.choice([-2, -1, 1, 2])</span>
+<span class="c1">#         y_pitch = librosa.effects.pitch_shift(y=y, sr=sr, n_steps=n_steps)</span>
+        
+<span class="c1">#         # Time stretch 0.9 - 1.1</span>
+<span class="c1">#         rate = random.uniform(0.9, 1.1)</span>
+<span class="c1">#         y_stretch = librosa.effects.time_stretch(y=y, rate=rate)</span>
+        
+<span class="c1">#         # Noise kecil</span>
+<span class="c1">#         noise_std = random.uniform(0.003, 0.01)</span>
+<span class="c1">#         y_noise = y + np.random.normal(0, noise_std, y.shape)</span>
+
+<span class="c1">#         # Kombinasi pitch + stretch + noise</span>
+<span class="c1">#         y_combined = librosa.effects.pitch_shift(y=y, sr=sr, n_steps=n_steps)</span>
+<span class="c1">#         y_combined = librosa.effects.time_stretch(y=y_combined, rate=rate)</span>
+<span class="c1">#         y_combined = y_combined + np.random.normal(0, noise_std, y_combined.shape)</span>
+
+<span class="c1">#         # Simpan file</span>
+<span class="c1">#         sf.write(os.path.join(path, f&quot;{name}-pitch-{random_string}.wav&quot;), y_pitch, sr)</span>
+<span class="c1">#         sf.write(os.path.join(path, f&quot;{name}-stretch-{random_string}.wav&quot;), y_stretch, sr)</span>
+<span class="c1">#         sf.write(os.path.join(path, f&quot;{name}-noise-{random_string}.wav&quot;), y_noise, sr)</span>
+<span class="c1">#         sf.write(os.path.join(path, f&quot;{name}-combined-{random_string}.wav&quot;), y_combined, sr)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">extract_mfcc</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">n_mfcc</span><span class="o">=</span><span class="mi">13</span><span class="p">):</span>
+    <span class="n">y</span><span class="p">,</span> <span class="n">sr</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">16000</span><span class="p">)</span>
+    <span class="n">mfcc</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">mfcc</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span> <span class="n">n_mfcc</span><span class="o">=</span><span class="n">n_mfcc</span><span class="p">)</span>
+    <span class="n">mfcc_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">mfcc</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">mfcc</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">mfcc</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">silent_trim</span><span class="p">(</span><span class="n">in_folder</span><span class="p">,</span> <span class="n">list_file</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">list_file</span><span class="p">)):</span> 
+        <span class="n">y1</span><span class="p">,</span> <span class="n">sr</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;./data_audio/&quot;</span> <span class="o">+</span> <span class="n">in_folder</span> <span class="o">+</span> <span class="n">list_file</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">y_trimmed</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">effects</span><span class="o">.</span><span class="n">trim</span><span class="p">(</span><span class="n">y1</span><span class="p">,</span> <span class="n">top_db</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+        <span class="n">sf</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;./data_audio/processed_trimed/&quot;</span> <span class="o">+</span> <span class="n">out</span> <span class="o">+</span> <span class="s2">&quot;audio_trimmed_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;.wav&quot;</span><span class="p">,</span> <span class="n">y_trimmed</span><span class="p">,</span> <span class="n">sr</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">extract_temo</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+    <span class="n">y</span><span class="p">,</span> <span class="n">sr</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">16000</span><span class="p">)</span>
+    <span class="n">tempo</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">tempo</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">tempo</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">extract_spectral_centroid</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+    <span class="n">y</span><span class="p">,</span> <span class="n">sr</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">16000</span><span class="p">)</span>
+    <span class="n">centroid</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">spectral_centroid</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">centroid</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">centroid</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">extract_rms</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+    <span class="n">y</span><span class="p">,</span> <span class="n">sr</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+    <span class="n">rms</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">rms</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">rms</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">rms</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">extract_tonetz</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+    <span class="n">y</span><span class="p">,</span> <span class="n">sr</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+    <span class="n">tonnetz</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">tonnetz</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">tonnetz</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">tonnetz</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">extract_mel</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+    <span class="n">y</span><span class="p">,</span> <span class="n">sr</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+    <span class="n">tonnetz</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">melspectrogram</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="n">sr</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">tonnetz</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">tonnetz</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">extract_std</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+    <span class="n">y</span><span class="p">,</span> <span class="n">sr</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">extract_mean</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+    <span class="n">y</span><span class="p">,</span> <span class="n">sr</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">silent_trim</span><span class="p">(</span><span class="s2">&quot;data_fathan/tutup/&quot;</span><span class="p">,</span> <span class="n">tutup_file_fathan</span><span class="p">,</span> <span class="s2">&quot;data_fathan/tutup/&quot;</span><span class="p">)</span>
+<span class="n">silent_trim</span><span class="p">(</span><span class="s2">&quot;data_fathan/buka/&quot;</span><span class="p">,</span> <span class="n">buka_file_fathan</span><span class="p">,</span> <span class="s2">&quot;data_fathan/buka/&quot;</span><span class="p">)</span>
+<span class="n">silent_trim</span><span class="p">(</span><span class="s2">&quot;tutup_wav_asli/&quot;</span><span class="p">,</span> <span class="n">tutup_file_real</span><span class="p">,</span> <span class="s2">&quot;tutup_file/&quot;</span><span class="p">)</span>
+<span class="n">silent_trim</span><span class="p">(</span><span class="s2">&quot;buka_wav_asli/&quot;</span><span class="p">,</span> <span class="n">buka_file_real</span><span class="p">,</span> <span class="s2">&quot;buka_file/&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">buka_audio_trimed</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;./data_audio/processed_trimed/buka_file/&quot;</span><span class="p">)</span>
+<span class="n">tutup_audio_trimed</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;./data_audio/processed_trimed/tutup_file/&quot;</span><span class="p">)</span>
+<span class="n">tutup_fathan_trimed</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;./data_audio/processed_trimed/data_fathan/tutup/&quot;</span><span class="p">)</span>
+<span class="n">buka_fathan_trimed</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;./data_audio/processed_trimed/data_fathan/buka/&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># for audio_buka in buka_file_real:</span>
+<span class="c1">#     y, sr = librosa.load(buka_data_real + audio_buka, sr=16000)</span>
+<span class="c1">#     augmentData(y, sr, &quot;./data_aug/buka_aug&quot;)z</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># for audio_tutup in tutup_file_real:</span>
+<span class="c1">#     y, sr = librosa.load(tutup_data_real + audio_tutup, sr=16000)</span>
+<span class="c1">#     augmentData(y, sr, &quot;./data_aug/tutup_aug&quot; , name=&quot;tutup&quot;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">buka_file_aug</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;./data_aug/buka_aug/&quot;</span><span class="p">)</span>
+<span class="n">buka_file_noise_aug</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;./data_audio/aug/buka/noise/&quot;</span><span class="p">)</span>
+
+<span class="n">tutup_file_aug</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;./data_aug/tutup_aug/&quot;</span><span class="p">)</span>
+<span class="n">tutup_file_noise_aug</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;./data_audio/aug/buka/noise/&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_data_buka</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1"># *[buka_data_real  + real for real in buka_file_real],</span>
+    <span class="o">*</span><span class="p">[</span><span class="s2">&quot;./data_audio/processed_trimed/buka_file/&quot;</span>  <span class="o">+</span> <span class="n">trimed</span> <span class="k">for</span> <span class="n">trimed</span> <span class="ow">in</span> <span class="n">buka_audio_trimed</span><span class="p">],</span>
+    <span class="o">*</span><span class="p">[</span><span class="s2">&quot;./data_audio/processed_trimed/data_fathan/buka/&quot;</span>  <span class="o">+</span> <span class="n">trimed</span> <span class="k">for</span> <span class="n">trimed</span> <span class="ow">in</span> <span class="n">buka_fathan_trimed</span><span class="p">],</span>
+    <span class="c1"># *[buka_aug + pitch for pitch in buka_file_aug],</span>
+    <span class="c1"># *[buka_data_stretch_aug + stretch for stretch in buka_file_stretch_aug],</span>
+    <span class="c1"># *[buka_data_noise_aug + noise for noise in buka_file_noise_aug]</span>
+<span class="p">]</span>
+
+
+<span class="n">all_data_tutup</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1"># *[tutup_data_real  + real for real in tutup_file_real],</span>
+    <span class="o">*</span><span class="p">[</span><span class="s2">&quot;./data_audio/processed_trimed/tutup_file/&quot;</span>  <span class="o">+</span> <span class="n">trimed</span> <span class="k">for</span> <span class="n">trimed</span> <span class="ow">in</span> <span class="n">tutup_audio_trimed</span><span class="p">],</span>
+    <span class="o">*</span><span class="p">[</span><span class="s2">&quot;./data_audio/processed_trimed/data_fathan/tutup/&quot;</span>  <span class="o">+</span> <span class="n">trimed</span> <span class="k">for</span> <span class="n">trimed</span> <span class="ow">in</span> <span class="n">tutup_fathan_trimed</span><span class="p">],</span>
+    <span class="c1"># *[tutup_aug + pitch for pitch in tutup_file_aug],</span>
+    <span class="c1"># *[tutup_data_stretch_aug + stretch for stretch in tutup_file_stretch_aug],</span>
+    <span class="c1"># *[tutup_data_noise_aug + noise for noise in tutup_file_noise_aug]</span>
+<span class="p">]</span>
+
+<span class="n">all_data_zanuar</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="o">*</span><span class="p">[</span><span class="s2">&quot;./data_audio/processed_trimed/tutup_file/&quot;</span>  <span class="o">+</span> <span class="n">trimed</span> <span class="k">for</span> <span class="n">trimed</span> <span class="ow">in</span> <span class="n">tutup_audio_trimed</span><span class="p">],</span>
+    <span class="o">*</span><span class="p">[</span><span class="s2">&quot;./data_audio/processed_trimed/buka_file/&quot;</span>  <span class="o">+</span> <span class="n">trimed</span> <span class="k">for</span> <span class="n">trimed</span> <span class="ow">in</span> <span class="n">buka_audio_trimed</span><span class="p">],</span>
+<span class="p">]</span>
+
+<span class="n">all_data_fathan</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="o">*</span><span class="p">[</span><span class="s2">&quot;./data_audio/processed_trimed/data_fathan/buka/&quot;</span>  <span class="o">+</span> <span class="n">trimed</span> <span class="k">for</span> <span class="n">trimed</span> <span class="ow">in</span> <span class="n">buka_fathan_trimed</span><span class="p">],</span>
+    <span class="o">*</span><span class="p">[</span><span class="s2">&quot;./data_audio/processed_trimed/data_fathan/tutup/&quot;</span>  <span class="o">+</span> <span class="n">trimed</span> <span class="k">for</span> <span class="n">trimed</span> <span class="ow">in</span> <span class="n">tutup_fathan_trimed</span><span class="p">],</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="membuat-klasifikasi-suara-orang">
+<h2>Membuat Klasifikasi Suara Orang<a class="headerlink" href="#membuat-klasifikasi-suara-orang" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mfcc_mean_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">mfcc_std_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">tempo_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">centroid_mean_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">centroid_std_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">rms_mean_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">rms_std_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">tonetz_mean_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">tonetz_std_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">std_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">mel_mean_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">mel_std_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">mean_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">label</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">zanuar</span> <span class="ow">in</span> <span class="n">all_data_zanuar</span><span class="p">:</span>
+    <span class="n">mfcc</span> <span class="o">=</span> <span class="n">extract_mfcc</span><span class="p">(</span><span class="n">zanuar</span><span class="p">)</span>
+    <span class="n">tempo</span> <span class="o">=</span> <span class="n">extract_temo</span><span class="p">(</span><span class="n">zanuar</span><span class="p">)</span>
+    <span class="n">centroid</span> <span class="o">=</span> <span class="n">extract_spectral_centroid</span><span class="p">(</span><span class="n">zanuar</span><span class="p">)</span>
+    <span class="n">rms</span> <span class="o">=</span> <span class="n">extract_rms</span><span class="p">(</span><span class="n">zanuar</span><span class="p">)</span>
+    <span class="n">mel</span> <span class="o">=</span> <span class="n">extract_mel</span><span class="p">(</span><span class="n">zanuar</span><span class="p">)</span>
+    <span class="n">tonetz</span> <span class="o">=</span> <span class="n">extract_tonetz</span><span class="p">(</span><span class="n">zanuar</span><span class="p">)</span>
+    <span class="n">std_arr</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">extract_std</span><span class="p">(</span><span class="n">zanuar</span><span class="p">)])</span>
+    <span class="n">mean_arr</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">extract_mean</span><span class="p">(</span><span class="n">zanuar</span><span class="p">)])</span>
+    
+    <span class="n">mfcc_mean_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mfcc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">mfcc_std_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mfcc</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">tempo_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tempo</span><span class="p">)</span>
+    <span class="n">centroid_mean_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">centroid</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">centroid_std_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">centroid</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">rms_mean_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rms</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">rms_std_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rms</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">tonetz_mean_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tonetz</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">tonetz_std_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tonetz</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">mel_mean_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mel</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">mel_std_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mel</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">label</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="s2">&quot;zanuar&quot;</span><span class="p">])</span>
+    
+<span class="n">dataset_zanuar</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span>
+    <span class="n">std_arr</span><span class="p">,</span>
+    <span class="n">mean_arr</span><span class="p">,</span>
+    <span class="n">mfcc_mean_arr</span><span class="p">,</span>
+    <span class="n">mfcc_std_arr</span><span class="p">,</span>
+    <span class="n">tempo_arr</span><span class="p">,</span>
+    <span class="n">centroid_mean_arr</span><span class="p">,</span>
+    <span class="n">centroid_std_arr</span><span class="p">,</span>
+    <span class="n">rms_mean_arr</span><span class="p">,</span>
+    <span class="n">rms_std_arr</span><span class="p">,</span>
+    <span class="n">tonetz_mean_arr</span><span class="p">,</span>
+    <span class="n">tonetz_std_arr</span><span class="p">,</span>
+    <span class="n">mel_mean_arr</span><span class="p">,</span>
+    <span class="n">mel_std_arr</span><span class="p">,</span>
+    <span class="n">label</span>
+<span class="p">))</span>
+
+<span class="n">dataset_zanuar</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(200, 302)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mfcc_mean_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">mfcc_std_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">tempo_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">centroid_mean_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">centroid_std_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">rms_mean_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">rms_std_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">tonetz_mean_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">tonetz_std_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">std_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">mel_mean_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">mel_std_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">mean_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">label</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">fathan</span> <span class="ow">in</span> <span class="n">all_data_fathan</span><span class="p">:</span>
+    <span class="n">mfcc</span> <span class="o">=</span> <span class="n">extract_mfcc</span><span class="p">(</span><span class="n">fathan</span><span class="p">)</span>
+    <span class="n">tempo</span> <span class="o">=</span> <span class="n">extract_temo</span><span class="p">(</span><span class="n">fathan</span><span class="p">)</span>
+    <span class="n">centroid</span> <span class="o">=</span> <span class="n">extract_spectral_centroid</span><span class="p">(</span><span class="n">fathan</span><span class="p">)</span>
+    <span class="n">rms</span> <span class="o">=</span> <span class="n">extract_rms</span><span class="p">(</span><span class="n">fathan</span><span class="p">)</span>
+    <span class="n">mel</span> <span class="o">=</span> <span class="n">extract_mel</span><span class="p">(</span><span class="n">fathan</span><span class="p">)</span>
+    <span class="n">tonetz</span> <span class="o">=</span> <span class="n">extract_tonetz</span><span class="p">(</span><span class="n">fathan</span><span class="p">)</span>
+    <span class="n">std_arr</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">extract_std</span><span class="p">(</span><span class="n">fathan</span><span class="p">)])</span>
+    <span class="n">mean_arr</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">extract_mean</span><span class="p">(</span><span class="n">fathan</span><span class="p">)])</span>
+    
+    <span class="n">mfcc_mean_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mfcc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">mfcc_std_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mfcc</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">tempo_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tempo</span><span class="p">)</span>
+    <span class="n">centroid_mean_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">centroid</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">centroid_std_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">centroid</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">rms_mean_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rms</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">rms_std_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rms</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">tonetz_mean_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tonetz</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">tonetz_std_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tonetz</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">mel_mean_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mel</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">mel_std_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mel</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">label</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="s2">&quot;fathan&quot;</span><span class="p">])</span>
+    
+<span class="n">dataset_fathan</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span>
+    <span class="n">std_arr</span><span class="p">,</span>
+    <span class="n">mean_arr</span><span class="p">,</span>
+    <span class="n">mfcc_mean_arr</span><span class="p">,</span>
+    <span class="n">mfcc_std_arr</span><span class="p">,</span>
+    <span class="n">tempo_arr</span><span class="p">,</span>
+    <span class="n">centroid_mean_arr</span><span class="p">,</span>
+    <span class="n">centroid_std_arr</span><span class="p">,</span>
+    <span class="n">rms_mean_arr</span><span class="p">,</span>
+    <span class="n">rms_std_arr</span><span class="p">,</span>
+    <span class="n">tonetz_mean_arr</span><span class="p">,</span>
+    <span class="n">tonetz_std_arr</span><span class="p">,</span>
+    <span class="n">mel_mean_arr</span><span class="p">,</span>
+    <span class="n">mel_std_arr</span><span class="p">,</span>
+    <span class="n">label</span>
+<span class="p">))</span>
+
+<span class="n">dataset_fathan</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(200, 302)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;std&quot;</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="o">*</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;mfcc_mean_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mfcc_mean_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]))],</span> <span class="o">*</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;mfcc_std_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mfcc_std_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]))],</span> <span class="s2">&quot;tempo&quot;</span><span class="p">,</span> <span class="o">*</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;centroid_mean_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">centroid_mean_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]))],</span> <span class="o">*</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;centroid_std_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">centroid_std_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]))],</span> <span class="o">*</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;rms_mean_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rms_mean_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]))],</span> <span class="o">*</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;rms_std_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rms_std_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]))],</span> <span class="o">*</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;tonetz_mean&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tonetz_mean_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]))],</span> <span class="o">*</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;tonetz_std_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tonetz_std_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]))],</span> <span class="o">*</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;mel_mean_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mel_mean_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]))],</span> <span class="o">*</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;mel_std_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mel_mean_arr</span><span class="p">[</span><span class="mi">1</span><span class="p">]))],</span> <span class="s2">&quot;label&quot;</span><span class="p">]</span>
+
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">dataset_zanuar</span><span class="p">,</span> <span class="n">dataset_fathan</span><span class="p">)),</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+
+<span class="n">dataset</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>std</th>
+      <th>mean</th>
+      <th>mfcc_mean_1</th>
+      <th>mfcc_mean_2</th>
+      <th>mfcc_mean_3</th>
+      <th>mfcc_mean_4</th>
+      <th>mfcc_mean_5</th>
+      <th>mfcc_mean_6</th>
+      <th>mfcc_mean_7</th>
+      <th>mfcc_mean_8</th>
+      <th>...</th>
+      <th>mel_std_120</th>
+      <th>mel_std_121</th>
+      <th>mel_std_122</th>
+      <th>mel_std_123</th>
+      <th>mel_std_124</th>
+      <th>mel_std_125</th>
+      <th>mel_std_126</th>
+      <th>mel_std_127</th>
+      <th>mel_std_128</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-1.3912425e-05</td>
+      <td>0.011563645</td>
+      <td>-477.02985</td>
+      <td>123.870926</td>
+      <td>31.23104</td>
+      <td>21.628147</td>
+      <td>2.6245272</td>
+      <td>8.934891</td>
+      <td>2.8156927</td>
+      <td>-4.233397</td>
+      <td>...</td>
+      <td>1.361756e-06</td>
+      <td>1.0238781e-06</td>
+      <td>8.5486295e-07</td>
+      <td>1.1646457e-06</td>
+      <td>9.721465e-07</td>
+      <td>1.0683531e-06</td>
+      <td>9.962517e-07</td>
+      <td>5.1448353e-07</td>
+      <td>4.4327187e-08</td>
+      <td>zanuar</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2.9381583e-06</td>
+      <td>0.009167008</td>
+      <td>-503.73605</td>
+      <td>120.55202</td>
+      <td>35.477066</td>
+      <td>24.092228</td>
+      <td>6.4341226</td>
+      <td>17.13923</td>
+      <td>-3.7508135</td>
+      <td>-9.067448</td>
+      <td>...</td>
+      <td>1.2261043e-05</td>
+      <td>9.564429e-06</td>
+      <td>8.407773e-06</td>
+      <td>6.7792535e-06</td>
+      <td>5.472032e-06</td>
+      <td>9.600722e-06</td>
+      <td>9.554846e-06</td>
+      <td>1.3589842e-06</td>
+      <td>2.4014216e-07</td>
+      <td>zanuar</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-2.6915755e-05</td>
+      <td>0.014714079</td>
+      <td>-462.03696</td>
+      <td>143.78949</td>
+      <td>31.145885</td>
+      <td>19.626184</td>
+      <td>-5.1409583</td>
+      <td>10.1631565</td>
+      <td>2.2667918</td>
+      <td>-6.724922</td>
+      <td>...</td>
+      <td>2.1681865e-06</td>
+      <td>5.310814e-06</td>
+      <td>4.375502e-06</td>
+      <td>2.945784e-06</td>
+      <td>1.703815e-06</td>
+      <td>1.2679221e-06</td>
+      <td>9.854289e-07</td>
+      <td>4.3997477e-07</td>
+      <td>7.498288e-08</td>
+      <td>zanuar</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-3.6700567e-05</td>
+      <td>0.01290706</td>
+      <td>-487.8172</td>
+      <td>134.42647</td>
+      <td>22.022692</td>
+      <td>21.886986</td>
+      <td>-12.475644</td>
+      <td>11.126036</td>
+      <td>12.090064</td>
+      <td>-4.6893053</td>
+      <td>...</td>
+      <td>1.7976689e-06</td>
+      <td>9.713395e-07</td>
+      <td>1.2753699e-06</td>
+      <td>1.4913594e-06</td>
+      <td>3.1070072e-06</td>
+      <td>1.3868356e-06</td>
+      <td>7.5324897e-07</td>
+      <td>1.0231956e-06</td>
+      <td>1.4028984e-07</td>
+      <td>zanuar</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-1.8248955e-05</td>
+      <td>0.01100796</td>
+      <td>-500.71594</td>
+      <td>133.7235</td>
+      <td>23.189465</td>
+      <td>22.146875</td>
+      <td>-1.1075829</td>
+      <td>12.363001</td>
+      <td>6.970186</td>
+      <td>-7.897291</td>
+      <td>...</td>
+      <td>1.011622e-06</td>
+      <td>9.558171e-07</td>
+      <td>1.1023789e-06</td>
+      <td>1.5762237e-06</td>
+      <td>2.3345715e-06</td>
+      <td>1.4412492e-06</td>
+      <td>1.029332e-06</td>
+      <td>7.4506085e-07</td>
+      <td>1.9614664e-07</td>
+      <td>zanuar</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>395</th>
+      <td>-0.00023816079</td>
+      <td>0.02840689</td>
+      <td>-419.9184</td>
+      <td>96.09794</td>
+      <td>43.513332</td>
+      <td>24.412283</td>
+      <td>3.4053862</td>
+      <td>24.237545</td>
+      <td>-9.35581</td>
+      <td>-15.427906</td>
+      <td>...</td>
+      <td>0.00042761324</td>
+      <td>0.00036543238</td>
+      <td>0.00041633454</td>
+      <td>0.00013431968</td>
+      <td>3.0467036e-05</td>
+      <td>3.3838023e-05</td>
+      <td>4.9995183e-06</td>
+      <td>4.0988994e-06</td>
+      <td>4.3857045e-07</td>
+      <td>fathan</td>
+    </tr>
+    <tr>
+      <th>396</th>
+      <td>-0.00025117397</td>
+      <td>0.03714193</td>
+      <td>-362.42865</td>
+      <td>105.70649</td>
+      <td>36.13</td>
+      <td>12.106636</td>
+      <td>-3.3258762</td>
+      <td>31.12015</td>
+      <td>-29.63329</td>
+      <td>-35.780758</td>
+      <td>...</td>
+      <td>0.00089188124</td>
+      <td>0.00038904062</td>
+      <td>0.00031429066</td>
+      <td>0.00013046991</td>
+      <td>3.3043783e-05</td>
+      <td>3.1124986e-05</td>
+      <td>2.1348455e-05</td>
+      <td>8.500945e-06</td>
+      <td>2.1496699e-07</td>
+      <td>fathan</td>
+    </tr>
+    <tr>
+      <th>397</th>
+      <td>-0.0002456648</td>
+      <td>0.035039574</td>
+      <td>-364.8346</td>
+      <td>97.0676</td>
+      <td>34.59552</td>
+      <td>16.981377</td>
+      <td>-0.8830796</td>
+      <td>28.7523</td>
+      <td>-26.535778</td>
+      <td>-31.677406</td>
+      <td>...</td>
+      <td>0.00028550182</td>
+      <td>0.00022740522</td>
+      <td>0.00027062828</td>
+      <td>3.993777e-05</td>
+      <td>1.6350767e-05</td>
+      <td>1.238361e-05</td>
+      <td>6.885567e-06</td>
+      <td>3.684432e-06</td>
+      <td>3.3721946e-07</td>
+      <td>fathan</td>
+    </tr>
+    <tr>
+      <th>398</th>
+      <td>-0.00023603169</td>
+      <td>0.03278271</td>
+      <td>-376.91446</td>
+      <td>100.33139</td>
+      <td>36.553562</td>
+      <td>23.412449</td>
+      <td>-0.7632972</td>
+      <td>32.42795</td>
+      <td>-26.514513</td>
+      <td>-30.365091</td>
+      <td>...</td>
+      <td>0.00024938822</td>
+      <td>0.00028553238</td>
+      <td>0.00016753688</td>
+      <td>3.147752e-05</td>
+      <td>4.9862683e-06</td>
+      <td>6.0430452e-06</td>
+      <td>6.213851e-06</td>
+      <td>1.6289555e-06</td>
+      <td>2.180268e-07</td>
+      <td>fathan</td>
+    </tr>
+    <tr>
+      <th>399</th>
+      <td>-0.00018338647</td>
+      <td>0.020430153</td>
+      <td>-464.87622</td>
+      <td>89.54807</td>
+      <td>30.715569</td>
+      <td>29.32235</td>
+      <td>2.9537632</td>
+      <td>28.652233</td>
+      <td>-14.025778</td>
+      <td>-9.449646</td>
+      <td>...</td>
+      <td>0.00010284259</td>
+      <td>8.762123e-05</td>
+      <td>2.7892282e-05</td>
+      <td>1.0407598e-05</td>
+      <td>1.2269578e-06</td>
+      <td>9.564186e-07</td>
+      <td>1.2222242e-06</td>
+      <td>1.209763e-06</td>
+      <td>1.1411925e-07</td>
+      <td>fathan</td>
+    </tr>
+  </tbody>
+</table>
+<p>400 rows × 302 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;./dataset/zanuar_fathan.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="outlier-detection">
+<h3>Outlier Detection<a class="headerlink" href="#outlier-detection" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pycaret.anomaly</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">audio_zanuar_fathan</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./dataset/zanuar_fathan.csv&quot;</span><span class="p">)</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="n">setup</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">audio_zanuar_fathan</span><span class="p">)</span>
+
+<span class="n">abod_model</span> <span class="o">=</span> <span class="n">create_model</span><span class="p">(</span><span class="s2">&quot;abod&quot;</span><span class="p">,</span> <span class="n">fraction</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+
+<span class="n">df_abod</span> <span class="o">=</span> <span class="n">assign_model</span><span class="p">(</span><span class="n">abod_model</span><span class="p">)</span>
+
+<span class="n">df_abod</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">17</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span><span class="w"> </span><span class="nn">pycaret.anomaly</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">audio_zanuar_fathan</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./dataset/zanuar_fathan.csv&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">s</span> <span class="o">=</span> <span class="n">setup</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">audio_zanuar_fathan</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;pycaret&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">non_anomaly_data</span> <span class="o">=</span> <span class="n">df_abod</span><span class="p">[</span><span class="n">df_abod</span><span class="p">[</span><span class="s2">&quot;Anomaly&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">non_anomaly_data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>std</th>
+      <th>mean</th>
+      <th>mfcc_mean_1</th>
+      <th>mfcc_mean_2</th>
+      <th>mfcc_mean_3</th>
+      <th>mfcc_mean_4</th>
+      <th>mfcc_mean_5</th>
+      <th>mfcc_mean_6</th>
+      <th>mfcc_mean_7</th>
+      <th>mfcc_mean_8</th>
+      <th>...</th>
+      <th>mel_std_122</th>
+      <th>mel_std_123</th>
+      <th>mel_std_124</th>
+      <th>mel_std_125</th>
+      <th>mel_std_126</th>
+      <th>mel_std_127</th>
+      <th>mel_std_128</th>
+      <th>label</th>
+      <th>Anomaly</th>
+      <th>Anomaly_Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-0.000014</td>
+      <td>0.011564</td>
+      <td>-477.029846</td>
+      <td>123.870926</td>
+      <td>31.231039</td>
+      <td>21.628147</td>
+      <td>2.624527</td>
+      <td>8.934891</td>
+      <td>2.815693</td>
+      <td>-4.233397</td>
+      <td>...</td>
+      <td>8.548629e-07</td>
+      <td>0.000001</td>
+      <td>9.721465e-07</td>
+      <td>1.068353e-06</td>
+      <td>9.962517e-07</td>
+      <td>5.144835e-07</td>
+      <td>4.432719e-08</td>
+      <td>zanuar</td>
+      <td>0</td>
+      <td>-6.453454e-09</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.000003</td>
+      <td>0.009167</td>
+      <td>-503.736053</td>
+      <td>120.552017</td>
+      <td>35.477066</td>
+      <td>24.092226</td>
+      <td>6.434122</td>
+      <td>17.139231</td>
+      <td>-3.750813</td>
+      <td>-9.067448</td>
+      <td>...</td>
+      <td>8.407773e-06</td>
+      <td>0.000007</td>
+      <td>5.472032e-06</td>
+      <td>9.600722e-06</td>
+      <td>9.554846e-06</td>
+      <td>1.358984e-06</td>
+      <td>2.401422e-07</td>
+      <td>zanuar</td>
+      <td>0</td>
+      <td>-4.388857e-09</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-0.000027</td>
+      <td>0.014714</td>
+      <td>-462.036957</td>
+      <td>143.789490</td>
+      <td>31.145885</td>
+      <td>19.626184</td>
+      <td>-5.140958</td>
+      <td>10.163157</td>
+      <td>2.266792</td>
+      <td>-6.724922</td>
+      <td>...</td>
+      <td>4.375502e-06</td>
+      <td>0.000003</td>
+      <td>1.703815e-06</td>
+      <td>1.267922e-06</td>
+      <td>9.854289e-07</td>
+      <td>4.399748e-07</td>
+      <td>7.498289e-08</td>
+      <td>zanuar</td>
+      <td>0</td>
+      <td>-1.149600e-08</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-0.000037</td>
+      <td>0.012907</td>
+      <td>-487.817200</td>
+      <td>134.426468</td>
+      <td>22.022692</td>
+      <td>21.886986</td>
+      <td>-12.475644</td>
+      <td>11.126036</td>
+      <td>12.090064</td>
+      <td>-4.689305</td>
+      <td>...</td>
+      <td>1.275370e-06</td>
+      <td>0.000001</td>
+      <td>3.107007e-06</td>
+      <td>1.386836e-06</td>
+      <td>7.532490e-07</td>
+      <td>1.023196e-06</td>
+      <td>1.402898e-07</td>
+      <td>zanuar</td>
+      <td>0</td>
+      <td>-8.236920e-09</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-0.000018</td>
+      <td>0.011008</td>
+      <td>-500.715942</td>
+      <td>133.723495</td>
+      <td>23.189465</td>
+      <td>22.146875</td>
+      <td>-1.107582</td>
+      <td>12.363000</td>
+      <td>6.970186</td>
+      <td>-7.897291</td>
+      <td>...</td>
+      <td>1.102379e-06</td>
+      <td>0.000002</td>
+      <td>2.334571e-06</td>
+      <td>1.441249e-06</td>
+      <td>1.029332e-06</td>
+      <td>7.450610e-07</td>
+      <td>1.961467e-07</td>
+      <td>zanuar</td>
+      <td>0</td>
+      <td>-8.567694e-09</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>395</th>
+      <td>-0.000238</td>
+      <td>0.028407</td>
+      <td>-419.918396</td>
+      <td>96.097939</td>
+      <td>43.513332</td>
+      <td>24.412283</td>
+      <td>3.405387</td>
+      <td>24.237545</td>
+      <td>-9.355809</td>
+      <td>-15.427906</td>
+      <td>...</td>
+      <td>4.163346e-04</td>
+      <td>0.000134</td>
+      <td>3.046704e-05</td>
+      <td>3.383802e-05</td>
+      <td>4.999519e-06</td>
+      <td>4.098899e-06</td>
+      <td>4.385705e-07</td>
+      <td>fathan</td>
+      <td>0</td>
+      <td>-6.946441e-09</td>
+    </tr>
+    <tr>
+      <th>396</th>
+      <td>-0.000251</td>
+      <td>0.037142</td>
+      <td>-362.428650</td>
+      <td>105.706490</td>
+      <td>36.130001</td>
+      <td>12.106636</td>
+      <td>-3.325876</td>
+      <td>31.120150</td>
+      <td>-29.633289</td>
+      <td>-35.780758</td>
+      <td>...</td>
+      <td>3.142907e-04</td>
+      <td>0.000130</td>
+      <td>3.304378e-05</td>
+      <td>3.112499e-05</td>
+      <td>2.134845e-05</td>
+      <td>8.500945e-06</td>
+      <td>2.149670e-07</td>
+      <td>fathan</td>
+      <td>0</td>
+      <td>-5.427290e-09</td>
+    </tr>
+    <tr>
+      <th>397</th>
+      <td>-0.000246</td>
+      <td>0.035040</td>
+      <td>-364.834595</td>
+      <td>97.067596</td>
+      <td>34.595520</td>
+      <td>16.981377</td>
+      <td>-0.883080</td>
+      <td>28.752300</td>
+      <td>-26.535778</td>
+      <td>-31.677406</td>
+      <td>...</td>
+      <td>2.706283e-04</td>
+      <td>0.000040</td>
+      <td>1.635077e-05</td>
+      <td>1.238361e-05</td>
+      <td>6.885567e-06</td>
+      <td>3.684432e-06</td>
+      <td>3.372195e-07</td>
+      <td>fathan</td>
+      <td>0</td>
+      <td>-1.052222e-08</td>
+    </tr>
+    <tr>
+      <th>398</th>
+      <td>-0.000236</td>
+      <td>0.032783</td>
+      <td>-376.914459</td>
+      <td>100.331390</td>
+      <td>36.553562</td>
+      <td>23.412449</td>
+      <td>-0.763297</td>
+      <td>32.427952</td>
+      <td>-26.514513</td>
+      <td>-30.365091</td>
+      <td>...</td>
+      <td>1.675369e-04</td>
+      <td>0.000031</td>
+      <td>4.986268e-06</td>
+      <td>6.043045e-06</td>
+      <td>6.213851e-06</td>
+      <td>1.628956e-06</td>
+      <td>2.180268e-07</td>
+      <td>fathan</td>
+      <td>0</td>
+      <td>-4.881677e-09</td>
+    </tr>
+    <tr>
+      <th>399</th>
+      <td>-0.000183</td>
+      <td>0.020430</td>
+      <td>-464.876221</td>
+      <td>89.548073</td>
+      <td>30.715565</td>
+      <td>29.322350</td>
+      <td>2.953763</td>
+      <td>28.652233</td>
+      <td>-14.025777</td>
+      <td>-9.449646</td>
+      <td>...</td>
+      <td>2.789228e-05</td>
+      <td>0.000010</td>
+      <td>1.226958e-06</td>
+      <td>9.564186e-07</td>
+      <td>1.222224e-06</td>
+      <td>1.209763e-06</td>
+      <td>1.141193e-07</td>
+      <td>fathan</td>
+      <td>0</td>
+      <td>-1.783896e-09</td>
+    </tr>
+  </tbody>
+</table>
+<p>380 rows × 304 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">non_anomaly_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;Anomaly&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">non_anomaly_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;Anomaly_Score&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">non_anomaly_data</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;./dataset/clean_speaker_identifikasi.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="penyebaran-data">
+<h3>Penyebaran Data<a class="headerlink" href="#penyebaran-data" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">buka_non_anomaly</span> <span class="o">=</span> <span class="n">non_anomaly_data</span><span class="p">[</span><span class="n">non_anomaly_data</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;zanuar&quot;</span><span class="p">]</span>
+<span class="n">tutup_non_anomaly</span> <span class="o">=</span> <span class="n">non_anomaly_data</span><span class="p">[</span><span class="n">non_anomaly_data</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;fathan&quot;</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">([</span><span class="s2">&quot;Zanuar&quot;</span><span class="p">,</span> <span class="s2">&quot;Fathan&quot;</span><span class="p">],</span> <span class="p">[</span><span class="n">buka_non_anomaly</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">tutup_non_anomaly</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Jumlah Data Non-Anomaly&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Jumlah&quot;</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="n">buka_non_anomaly</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">tutup_non_anomaly</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]]],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;zanuar&quot;</span><span class="p">,</span> <span class="s2">&quot;fahtan&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/3cb8849b6b862d3dc930efbd8519b88cf88c1da955101602b11b7b38e19c8fa0.png" src="../_images/3cb8849b6b862d3dc930efbd8519b88cf88c1da955101602b11b7b38e19c8fa0.png" />
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>zanuar</th>
+      <th>fahtan</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>196</td>
+      <td>184</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="korelasis-fitur">
+<h3>Korelasis Fitur<a class="headerlink" href="#korelasis-fitur" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">corel_check</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">treshold</span><span class="p">):</span>
+    <span class="n">data_res</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">corel_arr</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+        <span class="n">corel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">data</span><span class="p">],</span> <span class="n">y</span><span class="p">))</span>
+        <span class="c1"># corel = corelation(x[data], y)</span>
+        <span class="n">corel_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">corel</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">corel</span> <span class="o">&gt;</span> <span class="n">treshold</span> <span class="p">:</span>
+            <span class="n">data_res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+            
+    <span class="k">return</span> <span class="n">data_res</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">label</span> <span class="o">=</span> <span class="n">non_anomaly_data</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">({</span>
+    <span class="s1">&#39;zanuar&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s1">&#39;fathan&#39;</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">})</span>
+<span class="n">fitur</span> <span class="o">=</span> <span class="n">non_anomaly_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;Anomaly_Score&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;Anomaly&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fitur_bearkorelasi</span> <span class="o">=</span> <span class="n">corel_check</span><span class="p">(</span><span class="n">fitur</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">fitur_bearkorelasi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>117
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fitur_bearkorelasi</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;mean&#39;,
+ &#39;mfcc_mean_1&#39;,
+ &#39;mfcc_mean_3&#39;,
+ &#39;mfcc_mean_4&#39;,
+ &#39;mfcc_mean_5&#39;,
+ &#39;mfcc_mean_9&#39;,
+ &#39;mfcc_mean_13&#39;,
+ &#39;mfcc_std_7&#39;,
+ &#39;mfcc_std_8&#39;,
+ &#39;mfcc_std_9&#39;,
+ &#39;centroid_mean_1&#39;,
+ &#39;rms_mean_1&#39;,
+ &#39;rms_std_1&#39;,
+ &#39;tonetz_std_6&#39;,
+ &#39;mel_mean_5&#39;,
+ &#39;mel_mean_6&#39;,
+ &#39;mel_mean_7&#39;,
+ &#39;mel_mean_11&#39;,
+ &#39;mel_mean_12&#39;,
+ &#39;mel_mean_13&#39;,
+ &#39;mel_mean_15&#39;,
+ &#39;mel_mean_18&#39;,
+ &#39;mel_mean_19&#39;,
+ &#39;mel_mean_20&#39;,
+ &#39;mel_mean_51&#39;,
+ &#39;mel_mean_52&#39;,
+ &#39;mel_mean_53&#39;,
+ &#39;mel_mean_62&#39;,
+ &#39;mel_mean_65&#39;,
+ &#39;mel_mean_76&#39;,
+ &#39;mel_mean_77&#39;,
+ &#39;mel_mean_83&#39;,
+ &#39;mel_mean_84&#39;,
+ &#39;mel_mean_85&#39;,
+ &#39;mel_mean_86&#39;,
+ &#39;mel_mean_87&#39;,
+ &#39;mel_mean_88&#39;,
+ &#39;mel_mean_89&#39;,
+ &#39;mel_mean_93&#39;,
+ &#39;mel_mean_94&#39;,
+ &#39;mel_mean_95&#39;,
+ &#39;mel_mean_96&#39;,
+ &#39;mel_mean_97&#39;,
+ &#39;mel_mean_98&#39;,
+ &#39;mel_mean_99&#39;,
+ &#39;mel_mean_100&#39;,
+ &#39;mel_mean_101&#39;,
+ &#39;mel_mean_102&#39;,
+ &#39;mel_mean_103&#39;,
+ &#39;mel_mean_104&#39;,
+ &#39;mel_mean_105&#39;,
+ &#39;mel_mean_106&#39;,
+ &#39;mel_mean_107&#39;,
+ &#39;mel_mean_108&#39;,
+ &#39;mel_mean_109&#39;,
+ &#39;mel_mean_110&#39;,
+ &#39;mel_mean_111&#39;,
+ &#39;mel_mean_112&#39;,
+ &#39;mel_mean_117&#39;,
+ &#39;mel_mean_118&#39;,
+ &#39;mel_mean_119&#39;,
+ &#39;mel_mean_120&#39;,
+ &#39;mel_mean_121&#39;,
+ &#39;mel_mean_122&#39;,
+ &#39;mel_mean_123&#39;,
+ &#39;mel_mean_124&#39;,
+ &#39;mel_std_5&#39;,
+ &#39;mel_std_6&#39;,
+ &#39;mel_std_7&#39;,
+ &#39;mel_std_11&#39;,
+ &#39;mel_std_12&#39;,
+ &#39;mel_std_13&#39;,
+ &#39;mel_std_14&#39;,
+ &#39;mel_std_15&#39;,
+ &#39;mel_std_17&#39;,
+ &#39;mel_std_18&#39;,
+ &#39;mel_std_19&#39;,
+ &#39;mel_std_20&#39;,
+ &#39;mel_std_51&#39;,
+ &#39;mel_std_52&#39;,
+ &#39;mel_std_53&#39;,
+ &#39;mel_std_76&#39;,
+ &#39;mel_std_77&#39;,
+ &#39;mel_std_83&#39;,
+ &#39;mel_std_84&#39;,
+ &#39;mel_std_85&#39;,
+ &#39;mel_std_86&#39;,
+ &#39;mel_std_87&#39;,
+ &#39;mel_std_88&#39;,
+ &#39;mel_std_89&#39;,
+ &#39;mel_std_93&#39;,
+ &#39;mel_std_94&#39;,
+ &#39;mel_std_95&#39;,
+ &#39;mel_std_96&#39;,
+ &#39;mel_std_97&#39;,
+ &#39;mel_std_98&#39;,
+ &#39;mel_std_99&#39;,
+ &#39;mel_std_101&#39;,
+ &#39;mel_std_102&#39;,
+ &#39;mel_std_103&#39;,
+ &#39;mel_std_104&#39;,
+ &#39;mel_std_105&#39;,
+ &#39;mel_std_106&#39;,
+ &#39;mel_std_107&#39;,
+ &#39;mel_std_108&#39;,
+ &#39;mel_std_109&#39;,
+ &#39;mel_std_110&#39;,
+ &#39;mel_std_111&#39;,
+ &#39;mel_std_112&#39;,
+ &#39;mel_std_117&#39;,
+ &#39;mel_std_118&#39;,
+ &#39;mel_std_119&#39;,
+ &#39;mel_std_120&#39;,
+ &#39;mel_std_121&#39;,
+ &#39;mel_std_122&#39;,
+ &#39;mel_std_123&#39;,
+ &#39;mel_std_124&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="model-training">
+<h3>Model Training<a class="headerlink" href="#model-training" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./dataset/clean_speaker_identifikasi.csv&quot;</span><span class="p">)</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">fitur_bearkorelasi</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span>
+
+<span class="n">rf_model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+
+<span class="n">X_train_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+
+<span class="n">rf_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">rf_model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.   , 1.   ],
+       [0.925, 0.075],
+       [0.045, 0.955],
+       [1.   , 0.   ],
+       [1.   , 0.   ],
+       [1.   , 0.   ],
+       [0.   , 1.   ],
+       [0.   , 1.   ],
+       [1.   , 0.   ],
+       [0.   , 1.   ],
+       [1.   , 0.   ],
+       [1.   , 0.   ],
+       [1.   , 0.   ],
+       [0.   , 1.   ],
+       [0.   , 1.   ],
+       [0.   , 1.   ],
+       [0.05 , 0.95 ],
+       [1.   , 0.   ],
+       [1.   , 0.   ],
+       [0.   , 1.   ],
+       [0.995, 0.005],
+       [0.   , 1.   ],
+       [0.   , 1.   ],
+       [0.   , 1.   ],
+       [0.   , 1.   ],
+       [0.   , 1.   ],
+       [1.   , 0.   ],
+       [1.   , 0.   ],
+       [1.   , 0.   ],
+       [1.   , 0.   ],
+       [0.   , 1.   ],
+       [0.995, 0.005],
+       [0.   , 1.   ],
+       [0.   , 1.   ],
+       [1.   , 0.   ],
+       [0.   , 1.   ],
+       [0.   , 1.   ],
+       [0.005, 0.995],
+       [0.   , 1.   ],
+       [1.   , 0.   ],
+       [0.   , 1.   ],
+       [0.   , 1.   ],
+       [0.   , 1.   ],
+       [1.   , 0.   ],
+       [0.   , 1.   ],
+       [1.   , 0.   ],
+       [1.   , 0.   ],
+       [0.985, 0.015],
+       [0.   , 1.   ],
+       [0.   , 1.   ],
+       [1.   , 0.   ],
+       [1.   , 0.   ],
+       [1.   , 0.   ],
+       [0.   , 1.   ],
+       [0.   , 1.   ],
+       [0.   , 1.   ],
+       [1.   , 0.   ],
+       [0.06 , 0.94 ],
+       [0.   , 1.   ],
+       [0.   , 1.   ],
+       [0.915, 0.085],
+       [0.19 , 0.81 ],
+       [1.   , 0.   ],
+       [1.   , 0.   ],
+       [1.   , 0.   ],
+       [0.   , 1.   ],
+       [1.   , 0.   ],
+       [1.   , 0.   ],
+       [0.005, 0.995],
+       [1.   , 0.   ],
+       [1.   , 0.   ],
+       [0.865, 0.135],
+       [1.   , 0.   ],
+       [0.   , 1.   ],
+       [0.995, 0.005],
+       [0.   , 1.   ]])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="menyimpan-model">
+<h3>Menyimpan Model<a class="headerlink" href="#menyimpan-model" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">columns</span> <span class="o">=</span> <span class="n">columns</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="c1"># joblib.dump(rf_model, &quot;../../audio_streamlit/svm_speaker_identifikasi.pkl&quot;)</span>
+<span class="c1"># joblib.dump(scaler, &quot;../../audio_streamlit/scale_speaker_identifikasi.pkl&quot;)</span>
+<span class="c1"># joblib.dump(fitur_bearkorelasi, &quot;../../audio_streamlit/fitur_berkorelasi_speaker_identifikasi.pkl&quot;)</span>
+<span class="c1"># joblib.dump(columns, &quot;../../audio_streamlit/columns_speaker_identifikasi.pkl&quot;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="membuat-klasifikasi-suara-buka-tutup">
+<h2>Membuat Klasifikasi Suara Buka Tutup<a class="headerlink" href="#membuat-klasifikasi-suara-buka-tutup" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mfcc_mean_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">mfcc_std_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">tempo_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">centroid_mean_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">centroid_std_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">rms_mean_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">rms_std_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">tonetz_mean_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">tonetz_std_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">std_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">mel_mean_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">mel_std_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">mean_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">label</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">buka</span> <span class="ow">in</span> <span class="n">all_data_buka</span><span class="p">:</span>
+    <span class="n">mfcc</span> <span class="o">=</span> <span class="n">extract_mfcc</span><span class="p">(</span><span class="n">buka</span><span class="p">)</span>
+    <span class="n">tempo</span> <span class="o">=</span> <span class="n">extract_temo</span><span class="p">(</span><span class="n">buka</span><span class="p">)</span>
+    <span class="n">centroid</span> <span class="o">=</span> <span class="n">extract_spectral_centroid</span><span class="p">(</span><span class="n">buka</span><span class="p">)</span>
+    <span class="n">rms</span> <span class="o">=</span> <span class="n">extract_rms</span><span class="p">(</span><span class="n">buka</span><span class="p">)</span>
+    <span class="n">mel</span> <span class="o">=</span> <span class="n">extract_mel</span><span class="p">(</span><span class="n">buka</span><span class="p">)</span>
+    <span class="n">tonetz</span> <span class="o">=</span> <span class="n">extract_tonetz</span><span class="p">(</span><span class="n">buka</span><span class="p">)</span>
+    <span class="n">std_arr</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">extract_std</span><span class="p">(</span><span class="n">buka</span><span class="p">)])</span>
+    <span class="n">mean_arr</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">extract_mean</span><span class="p">(</span><span class="n">buka</span><span class="p">)])</span>
+    
+    <span class="n">mfcc_mean_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mfcc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">mfcc_std_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mfcc</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">tempo_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tempo</span><span class="p">)</span>
+    <span class="n">centroid_mean_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">centroid</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">centroid_std_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">centroid</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">rms_mean_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rms</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">rms_std_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rms</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">tonetz_mean_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tonetz</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">tonetz_std_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tonetz</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">mel_mean_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mel</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">mel_std_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mel</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">label</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="s2">&quot;buka&quot;</span><span class="p">])</span>
+    
+<span class="n">dataset_buka</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span>
+    <span class="n">std_arr</span><span class="p">,</span>
+    <span class="n">mean_arr</span><span class="p">,</span>
+    <span class="n">mfcc_mean_arr</span><span class="p">,</span>
+    <span class="n">mfcc_std_arr</span><span class="p">,</span>
+    <span class="n">tempo_arr</span><span class="p">,</span>
+    <span class="n">centroid_mean_arr</span><span class="p">,</span>
+    <span class="n">centroid_std_arr</span><span class="p">,</span>
+    <span class="n">rms_mean_arr</span><span class="p">,</span>
+    <span class="n">rms_std_arr</span><span class="p">,</span>
+    <span class="n">tonetz_mean_arr</span><span class="p">,</span>
+    <span class="n">tonetz_std_arr</span><span class="p">,</span>
+    <span class="n">mel_mean_arr</span><span class="p">,</span>
+    <span class="n">mel_std_arr</span><span class="p">,</span>
+    <span class="n">label</span>
+<span class="p">))</span>
+
+<span class="n">dataset_buka</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(200, 302)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mfcc_mean_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">mfcc_std_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">tempo_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">centroid_mean_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">centroid_std_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">rms_mean_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">rms_std_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">tonetz_mean_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">tonetz_std_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">std_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">mel_mean_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">mel_std_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">mean_arr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">label</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">tutup</span> <span class="ow">in</span> <span class="n">all_data_tutup</span><span class="p">:</span>
+    <span class="n">mfcc</span> <span class="o">=</span> <span class="n">extract_mfcc</span><span class="p">(</span><span class="n">tutup</span><span class="p">)</span>
+    <span class="n">tempo</span> <span class="o">=</span> <span class="n">extract_temo</span><span class="p">(</span><span class="n">tutup</span><span class="p">)</span>
+    <span class="n">centroid</span> <span class="o">=</span> <span class="n">extract_spectral_centroid</span><span class="p">(</span><span class="n">tutup</span><span class="p">)</span>
+    <span class="n">rms</span> <span class="o">=</span> <span class="n">extract_rms</span><span class="p">(</span><span class="n">tutup</span><span class="p">)</span>
+    <span class="n">mel</span> <span class="o">=</span> <span class="n">extract_mel</span><span class="p">(</span><span class="n">tutup</span><span class="p">)</span>
+    <span class="n">tonetz</span> <span class="o">=</span> <span class="n">extract_tonetz</span><span class="p">(</span><span class="n">tutup</span><span class="p">)</span>
+    <span class="n">std_arr</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">extract_std</span><span class="p">(</span><span class="n">tutup</span><span class="p">)])</span>
+    <span class="n">mean_arr</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">extract_mean</span><span class="p">(</span><span class="n">tutup</span><span class="p">)])</span>
+    
+    <span class="n">mfcc_mean_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mfcc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">mfcc_std_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mfcc</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">tempo_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tempo</span><span class="p">)</span>
+    <span class="n">centroid_mean_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">centroid</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">centroid_std_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">centroid</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">rms_mean_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rms</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">rms_std_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rms</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">tonetz_mean_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tonetz</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">tonetz_std_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tonetz</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">mel_mean_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mel</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">mel_std_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mel</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">label</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="s2">&quot;tutup&quot;</span><span class="p">])</span>
+    
+<span class="n">dataset_tutup</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span>
+    <span class="n">std_arr</span><span class="p">,</span>
+    <span class="n">mean_arr</span><span class="p">,</span>
+    <span class="n">mfcc_mean_arr</span><span class="p">,</span>
+    <span class="n">mfcc_std_arr</span><span class="p">,</span>
+    <span class="n">tempo_arr</span><span class="p">,</span>
+    <span class="n">centroid_mean_arr</span><span class="p">,</span>
+    <span class="n">centroid_std_arr</span><span class="p">,</span>
+    <span class="n">rms_mean_arr</span><span class="p">,</span>
+    <span class="n">rms_std_arr</span><span class="p">,</span>
+    <span class="n">tonetz_mean_arr</span><span class="p">,</span>
+    <span class="n">tonetz_std_arr</span><span class="p">,</span>
+    <span class="n">mel_mean_arr</span><span class="p">,</span>
+    <span class="n">mel_std_arr</span><span class="p">,</span>
+    <span class="n">label</span>
+<span class="p">))</span>
+
+<span class="n">dataset_tutup</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(200, 302)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;std&quot;</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="o">*</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;mfcc_mean_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mfcc_mean_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]))],</span> <span class="o">*</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;mfcc_std_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mfcc_std_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]))],</span> <span class="s2">&quot;tempo&quot;</span><span class="p">,</span> <span class="o">*</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;centroid_mean_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">centroid_mean_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]))],</span> <span class="o">*</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;centroid_std_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">centroid_std_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]))],</span> <span class="o">*</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;rms_mean_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rms_mean_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]))],</span> <span class="o">*</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;rms_std_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rms_std_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]))],</span> <span class="o">*</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;tonetz_mean&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tonetz_mean_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]))],</span> <span class="o">*</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;tonetz_std_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tonetz_std_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]))],</span> <span class="o">*</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;mel_mean_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mel_mean_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]))],</span> <span class="o">*</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;mel_std_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mel_mean_arr</span><span class="p">[</span><span class="mi">1</span><span class="p">]))],</span> <span class="s2">&quot;label&quot;</span><span class="p">]</span>
+
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">dataset_buka</span><span class="p">,</span> <span class="n">dataset_tutup</span><span class="p">)),</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+
+<span class="n">dataset</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>std</th>
+      <th>mean</th>
+      <th>mfcc_mean_1</th>
+      <th>mfcc_mean_2</th>
+      <th>mfcc_mean_3</th>
+      <th>mfcc_mean_4</th>
+      <th>mfcc_mean_5</th>
+      <th>mfcc_mean_6</th>
+      <th>mfcc_mean_7</th>
+      <th>mfcc_mean_8</th>
+      <th>...</th>
+      <th>mel_std_120</th>
+      <th>mel_std_121</th>
+      <th>mel_std_122</th>
+      <th>mel_std_123</th>
+      <th>mel_std_124</th>
+      <th>mel_std_125</th>
+      <th>mel_std_126</th>
+      <th>mel_std_127</th>
+      <th>mel_std_128</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-1.3040645e-05</td>
+      <td>0.010179961</td>
+      <td>-479.80627</td>
+      <td>137.7241</td>
+      <td>2.2323942</td>
+      <td>3.9840016</td>
+      <td>-0.37583542</td>
+      <td>20.002771</td>
+      <td>8.365802</td>
+      <td>8.746086</td>
+      <td>...</td>
+      <td>6.2880827e-07</td>
+      <td>1.3227043e-06</td>
+      <td>3.3607937e-06</td>
+      <td>8.515094e-06</td>
+      <td>2.340299e-06</td>
+      <td>5.0851804e-07</td>
+      <td>9.644555e-07</td>
+      <td>2.7169783e-06</td>
+      <td>3.9853117e-07</td>
+      <td>buka</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-1.4173985e-05</td>
+      <td>0.014193481</td>
+      <td>-457.15085</td>
+      <td>153.56726</td>
+      <td>-3.611473</td>
+      <td>-0.14228916</td>
+      <td>-4.8318715</td>
+      <td>16.86289</td>
+      <td>12.8103485</td>
+      <td>6.3507795</td>
+      <td>...</td>
+      <td>4.3928702e-07</td>
+      <td>7.7888495e-07</td>
+      <td>4.7050787e-07</td>
+      <td>5.676674e-07</td>
+      <td>5.074475e-07</td>
+      <td>7.4199113e-07</td>
+      <td>1.2764444e-06</td>
+      <td>6.16967e-07</td>
+      <td>4.072083e-08</td>
+      <td>buka</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.0774416e-05</td>
+      <td>0.0068363487</td>
+      <td>-432.08533</td>
+      <td>118.55055</td>
+      <td>-13.255738</td>
+      <td>3.3487077</td>
+      <td>-3.7541885</td>
+      <td>22.774946</td>
+      <td>6.0039873</td>
+      <td>11.322326</td>
+      <td>...</td>
+      <td>8.43758e-06</td>
+      <td>6.4074125e-06</td>
+      <td>1.6069078e-05</td>
+      <td>2.015123e-05</td>
+      <td>4.452478e-06</td>
+      <td>9.1213915e-06</td>
+      <td>2.4062843e-05</td>
+      <td>1.6422584e-05</td>
+      <td>1.8967676e-06</td>
+      <td>buka</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-1.732409e-05</td>
+      <td>0.011222214</td>
+      <td>-443.67004</td>
+      <td>145.57411</td>
+      <td>-0.10084965</td>
+      <td>7.9113436</td>
+      <td>-1.3945613</td>
+      <td>16.897984</td>
+      <td>7.626086</td>
+      <td>3.8049371</td>
+      <td>...</td>
+      <td>1.7833833e-06</td>
+      <td>1.1963224e-06</td>
+      <td>8.225035e-07</td>
+      <td>7.4036706e-07</td>
+      <td>2.6804657e-06</td>
+      <td>5.272171e-06</td>
+      <td>3.881569e-06</td>
+      <td>8.7791045e-07</td>
+      <td>2.8058981e-08</td>
+      <td>buka</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1.7269453e-05</td>
+      <td>0.008049906</td>
+      <td>-415.54715</td>
+      <td>117.179436</td>
+      <td>-15.82196</td>
+      <td>-4.79761</td>
+      <td>-9.278266</td>
+      <td>24.38155</td>
+      <td>9.33775</td>
+      <td>9.722587</td>
+      <td>...</td>
+      <td>1.5858586e-05</td>
+      <td>1.2347197e-05</td>
+      <td>1.25007045e-05</td>
+      <td>1.5289566e-05</td>
+      <td>1.615008e-05</td>
+      <td>4.1409632e-05</td>
+      <td>3.916636e-05</td>
+      <td>1.1324964e-05</td>
+      <td>4.2449636e-07</td>
+      <td>buka</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>395</th>
+      <td>-0.00023816079</td>
+      <td>0.02840689</td>
+      <td>-419.9184</td>
+      <td>96.09794</td>
+      <td>43.513332</td>
+      <td>24.412283</td>
+      <td>3.4053867</td>
+      <td>24.237545</td>
+      <td>-9.355809</td>
+      <td>-15.427906</td>
+      <td>...</td>
+      <td>0.0004276133</td>
+      <td>0.0003654324</td>
+      <td>0.00041633457</td>
+      <td>0.0001343197</td>
+      <td>3.0467036e-05</td>
+      <td>3.3838016e-05</td>
+      <td>4.9995188e-06</td>
+      <td>4.098899e-06</td>
+      <td>4.3857048e-07</td>
+      <td>tutup</td>
+    </tr>
+    <tr>
+      <th>396</th>
+      <td>-0.00025117397</td>
+      <td>0.03714193</td>
+      <td>-362.42865</td>
+      <td>105.70649</td>
+      <td>36.13</td>
+      <td>12.106636</td>
+      <td>-3.3258762</td>
+      <td>31.12015</td>
+      <td>-29.63329</td>
+      <td>-35.780758</td>
+      <td>...</td>
+      <td>0.00089188124</td>
+      <td>0.00038904065</td>
+      <td>0.00031429066</td>
+      <td>0.00013046991</td>
+      <td>3.3043783e-05</td>
+      <td>3.1124986e-05</td>
+      <td>2.1348455e-05</td>
+      <td>8.500945e-06</td>
+      <td>2.14967e-07</td>
+      <td>tutup</td>
+    </tr>
+    <tr>
+      <th>397</th>
+      <td>-0.0002456648</td>
+      <td>0.03503957</td>
+      <td>-364.8346</td>
+      <td>97.0676</td>
+      <td>34.59552</td>
+      <td>16.981377</td>
+      <td>-0.8830796</td>
+      <td>28.7523</td>
+      <td>-26.535778</td>
+      <td>-31.677406</td>
+      <td>...</td>
+      <td>0.00028550182</td>
+      <td>0.00022740524</td>
+      <td>0.0002706283</td>
+      <td>3.993777e-05</td>
+      <td>1.6350767e-05</td>
+      <td>1.238361e-05</td>
+      <td>6.885567e-06</td>
+      <td>3.6844324e-06</td>
+      <td>3.3721946e-07</td>
+      <td>tutup</td>
+    </tr>
+    <tr>
+      <th>398</th>
+      <td>-0.00023603169</td>
+      <td>0.03278271</td>
+      <td>-376.91446</td>
+      <td>100.33139</td>
+      <td>36.553562</td>
+      <td>23.412449</td>
+      <td>-0.7632972</td>
+      <td>32.42795</td>
+      <td>-26.514513</td>
+      <td>-30.365091</td>
+      <td>...</td>
+      <td>0.00024938822</td>
+      <td>0.00028553235</td>
+      <td>0.00016753685</td>
+      <td>3.147752e-05</td>
+      <td>4.9862683e-06</td>
+      <td>6.0430452e-06</td>
+      <td>6.213851e-06</td>
+      <td>1.6289556e-06</td>
+      <td>2.1802677e-07</td>
+      <td>tutup</td>
+    </tr>
+    <tr>
+      <th>399</th>
+      <td>-0.00018338647</td>
+      <td>0.020430155</td>
+      <td>-464.87622</td>
+      <td>89.54807</td>
+      <td>30.715565</td>
+      <td>29.32235</td>
+      <td>2.9537632</td>
+      <td>28.652233</td>
+      <td>-14.025777</td>
+      <td>-9.449646</td>
+      <td>...</td>
+      <td>0.00010284259</td>
+      <td>8.762123e-05</td>
+      <td>2.7892282e-05</td>
+      <td>1.0407598e-05</td>
+      <td>1.2269578e-06</td>
+      <td>9.564186e-07</td>
+      <td>1.2222242e-06</td>
+      <td>1.209763e-06</td>
+      <td>1.14119274e-07</td>
+      <td>tutup</td>
+    </tr>
+  </tbody>
+</table>
+<p>400 rows × 302 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;./dataset/dataset.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id1">
+<h3>Outlier Detection<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pycaret.anomaly</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">audio_buka_tutup</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./dataset/dataset.csv&quot;</span><span class="p">)</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="n">setup</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">audio_buka_tutup</span><span class="p">)</span>
+
+<span class="n">abod_model</span> <span class="o">=</span> <span class="n">create_model</span><span class="p">(</span><span class="s2">&quot;abod&quot;</span><span class="p">,</span> <span class="n">fraction</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+
+<span class="n">df_abod</span> <span class="o">=</span> <span class="n">assign_model</span><span class="p">(</span><span class="n">abod_model</span><span class="p">)</span>
+
+<span class="n">df_abod</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+#T_b3c1a_row5_col1 {
+  background-color: lightgreen;
+}
+</style>
+<table id="T_b3c1a">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_b3c1a_level0_col0" class="col_heading level0 col0" >Description</th>
+      <th id="T_b3c1a_level0_col1" class="col_heading level0 col1" >Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_b3c1a_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_b3c1a_row0_col0" class="data row0 col0" >Session id</td>
+      <td id="T_b3c1a_row0_col1" class="data row0 col1" >2825</td>
+    </tr>
+    <tr>
+      <th id="T_b3c1a_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_b3c1a_row1_col0" class="data row1 col0" >Original data shape</td>
+      <td id="T_b3c1a_row1_col1" class="data row1 col1" >(400, 302)</td>
+    </tr>
+    <tr>
+      <th id="T_b3c1a_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_b3c1a_row2_col0" class="data row2 col0" >Transformed data shape</td>
+      <td id="T_b3c1a_row2_col1" class="data row2 col1" >(400, 302)</td>
+    </tr>
+    <tr>
+      <th id="T_b3c1a_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_b3c1a_row3_col0" class="data row3 col0" >Numeric features</td>
+      <td id="T_b3c1a_row3_col1" class="data row3 col1" >301</td>
+    </tr>
+    <tr>
+      <th id="T_b3c1a_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_b3c1a_row4_col0" class="data row4 col0" >Categorical features</td>
+      <td id="T_b3c1a_row4_col1" class="data row4 col1" >1</td>
+    </tr>
+    <tr>
+      <th id="T_b3c1a_level0_row5" class="row_heading level0 row5" >5</th>
+      <td id="T_b3c1a_row5_col0" class="data row5 col0" >Preprocess</td>
+      <td id="T_b3c1a_row5_col1" class="data row5 col1" >True</td>
+    </tr>
+    <tr>
+      <th id="T_b3c1a_level0_row6" class="row_heading level0 row6" >6</th>
+      <td id="T_b3c1a_row6_col0" class="data row6 col0" >Imputation type</td>
+      <td id="T_b3c1a_row6_col1" class="data row6 col1" >simple</td>
+    </tr>
+    <tr>
+      <th id="T_b3c1a_level0_row7" class="row_heading level0 row7" >7</th>
+      <td id="T_b3c1a_row7_col0" class="data row7 col0" >Numeric imputation</td>
+      <td id="T_b3c1a_row7_col1" class="data row7 col1" >mean</td>
+    </tr>
+    <tr>
+      <th id="T_b3c1a_level0_row8" class="row_heading level0 row8" >8</th>
+      <td id="T_b3c1a_row8_col0" class="data row8 col0" >Categorical imputation</td>
+      <td id="T_b3c1a_row8_col1" class="data row8 col1" >mode</td>
+    </tr>
+    <tr>
+      <th id="T_b3c1a_level0_row9" class="row_heading level0 row9" >9</th>
+      <td id="T_b3c1a_row9_col0" class="data row9 col0" >Maximum one-hot encoding</td>
+      <td id="T_b3c1a_row9_col1" class="data row9 col1" >-1</td>
+    </tr>
+    <tr>
+      <th id="T_b3c1a_level0_row10" class="row_heading level0 row10" >10</th>
+      <td id="T_b3c1a_row10_col0" class="data row10 col0" >Encoding method</td>
+      <td id="T_b3c1a_row10_col1" class="data row10 col1" >None</td>
+    </tr>
+    <tr>
+      <th id="T_b3c1a_level0_row11" class="row_heading level0 row11" >11</th>
+      <td id="T_b3c1a_row11_col0" class="data row11 col0" >CPU Jobs</td>
+      <td id="T_b3c1a_row11_col1" class="data row11 col1" >-1</td>
+    </tr>
+    <tr>
+      <th id="T_b3c1a_level0_row12" class="row_heading level0 row12" >12</th>
+      <td id="T_b3c1a_row12_col0" class="data row12 col0" >Use GPU</td>
+      <td id="T_b3c1a_row12_col1" class="data row12 col1" >False</td>
+    </tr>
+    <tr>
+      <th id="T_b3c1a_level0_row13" class="row_heading level0 row13" >13</th>
+      <td id="T_b3c1a_row13_col0" class="data row13 col0" >Log Experiment</td>
+      <td id="T_b3c1a_row13_col1" class="data row13 col1" >False</td>
+    </tr>
+    <tr>
+      <th id="T_b3c1a_level0_row14" class="row_heading level0 row14" >14</th>
+      <td id="T_b3c1a_row14_col0" class="data row14 col0" >Experiment Name</td>
+      <td id="T_b3c1a_row14_col1" class="data row14 col1" >anomaly-default-name</td>
+    </tr>
+    <tr>
+      <th id="T_b3c1a_level0_row15" class="row_heading level0 row15" >15</th>
+      <td id="T_b3c1a_row15_col0" class="data row15 col0" >USI</td>
+      <td id="T_b3c1a_row15_col1" class="data row15 col1" >1726</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="output text_html"></div><div class="output text_html"></div><div class="output text_html"></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>std</th>
+      <th>mean</th>
+      <th>mfcc_mean_1</th>
+      <th>mfcc_mean_2</th>
+      <th>mfcc_mean_3</th>
+      <th>mfcc_mean_4</th>
+      <th>mfcc_mean_5</th>
+      <th>mfcc_mean_6</th>
+      <th>mfcc_mean_7</th>
+      <th>mfcc_mean_8</th>
+      <th>...</th>
+      <th>mel_std_122</th>
+      <th>mel_std_123</th>
+      <th>mel_std_124</th>
+      <th>mel_std_125</th>
+      <th>mel_std_126</th>
+      <th>mel_std_127</th>
+      <th>mel_std_128</th>
+      <th>label</th>
+      <th>Anomaly</th>
+      <th>Anomaly_Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-0.000013</td>
+      <td>0.010180</td>
+      <td>-479.806274</td>
+      <td>137.724106</td>
+      <td>2.232394</td>
+      <td>3.984002</td>
+      <td>-0.375835</td>
+      <td>20.002771</td>
+      <td>8.365802</td>
+      <td>8.746086</td>
+      <td>...</td>
+      <td>3.360794e-06</td>
+      <td>8.515094e-06</td>
+      <td>2.340299e-06</td>
+      <td>5.085180e-07</td>
+      <td>9.644555e-07</td>
+      <td>2.716978e-06</td>
+      <td>3.985312e-07</td>
+      <td>buka</td>
+      <td>0</td>
+      <td>-1.316198e-09</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-0.000014</td>
+      <td>0.014193</td>
+      <td>-457.150848</td>
+      <td>153.567261</td>
+      <td>-3.611473</td>
+      <td>-0.142289</td>
+      <td>-4.831872</td>
+      <td>16.862890</td>
+      <td>12.810349</td>
+      <td>6.350780</td>
+      <td>...</td>
+      <td>4.705079e-07</td>
+      <td>5.676674e-07</td>
+      <td>5.074475e-07</td>
+      <td>7.419911e-07</td>
+      <td>1.276444e-06</td>
+      <td>6.169670e-07</td>
+      <td>4.072083e-08</td>
+      <td>buka</td>
+      <td>0</td>
+      <td>-3.384356e-08</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.000011</td>
+      <td>0.006836</td>
+      <td>-432.085327</td>
+      <td>118.550552</td>
+      <td>-13.255738</td>
+      <td>3.348708</td>
+      <td>-3.754189</td>
+      <td>22.774946</td>
+      <td>6.003987</td>
+      <td>11.322326</td>
+      <td>...</td>
+      <td>1.606908e-05</td>
+      <td>2.015123e-05</td>
+      <td>4.452478e-06</td>
+      <td>9.121391e-06</td>
+      <td>2.406284e-05</td>
+      <td>1.642258e-05</td>
+      <td>1.896768e-06</td>
+      <td>buka</td>
+      <td>0</td>
+      <td>-2.457231e-09</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-0.000017</td>
+      <td>0.011222</td>
+      <td>-443.670044</td>
+      <td>145.574112</td>
+      <td>-0.100850</td>
+      <td>7.911344</td>
+      <td>-1.394561</td>
+      <td>16.897984</td>
+      <td>7.626086</td>
+      <td>3.804937</td>
+      <td>...</td>
+      <td>8.225035e-07</td>
+      <td>7.403671e-07</td>
+      <td>2.680466e-06</td>
+      <td>5.272171e-06</td>
+      <td>3.881569e-06</td>
+      <td>8.779105e-07</td>
+      <td>2.805898e-08</td>
+      <td>buka</td>
+      <td>0</td>
+      <td>-1.008688e-08</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.000017</td>
+      <td>0.008050</td>
+      <td>-415.547150</td>
+      <td>117.179436</td>
+      <td>-15.821960</td>
+      <td>-4.797610</td>
+      <td>-9.278266</td>
+      <td>24.381550</td>
+      <td>9.337750</td>
+      <td>9.722587</td>
+      <td>...</td>
+      <td>1.250070e-05</td>
+      <td>1.528957e-05</td>
+      <td>1.615008e-05</td>
+      <td>4.140963e-05</td>
+      <td>3.916636e-05</td>
+      <td>1.132496e-05</td>
+      <td>4.244964e-07</td>
+      <td>buka</td>
+      <td>0</td>
+      <td>-7.520441e-10</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>395</th>
+      <td>-0.000238</td>
+      <td>0.028407</td>
+      <td>-419.918396</td>
+      <td>96.097939</td>
+      <td>43.513332</td>
+      <td>24.412283</td>
+      <td>3.405387</td>
+      <td>24.237545</td>
+      <td>-9.355809</td>
+      <td>-15.427906</td>
+      <td>...</td>
+      <td>4.163346e-04</td>
+      <td>1.343197e-04</td>
+      <td>3.046704e-05</td>
+      <td>3.383802e-05</td>
+      <td>4.999519e-06</td>
+      <td>4.098899e-06</td>
+      <td>4.385705e-07</td>
+      <td>tutup</td>
+      <td>0</td>
+      <td>-6.944421e-09</td>
+    </tr>
+    <tr>
+      <th>396</th>
+      <td>-0.000251</td>
+      <td>0.037142</td>
+      <td>-362.428650</td>
+      <td>105.706490</td>
+      <td>36.130001</td>
+      <td>12.106636</td>
+      <td>-3.325876</td>
+      <td>31.120150</td>
+      <td>-29.633289</td>
+      <td>-35.780758</td>
+      <td>...</td>
+      <td>3.142907e-04</td>
+      <td>1.304699e-04</td>
+      <td>3.304378e-05</td>
+      <td>3.112499e-05</td>
+      <td>2.134845e-05</td>
+      <td>8.500945e-06</td>
+      <td>2.149670e-07</td>
+      <td>tutup</td>
+      <td>0</td>
+      <td>-5.425840e-09</td>
+    </tr>
+    <tr>
+      <th>397</th>
+      <td>-0.000246</td>
+      <td>0.035040</td>
+      <td>-364.834595</td>
+      <td>97.067596</td>
+      <td>34.595520</td>
+      <td>16.981377</td>
+      <td>-0.883080</td>
+      <td>28.752300</td>
+      <td>-26.535778</td>
+      <td>-31.677406</td>
+      <td>...</td>
+      <td>2.706283e-04</td>
+      <td>3.993777e-05</td>
+      <td>1.635077e-05</td>
+      <td>1.238361e-05</td>
+      <td>6.885567e-06</td>
+      <td>3.684432e-06</td>
+      <td>3.372195e-07</td>
+      <td>tutup</td>
+      <td>0</td>
+      <td>-1.051935e-08</td>
+    </tr>
+    <tr>
+      <th>398</th>
+      <td>-0.000236</td>
+      <td>0.032783</td>
+      <td>-376.914459</td>
+      <td>100.331390</td>
+      <td>36.553562</td>
+      <td>23.412449</td>
+      <td>-0.763297</td>
+      <td>32.427952</td>
+      <td>-26.514513</td>
+      <td>-30.365091</td>
+      <td>...</td>
+      <td>1.675369e-04</td>
+      <td>3.147752e-05</td>
+      <td>4.986268e-06</td>
+      <td>6.043045e-06</td>
+      <td>6.213851e-06</td>
+      <td>1.628956e-06</td>
+      <td>2.180268e-07</td>
+      <td>tutup</td>
+      <td>0</td>
+      <td>-4.881266e-09</td>
+    </tr>
+    <tr>
+      <th>399</th>
+      <td>-0.000183</td>
+      <td>0.020430</td>
+      <td>-464.876221</td>
+      <td>89.548073</td>
+      <td>30.715565</td>
+      <td>29.322350</td>
+      <td>2.953763</td>
+      <td>28.652233</td>
+      <td>-14.025777</td>
+      <td>-9.449646</td>
+      <td>...</td>
+      <td>2.789228e-05</td>
+      <td>1.040760e-05</td>
+      <td>1.226958e-06</td>
+      <td>9.564186e-07</td>
+      <td>1.222224e-06</td>
+      <td>1.209763e-06</td>
+      <td>1.141193e-07</td>
+      <td>tutup</td>
+      <td>0</td>
+      <td>-1.783626e-09</td>
+    </tr>
+  </tbody>
+</table>
+<p>400 rows × 304 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">non_anomaly_data</span> <span class="o">=</span> <span class="n">df_abod</span><span class="p">[</span><span class="n">df_abod</span><span class="p">[</span><span class="s2">&quot;Anomaly&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">non_anomaly_data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>std</th>
+      <th>mean</th>
+      <th>mfcc_mean_1</th>
+      <th>mfcc_mean_2</th>
+      <th>mfcc_mean_3</th>
+      <th>mfcc_mean_4</th>
+      <th>mfcc_mean_5</th>
+      <th>mfcc_mean_6</th>
+      <th>mfcc_mean_7</th>
+      <th>mfcc_mean_8</th>
+      <th>...</th>
+      <th>mel_std_122</th>
+      <th>mel_std_123</th>
+      <th>mel_std_124</th>
+      <th>mel_std_125</th>
+      <th>mel_std_126</th>
+      <th>mel_std_127</th>
+      <th>mel_std_128</th>
+      <th>label</th>
+      <th>Anomaly</th>
+      <th>Anomaly_Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-0.000013</td>
+      <td>0.010180</td>
+      <td>-479.806274</td>
+      <td>137.724106</td>
+      <td>2.232394</td>
+      <td>3.984002</td>
+      <td>-0.375835</td>
+      <td>20.002771</td>
+      <td>8.365802</td>
+      <td>8.746086</td>
+      <td>...</td>
+      <td>3.360794e-06</td>
+      <td>8.515094e-06</td>
+      <td>2.340299e-06</td>
+      <td>5.085180e-07</td>
+      <td>9.644555e-07</td>
+      <td>2.716978e-06</td>
+      <td>3.985312e-07</td>
+      <td>buka</td>
+      <td>0</td>
+      <td>-1.316198e-09</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-0.000014</td>
+      <td>0.014193</td>
+      <td>-457.150848</td>
+      <td>153.567261</td>
+      <td>-3.611473</td>
+      <td>-0.142289</td>
+      <td>-4.831872</td>
+      <td>16.862890</td>
+      <td>12.810349</td>
+      <td>6.350780</td>
+      <td>...</td>
+      <td>4.705079e-07</td>
+      <td>5.676674e-07</td>
+      <td>5.074475e-07</td>
+      <td>7.419911e-07</td>
+      <td>1.276444e-06</td>
+      <td>6.169670e-07</td>
+      <td>4.072083e-08</td>
+      <td>buka</td>
+      <td>0</td>
+      <td>-3.384356e-08</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.000011</td>
+      <td>0.006836</td>
+      <td>-432.085327</td>
+      <td>118.550552</td>
+      <td>-13.255738</td>
+      <td>3.348708</td>
+      <td>-3.754189</td>
+      <td>22.774946</td>
+      <td>6.003987</td>
+      <td>11.322326</td>
+      <td>...</td>
+      <td>1.606908e-05</td>
+      <td>2.015123e-05</td>
+      <td>4.452478e-06</td>
+      <td>9.121391e-06</td>
+      <td>2.406284e-05</td>
+      <td>1.642258e-05</td>
+      <td>1.896768e-06</td>
+      <td>buka</td>
+      <td>0</td>
+      <td>-2.457231e-09</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-0.000017</td>
+      <td>0.011222</td>
+      <td>-443.670044</td>
+      <td>145.574112</td>
+      <td>-0.100850</td>
+      <td>7.911344</td>
+      <td>-1.394561</td>
+      <td>16.897984</td>
+      <td>7.626086</td>
+      <td>3.804937</td>
+      <td>...</td>
+      <td>8.225035e-07</td>
+      <td>7.403671e-07</td>
+      <td>2.680466e-06</td>
+      <td>5.272171e-06</td>
+      <td>3.881569e-06</td>
+      <td>8.779105e-07</td>
+      <td>2.805898e-08</td>
+      <td>buka</td>
+      <td>0</td>
+      <td>-1.008688e-08</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.000017</td>
+      <td>0.008050</td>
+      <td>-415.547150</td>
+      <td>117.179436</td>
+      <td>-15.821960</td>
+      <td>-4.797610</td>
+      <td>-9.278266</td>
+      <td>24.381550</td>
+      <td>9.337750</td>
+      <td>9.722587</td>
+      <td>...</td>
+      <td>1.250070e-05</td>
+      <td>1.528957e-05</td>
+      <td>1.615008e-05</td>
+      <td>4.140963e-05</td>
+      <td>3.916636e-05</td>
+      <td>1.132496e-05</td>
+      <td>4.244964e-07</td>
+      <td>buka</td>
+      <td>0</td>
+      <td>-7.520441e-10</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>395</th>
+      <td>-0.000238</td>
+      <td>0.028407</td>
+      <td>-419.918396</td>
+      <td>96.097939</td>
+      <td>43.513332</td>
+      <td>24.412283</td>
+      <td>3.405387</td>
+      <td>24.237545</td>
+      <td>-9.355809</td>
+      <td>-15.427906</td>
+      <td>...</td>
+      <td>4.163346e-04</td>
+      <td>1.343197e-04</td>
+      <td>3.046704e-05</td>
+      <td>3.383802e-05</td>
+      <td>4.999519e-06</td>
+      <td>4.098899e-06</td>
+      <td>4.385705e-07</td>
+      <td>tutup</td>
+      <td>0</td>
+      <td>-6.944421e-09</td>
+    </tr>
+    <tr>
+      <th>396</th>
+      <td>-0.000251</td>
+      <td>0.037142</td>
+      <td>-362.428650</td>
+      <td>105.706490</td>
+      <td>36.130001</td>
+      <td>12.106636</td>
+      <td>-3.325876</td>
+      <td>31.120150</td>
+      <td>-29.633289</td>
+      <td>-35.780758</td>
+      <td>...</td>
+      <td>3.142907e-04</td>
+      <td>1.304699e-04</td>
+      <td>3.304378e-05</td>
+      <td>3.112499e-05</td>
+      <td>2.134845e-05</td>
+      <td>8.500945e-06</td>
+      <td>2.149670e-07</td>
+      <td>tutup</td>
+      <td>0</td>
+      <td>-5.425840e-09</td>
+    </tr>
+    <tr>
+      <th>397</th>
+      <td>-0.000246</td>
+      <td>0.035040</td>
+      <td>-364.834595</td>
+      <td>97.067596</td>
+      <td>34.595520</td>
+      <td>16.981377</td>
+      <td>-0.883080</td>
+      <td>28.752300</td>
+      <td>-26.535778</td>
+      <td>-31.677406</td>
+      <td>...</td>
+      <td>2.706283e-04</td>
+      <td>3.993777e-05</td>
+      <td>1.635077e-05</td>
+      <td>1.238361e-05</td>
+      <td>6.885567e-06</td>
+      <td>3.684432e-06</td>
+      <td>3.372195e-07</td>
+      <td>tutup</td>
+      <td>0</td>
+      <td>-1.051935e-08</td>
+    </tr>
+    <tr>
+      <th>398</th>
+      <td>-0.000236</td>
+      <td>0.032783</td>
+      <td>-376.914459</td>
+      <td>100.331390</td>
+      <td>36.553562</td>
+      <td>23.412449</td>
+      <td>-0.763297</td>
+      <td>32.427952</td>
+      <td>-26.514513</td>
+      <td>-30.365091</td>
+      <td>...</td>
+      <td>1.675369e-04</td>
+      <td>3.147752e-05</td>
+      <td>4.986268e-06</td>
+      <td>6.043045e-06</td>
+      <td>6.213851e-06</td>
+      <td>1.628956e-06</td>
+      <td>2.180268e-07</td>
+      <td>tutup</td>
+      <td>0</td>
+      <td>-4.881266e-09</td>
+    </tr>
+    <tr>
+      <th>399</th>
+      <td>-0.000183</td>
+      <td>0.020430</td>
+      <td>-464.876221</td>
+      <td>89.548073</td>
+      <td>30.715565</td>
+      <td>29.322350</td>
+      <td>2.953763</td>
+      <td>28.652233</td>
+      <td>-14.025777</td>
+      <td>-9.449646</td>
+      <td>...</td>
+      <td>2.789228e-05</td>
+      <td>1.040760e-05</td>
+      <td>1.226958e-06</td>
+      <td>9.564186e-07</td>
+      <td>1.222224e-06</td>
+      <td>1.209763e-06</td>
+      <td>1.141193e-07</td>
+      <td>tutup</td>
+      <td>0</td>
+      <td>-1.783626e-09</td>
+    </tr>
+  </tbody>
+</table>
+<p>380 rows × 304 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">non_anomaly_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;Anomaly&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">non_anomaly_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;Anomaly_Score&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">non_anomaly_data</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;./dataset/clean.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id2">
+<h3>Penyebaran Data<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">buka_non_anomaly</span> <span class="o">=</span> <span class="n">non_anomaly_data</span><span class="p">[</span><span class="n">non_anomaly_data</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;buka&quot;</span><span class="p">]</span>
+<span class="n">tutup_non_anomaly</span> <span class="o">=</span> <span class="n">non_anomaly_data</span><span class="p">[</span><span class="n">non_anomaly_data</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;tutup&quot;</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">([</span><span class="s2">&quot;buka&quot;</span><span class="p">,</span> <span class="s2">&quot;tutup&quot;</span><span class="p">],</span> <span class="p">[</span><span class="n">buka_non_anomaly</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">tutup_non_anomaly</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Jumlah Data Non-Anomaly&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Jumlah&quot;</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="n">buka_non_anomaly</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">tutup_non_anomaly</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]]],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;buka&quot;</span><span class="p">,</span> <span class="s2">&quot;tutup&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/6573ce5077581c13f0ba164d5518b1af03274d65a423220829a5ebf7a135aeb6.png" src="../_images/6573ce5077581c13f0ba164d5518b1af03274d65a423220829a5ebf7a135aeb6.png" />
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>buka</th>
+      <th>tutup</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>192</td>
+      <td>188</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="korelasi-fitur">
+<h3>Korelasi Fitur<a class="headerlink" href="#korelasi-fitur" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">corel_check</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">treshold</span><span class="p">):</span>
+    <span class="n">data_res</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">corel_arr</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+        <span class="n">corel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">data</span><span class="p">],</span> <span class="n">y</span><span class="p">))</span>
+        <span class="c1"># corel = corelation(x[data], y)</span>
+        <span class="n">corel_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">corel</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">corel</span> <span class="o">&gt;</span> <span class="n">treshold</span> <span class="ow">or</span> <span class="p">(</span><span class="n">corel</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">-</span> <span class="n">treshold</span> <span class="ow">and</span> <span class="n">corel</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="n">data_res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">data_res</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">label</span> <span class="o">=</span> <span class="n">non_anomaly_data</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">({</span>
+    <span class="s1">&#39;buka&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s1">&#39;tutup&#39;</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">})</span>
+<span class="n">fitur</span> <span class="o">=</span> <span class="n">non_anomaly_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;Anomaly_Score&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;Anomaly&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fitur_bearkorelasi</span> <span class="o">=</span> <span class="n">corel_check</span><span class="p">(</span><span class="n">fitur</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">fitur_bearkorelasi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fitur_bearkorelasi</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;mfcc_mean_3&#39;,
+ &#39;mfcc_mean_4&#39;,
+ &#39;mfcc_std_8&#39;,
+ &#39;centroid_std_1&#39;,
+ &#39;mel_mean_9&#39;,
+ &#39;mel_mean_14&#39;,
+ &#39;mel_mean_15&#39;,
+ &#39;mel_mean_16&#39;,
+ &#39;mel_mean_17&#39;,
+ &#39;mel_mean_18&#39;,
+ &#39;mel_mean_101&#39;,
+ &#39;mel_mean_102&#39;,
+ &#39;mel_mean_103&#39;,
+ &#39;mel_std_9&#39;,
+ &#39;mel_std_12&#39;,
+ &#39;mel_std_14&#39;,
+ &#39;mel_std_17&#39;,
+ &#39;mel_std_18&#39;,
+ &#39;mel_std_100&#39;,
+ &#39;mel_std_101&#39;,
+ &#39;mel_std_102&#39;,
+ &#39;mel_std_103&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id3">
+<h3>Model Training<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./dataset/clean.csv&quot;</span><span class="p">)</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">fitur_bearkorelasi</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span>
+
+<span class="n">rf_model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+
+<span class="n">X_train_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+
+<span class="n">rf_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">rf_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9868421052631579
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id4">
+<h3>Menyimpan Model<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># joblib.dump(rf_model, &quot;../../audio_streamlit/svm.pkl&quot;)</span>
+<span class="c1"># joblib.dump(scaler, &quot;../../audio_streamlit/scale.pkl&quot;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># joblib.dump(fitur_bearkorelasi, &#39;../../audio_streamlit/fitur_berkorelasi.pkl&#39;)</span>
+<span class="c1"># joblib.dump(columns[0:-1], &#39;../../audio_streamlit/columns.pkl&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./timeseries_deteksi_suara"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../NO2/modeling.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Modeling dengan KNN Regression</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../UAS/bussines_understanding.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Bussiness Understanding</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menyiapkan-data-audio">Menyiapkan Data Audio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-klasifikasi-suara-orang">Membuat Klasifikasi Suara Orang</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#outlier-detection">Outlier Detection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penyebaran-data">Penyebaran Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#korelasis-fitur">Korelasis Fitur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-training">Model Training</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menyimpan-model">Menyimpan Model</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-klasifikasi-suara-buka-tutup">Membuat Klasifikasi Suara Buka Tutup</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Outlier Detection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Penyebaran Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#korelasi-fitur">Korelasi Fitur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Model Training</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Menyimpan Model</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Zanuar Rikza Aditiya
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

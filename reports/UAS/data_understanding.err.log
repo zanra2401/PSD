@@ -1,0 +1,83 @@
+Traceback (most recent call last):
+  File "C:\Python312\Lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+  File "C:\Users\grubg\AppData\Roaming\Python\Python312\site-packages\nbclient\client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\grubg\AppData\Roaming\Python\Python312\site-packages\jupyter_core\utils\__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\asyncio\base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\grubg\AppData\Roaming\Python\Python312\site-packages\nbclient\client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "C:\Users\grubg\AppData\Roaming\Python\Python312\site-packages\nbclient\client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "C:\Users\grubg\AppData\Roaming\Python\Python312\site-packages\nbclient\client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Boxplot Amplitudo per Kelas
+fig, axes = plt.subplots(1, 1, figsize=(16, 5))
+
+# Hitung statistik per kelas
+signal_data = df.iloc[:, :-1].astype(float)
+signal_data['target'] = df['target']
+
+# Mean Amplitude per kelas
+mean_amplitudes = []
+std_amplitudes = []
+class_labels = []
+
+for label in sorted(df['target'].unique()):
+    class_signals = df[df['target'] == label].iloc[:, :-1].astype(float)
+    mean_amp = class_signals.values.mean(axis=1).mean()
+    std_amp = class_signals.values.mean(axis=1).std()
+    mean_amplitudes.append(mean_amp)
+    std_amplitudes.append(std_amp)
+    class_labels.append(label)
+
+# Plot 1: Mean Amplitude dengan error bar
+axes.bar(range(len(class_labels)), mean_amplitudes, color='steelblue', alpha=0.7)
+axes.errorbar(range(len(class_labels)), mean_amplitudes, yerr=std_amplitudes, 
+                 fmt='none', color='red', capsize=5, label='±1 Std Dev')
+axes.set_xticks(range(len(class_labels)))
+axes.set_xticklabels(class_labels, rotation=45, ha='right')
+axes.set_ylabel('Mean Amplitude', fontsize=11)
+axes.set_title('Rata-rata Amplitudo per Spesies (dengan Std Dev)', fontsize=12, fontweight='bold')
+axes.grid(axis='y', alpha=0.3)
+axes.legend()
+
+
+plt.tight_layout()
+plt.show()
+
+print("\n" + "="*80)
+print("KARAKTERISTIK ENERGI SINYAL PER SPESIES")
+print("="*80)
+print("\n{:<20} {:<15} {:<15}".format("Spesies", "Mean Amp", "RMS Energy"))
+print("-" * 50)
+for i, label in enumerate(sorted(df['target'].unique())):
+    print("{:<20} {:<15.6f} {:<15.6f}".format(label, mean_amplitudes[i], energies[i]))
+------------------
+
+----- stdout -----
+
+================================================================================
+KARAKTERISTIK ENERGI SINYAL PER SPESIES
+================================================================================
+
+Spesies              Mean Amp        RMS Energy     
+--------------------------------------------------
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mNameError[39m                                 Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[9][39m[32m, line 42[39m
+[32m     40[39m [38;5;28mprint[39m([33m"[39m[33m-[39m[33m"[39m * [32m50[39m)
+[32m     41[39m [38;5;28;01mfor[39;00m i, label [38;5;129;01min[39;00m [38;5;28menumerate[39m([38;5;28msorted[39m(df[[33m'[39m[33mtarget[39m[33m'[39m].unique())):
+[32m---> [39m[32m42[39m     [38;5;28mprint[39m([33m"[39m[38;5;132;01m{:<20}[39;00m[33m [39m[38;5;132;01m{:<15.6f}[39;00m[33m [39m[38;5;132;01m{:<15.6f}[39;00m[33m"[39m.format(label, mean_amplitudes[i], [43menergies[49m[i]))
+
+[31mNameError[39m: name 'energies' is not defined
+

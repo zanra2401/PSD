@@ -1,0 +1,1982 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Pembersihan Outliers &#8212; Proyek Sains Data</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'outliers_cleaning';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Penyeimbangan data Ecoli" href="penyeimbangan_data_ecoli.html" />
+    <link rel="prev" title="Data Ekplorasi" href="iris_data_eksplorasi.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="profile.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/foto.jpg" class="logo__image only-light" alt="Proyek Sains Data - Home"/>
+    <script>document.write(`<img src="_static/foto.jpg" class="logo__image only-dark" alt="Proyek Sains Data - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="profile.html">
+                    Profile
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Bussiness Understanding</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="iris_bussiness_understanding.html">Business Understanding</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Understanding</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="iris_get_data.html">Mendapatkan data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iris_data_description.html">Deskripsi Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iris_data_eksplorasi.html">Data Ekplorasi</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Preprosessing</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Pembersihan Outliers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="penyeimbangan_data_ecoli.html">Penyeimbangan data Ecoli</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Pemodelan</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="pemodelan/klasifikasi.html">MODEL KLASIFIKASI (ECOLI)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="pemodelan/nb_imbalance.html">IMBALANCE DATA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pemodelan/nb_smote.html">SMOTE DATA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pemodelan/nb_adasyn.html">ADASYN DATA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pemodelan/perbandingan_keseluruhan.html">Perbandingan Model dan Data</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">KNIME</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="KNIME/dokumentasi_workflow.html">Projek Pra UTS PSD</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Forecasting Kepadatan NO2 di Kabupaten Bojonegoro</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="NO2/pengumpulan_data.html">Pengumpulan Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NO2/preprocess.html">Preprocessing Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NO2/modeling.html">Modeling dengan KNN Regression</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">IDENTIFIKASI SUARA</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="timeseries_deteksi_suara/suara_buka_tutup.html">IDENTIFIKASI SUARA BUKA DAN TUTUP</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Klasifikasi Serangga</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="UAS/bussines_understanding.html">BUSSINES Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UAS/data_understanding.html">DATA Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UAS/modeling_fix.html">PREPROCESS, MODELING &amp; EVALUASI</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Foutliers_cleaning.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/outliers_cleaning.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Pembersihan Outliers</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-iris">Data Iris</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-abod">Model ABOD</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-iris-clean">Data IRIS clean</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menyimpan-file-csv">Menyimpan File CSV</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-knn">Model KNN</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Data IRIS Clean</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Menyimpan File CSV</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-lof">Model LOF</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Data IRIS clean</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Menyimpan File CSV</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="pembersihan-outliers">
+<h1>Pembersihan Outliers<a class="headerlink" href="#pembersihan-outliers" title="Link to this heading">#</a></h1>
+<p>Secara umum, membersihkan outlier adalah proses mengidentifikasi dan menghapus data yang secara signifikan berbeda dari pola atau distribusi data lain dalam kumpulan data.</p>
+<p><strong>Mengapa Outlier Perlu dibersihkan?</strong></p>
+<ul class="simple">
+<li><p>Distorsi Rata-rata: Outlier dapat menarik nilai rata-rata (mean) ke arahnya, membuat nilai tersebut tidak lagi representatif untuk sebagian besar data.</p></li>
+<li><p>Mempengaruhi Model Prediktif: Dalam machine learning, outlier dapat membuat model menjadi kurang akurat. Sebagai contoh, dalam regresi linier, sebuah outlier dapat mengubah garis regresi, mengurangi kemampuan model untuk memprediksi nilai baru dengan tepat.</p></li>
+</ul>
+<section id="data-iris">
+<h2>Data Iris<a class="headerlink" href="#data-iris" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pycaret.anomaly</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span><span class="w"> </span><span class="nn">pycaret.anomaly</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;pycaret&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">module.dataTransformer</span><span class="w"> </span><span class="kn">import</span> <span class="n">combineData</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">module.fetcher</span><span class="w"> </span><span class="kn">import</span> <span class="n">fetchDataMysql</span><span class="p">,</span> <span class="n">fetchDataPg</span>
+
+<span class="n">data_pg</span> <span class="o">=</span> <span class="n">fetchDataPg</span><span class="p">(</span><span class="s2">&quot;SELECT petal_length, petal_width, species FROM iris_table&quot;</span><span class="p">)</span>
+<span class="n">data_my</span> <span class="o">=</span> <span class="n">fetchDataMysql</span><span class="p">(</span><span class="s2">&quot;SELECT sepal_length, sepal_width FROM iris_table&quot;</span><span class="p">)</span>
+
+<span class="n">iris_df</span> <span class="o">=</span> <span class="n">combineData</span><span class="p">(</span><span class="n">data1</span><span class="o">=</span><span class="n">data_my</span><span class="p">,</span> <span class="n">data2</span><span class="o">=</span><span class="n">data_pg</span><span class="p">)</span>
+<span class="n">iris_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+      <th>species</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5.10</td>
+      <td>3.50</td>
+      <td>1.40</td>
+      <td>0.20</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.90</td>
+      <td>3.00</td>
+      <td>1.40</td>
+      <td>0.20</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.70</td>
+      <td>3.20</td>
+      <td>1.30</td>
+      <td>0.20</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.60</td>
+      <td>3.10</td>
+      <td>1.50</td>
+      <td>0.20</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.00</td>
+      <td>3.60</td>
+      <td>1.40</td>
+      <td>0.20</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>145</th>
+      <td>6.70</td>
+      <td>3.00</td>
+      <td>5.20</td>
+      <td>2.30</td>
+      <td>Iris-virginica</td>
+    </tr>
+    <tr>
+      <th>146</th>
+      <td>6.30</td>
+      <td>2.50</td>
+      <td>5.00</td>
+      <td>1.90</td>
+      <td>Iris-virginica</td>
+    </tr>
+    <tr>
+      <th>147</th>
+      <td>6.50</td>
+      <td>3.00</td>
+      <td>5.20</td>
+      <td>2.00</td>
+      <td>Iris-virginica</td>
+    </tr>
+    <tr>
+      <th>148</th>
+      <td>6.20</td>
+      <td>3.40</td>
+      <td>5.40</td>
+      <td>2.30</td>
+      <td>Iris-virginica</td>
+    </tr>
+    <tr>
+      <th>149</th>
+      <td>5.90</td>
+      <td>3.00</td>
+      <td>5.10</td>
+      <td>1.80</td>
+      <td>Iris-virginica</td>
+    </tr>
+  </tbody>
+</table>
+<p>150 rows × 5 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Menyiyngkirkan kolom species (class) </span>
+<span class="n">numeric_iris_df</span> <span class="o">=</span> <span class="n">iris_df</span><span class="p">[[</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="s2">&quot;sepal_width&quot;</span><span class="p">,</span> <span class="s2">&quot;petal_length&quot;</span><span class="p">,</span> <span class="s2">&quot;petal_width&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">numeric_iris_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5.1</td>
+      <td>3.5</td>
+      <td>1.4</td>
+      <td>0.2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.9</td>
+      <td>3.0</td>
+      <td>1.4</td>
+      <td>0.2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.7</td>
+      <td>3.2</td>
+      <td>1.3</td>
+      <td>0.2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.6</td>
+      <td>3.1</td>
+      <td>1.5</td>
+      <td>0.2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.0</td>
+      <td>3.6</td>
+      <td>1.4</td>
+      <td>0.2</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>145</th>
+      <td>6.7</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.3</td>
+    </tr>
+    <tr>
+      <th>146</th>
+      <td>6.3</td>
+      <td>2.5</td>
+      <td>5.0</td>
+      <td>1.9</td>
+    </tr>
+    <tr>
+      <th>147</th>
+      <td>6.5</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>148</th>
+      <td>6.2</td>
+      <td>3.4</td>
+      <td>5.4</td>
+      <td>2.3</td>
+    </tr>
+    <tr>
+      <th>149</th>
+      <td>5.9</td>
+      <td>3.0</td>
+      <td>5.1</td>
+      <td>1.8</td>
+    </tr>
+  </tbody>
+</table>
+<p>150 rows × 4 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="model-abod">
+<h2>Model ABOD<a class="headerlink" href="#model-abod" title="Link to this heading">#</a></h2>
+<p>Membuat model ABOD dengan fraction (proporsi data yang akan di anggap sebagai outlier) sama dengan 0.05 atau 5%</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pycaret.anomaly</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="n">setup</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">numeric_iris_df</span><span class="p">)</span>
+
+<span class="n">abod_model</span> <span class="o">=</span> <span class="n">create_model</span><span class="p">(</span><span class="s2">&quot;abod&quot;</span><span class="p">,</span> <span class="n">fraction</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+
+<span class="n">df_abod</span> <span class="o">=</span> <span class="n">assign_model</span><span class="p">(</span><span class="n">abod_model</span><span class="p">)</span>
+
+<span class="n">df_abod</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+#T_6d5bf_row4_col1 {
+  background-color: lightgreen;
+}
+</style>
+<table id="T_6d5bf">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_6d5bf_level0_col0" class="col_heading level0 col0" >Description</th>
+      <th id="T_6d5bf_level0_col1" class="col_heading level0 col1" >Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_6d5bf_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_6d5bf_row0_col0" class="data row0 col0" >Session id</td>
+      <td id="T_6d5bf_row0_col1" class="data row0 col1" >2254</td>
+    </tr>
+    <tr>
+      <th id="T_6d5bf_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_6d5bf_row1_col0" class="data row1 col0" >Original data shape</td>
+      <td id="T_6d5bf_row1_col1" class="data row1 col1" >(150, 4)</td>
+    </tr>
+    <tr>
+      <th id="T_6d5bf_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_6d5bf_row2_col0" class="data row2 col0" >Transformed data shape</td>
+      <td id="T_6d5bf_row2_col1" class="data row2 col1" >(150, 4)</td>
+    </tr>
+    <tr>
+      <th id="T_6d5bf_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_6d5bf_row3_col0" class="data row3 col0" >Numeric features</td>
+      <td id="T_6d5bf_row3_col1" class="data row3 col1" >4</td>
+    </tr>
+    <tr>
+      <th id="T_6d5bf_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_6d5bf_row4_col0" class="data row4 col0" >Preprocess</td>
+      <td id="T_6d5bf_row4_col1" class="data row4 col1" >True</td>
+    </tr>
+    <tr>
+      <th id="T_6d5bf_level0_row5" class="row_heading level0 row5" >5</th>
+      <td id="T_6d5bf_row5_col0" class="data row5 col0" >Imputation type</td>
+      <td id="T_6d5bf_row5_col1" class="data row5 col1" >simple</td>
+    </tr>
+    <tr>
+      <th id="T_6d5bf_level0_row6" class="row_heading level0 row6" >6</th>
+      <td id="T_6d5bf_row6_col0" class="data row6 col0" >Numeric imputation</td>
+      <td id="T_6d5bf_row6_col1" class="data row6 col1" >mean</td>
+    </tr>
+    <tr>
+      <th id="T_6d5bf_level0_row7" class="row_heading level0 row7" >7</th>
+      <td id="T_6d5bf_row7_col0" class="data row7 col0" >Categorical imputation</td>
+      <td id="T_6d5bf_row7_col1" class="data row7 col1" >mode</td>
+    </tr>
+    <tr>
+      <th id="T_6d5bf_level0_row8" class="row_heading level0 row8" >8</th>
+      <td id="T_6d5bf_row8_col0" class="data row8 col0" >CPU Jobs</td>
+      <td id="T_6d5bf_row8_col1" class="data row8 col1" >-1</td>
+    </tr>
+    <tr>
+      <th id="T_6d5bf_level0_row9" class="row_heading level0 row9" >9</th>
+      <td id="T_6d5bf_row9_col0" class="data row9 col0" >Use GPU</td>
+      <td id="T_6d5bf_row9_col1" class="data row9 col1" >False</td>
+    </tr>
+    <tr>
+      <th id="T_6d5bf_level0_row10" class="row_heading level0 row10" >10</th>
+      <td id="T_6d5bf_row10_col0" class="data row10 col0" >Log Experiment</td>
+      <td id="T_6d5bf_row10_col1" class="data row10 col1" >False</td>
+    </tr>
+    <tr>
+      <th id="T_6d5bf_level0_row11" class="row_heading level0 row11" >11</th>
+      <td id="T_6d5bf_row11_col0" class="data row11 col0" >Experiment Name</td>
+      <td id="T_6d5bf_row11_col1" class="data row11 col1" >anomaly-default-name</td>
+    </tr>
+    <tr>
+      <th id="T_6d5bf_level0_row12" class="row_heading level0 row12" >12</th>
+      <td id="T_6d5bf_row12_col0" class="data row12 col0" >USI</td>
+      <td id="T_6d5bf_row12_col1" class="data row12 col1" >7b0e</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="output text_html"></div><div class="output text_html"></div><div class="output text_html"></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+      <th>Anomaly</th>
+      <th>Anomaly_Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5.1</td>
+      <td>3.5</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>0</td>
+      <td>-556.251421</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.9</td>
+      <td>3.0</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>0</td>
+      <td>-400.000928</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.7</td>
+      <td>3.2</td>
+      <td>1.3</td>
+      <td>0.2</td>
+      <td>0</td>
+      <td>-93.421993</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.6</td>
+      <td>3.1</td>
+      <td>1.5</td>
+      <td>0.2</td>
+      <td>0</td>
+      <td>-99.229221</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.0</td>
+      <td>3.6</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>0</td>
+      <td>-82.176201</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>145</th>
+      <td>6.7</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.3</td>
+      <td>0</td>
+      <td>-13.831461</td>
+    </tr>
+    <tr>
+      <th>146</th>
+      <td>6.3</td>
+      <td>2.5</td>
+      <td>5.0</td>
+      <td>1.9</td>
+      <td>0</td>
+      <td>-9.110201</td>
+    </tr>
+    <tr>
+      <th>147</th>
+      <td>6.5</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.0</td>
+      <td>0</td>
+      <td>-20.571707</td>
+    </tr>
+    <tr>
+      <th>148</th>
+      <td>6.2</td>
+      <td>3.4</td>
+      <td>5.4</td>
+      <td>2.3</td>
+      <td>0</td>
+      <td>-6.345400</td>
+    </tr>
+    <tr>
+      <th>149</th>
+      <td>5.9</td>
+      <td>3.0</td>
+      <td>5.1</td>
+      <td>1.8</td>
+      <td>0</td>
+      <td>-28.205616</td>
+    </tr>
+  </tbody>
+</table>
+<p>150 rows × 6 columns</p>
+</div></div></div>
+</div>
+<section id="data-iris-clean">
+<h3>Data IRIS clean<a class="headerlink" href="#data-iris-clean" title="Link to this heading">#</a></h3>
+<p>Data Tanpa Outliers</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clean_iris_abod</span> <span class="o">=</span> <span class="n">df_abod</span><span class="p">[</span><span class="n">df_abod</span><span class="p">[</span><span class="s2">&quot;Anomaly&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">iris_df</span><span class="p">[</span><span class="s2">&quot;species&quot;</span><span class="p">],</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)[[</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="s2">&quot;sepal_width&quot;</span><span class="p">,</span> <span class="s2">&quot;petal_length&quot;</span><span class="p">,</span> <span class="s2">&quot;petal_width&quot;</span><span class="p">,</span> <span class="s2">&quot;species&quot;</span><span class="p">]]</span>
+<span class="n">clean_iris_abod</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+      <th>species</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5.1</td>
+      <td>3.5</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.9</td>
+      <td>3.0</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.7</td>
+      <td>3.2</td>
+      <td>1.3</td>
+      <td>0.2</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.6</td>
+      <td>3.1</td>
+      <td>1.5</td>
+      <td>0.2</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.0</td>
+      <td>3.6</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>145</th>
+      <td>6.7</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.3</td>
+      <td>Iris-virginica</td>
+    </tr>
+    <tr>
+      <th>146</th>
+      <td>6.3</td>
+      <td>2.5</td>
+      <td>5.0</td>
+      <td>1.9</td>
+      <td>Iris-virginica</td>
+    </tr>
+    <tr>
+      <th>147</th>
+      <td>6.5</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.0</td>
+      <td>Iris-virginica</td>
+    </tr>
+    <tr>
+      <th>148</th>
+      <td>6.2</td>
+      <td>3.4</td>
+      <td>5.4</td>
+      <td>2.3</td>
+      <td>Iris-virginica</td>
+    </tr>
+    <tr>
+      <th>149</th>
+      <td>5.9</td>
+      <td>3.0</td>
+      <td>5.1</td>
+      <td>1.8</td>
+      <td>Iris-virginica</td>
+    </tr>
+  </tbody>
+</table>
+<p>142 rows × 5 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="menyimpan-file-csv">
+<h3>Menyimpan File CSV<a class="headerlink" href="#menyimpan-file-csv" title="Link to this heading">#</a></h3>
+<p>Download Hasil: <a class="reference download internal" download="" href="_downloads/e5eefa3dc9654a707a823d00b589fd18/abod_iris_clean.csv"><span class="xref download myst">Download data abod_iris_clean.csv</span></a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clean_iris_abod</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;abod_iris_clean.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="model-knn">
+<h2>Model KNN<a class="headerlink" href="#model-knn" title="Link to this heading">#</a></h2>
+<p>Membuat model KNN dengan fraction (proporsi data yang akan di anggap sebagai outlier) sama dengan 0.05 atau 5%</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pycaret.anomaly</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="n">setup</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">numeric_iris_df</span><span class="p">)</span>
+
+<span class="n">iforest_model</span> <span class="o">=</span> <span class="n">create_model</span><span class="p">(</span><span class="s2">&quot;knn&quot;</span><span class="p">,</span> <span class="n">fraction</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+
+<span class="n">df_knn</span> <span class="o">=</span> <span class="n">assign_model</span><span class="p">(</span><span class="n">iforest_model</span><span class="p">)</span>
+
+<span class="n">df_knn</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+#T_89e0e_row4_col1 {
+  background-color: lightgreen;
+}
+</style>
+<table id="T_89e0e">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_89e0e_level0_col0" class="col_heading level0 col0" >Description</th>
+      <th id="T_89e0e_level0_col1" class="col_heading level0 col1" >Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_89e0e_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_89e0e_row0_col0" class="data row0 col0" >Session id</td>
+      <td id="T_89e0e_row0_col1" class="data row0 col1" >821</td>
+    </tr>
+    <tr>
+      <th id="T_89e0e_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_89e0e_row1_col0" class="data row1 col0" >Original data shape</td>
+      <td id="T_89e0e_row1_col1" class="data row1 col1" >(150, 4)</td>
+    </tr>
+    <tr>
+      <th id="T_89e0e_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_89e0e_row2_col0" class="data row2 col0" >Transformed data shape</td>
+      <td id="T_89e0e_row2_col1" class="data row2 col1" >(150, 4)</td>
+    </tr>
+    <tr>
+      <th id="T_89e0e_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_89e0e_row3_col0" class="data row3 col0" >Numeric features</td>
+      <td id="T_89e0e_row3_col1" class="data row3 col1" >4</td>
+    </tr>
+    <tr>
+      <th id="T_89e0e_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_89e0e_row4_col0" class="data row4 col0" >Preprocess</td>
+      <td id="T_89e0e_row4_col1" class="data row4 col1" >True</td>
+    </tr>
+    <tr>
+      <th id="T_89e0e_level0_row5" class="row_heading level0 row5" >5</th>
+      <td id="T_89e0e_row5_col0" class="data row5 col0" >Imputation type</td>
+      <td id="T_89e0e_row5_col1" class="data row5 col1" >simple</td>
+    </tr>
+    <tr>
+      <th id="T_89e0e_level0_row6" class="row_heading level0 row6" >6</th>
+      <td id="T_89e0e_row6_col0" class="data row6 col0" >Numeric imputation</td>
+      <td id="T_89e0e_row6_col1" class="data row6 col1" >mean</td>
+    </tr>
+    <tr>
+      <th id="T_89e0e_level0_row7" class="row_heading level0 row7" >7</th>
+      <td id="T_89e0e_row7_col0" class="data row7 col0" >Categorical imputation</td>
+      <td id="T_89e0e_row7_col1" class="data row7 col1" >mode</td>
+    </tr>
+    <tr>
+      <th id="T_89e0e_level0_row8" class="row_heading level0 row8" >8</th>
+      <td id="T_89e0e_row8_col0" class="data row8 col0" >CPU Jobs</td>
+      <td id="T_89e0e_row8_col1" class="data row8 col1" >-1</td>
+    </tr>
+    <tr>
+      <th id="T_89e0e_level0_row9" class="row_heading level0 row9" >9</th>
+      <td id="T_89e0e_row9_col0" class="data row9 col0" >Use GPU</td>
+      <td id="T_89e0e_row9_col1" class="data row9 col1" >False</td>
+    </tr>
+    <tr>
+      <th id="T_89e0e_level0_row10" class="row_heading level0 row10" >10</th>
+      <td id="T_89e0e_row10_col0" class="data row10 col0" >Log Experiment</td>
+      <td id="T_89e0e_row10_col1" class="data row10 col1" >False</td>
+    </tr>
+    <tr>
+      <th id="T_89e0e_level0_row11" class="row_heading level0 row11" >11</th>
+      <td id="T_89e0e_row11_col0" class="data row11 col0" >Experiment Name</td>
+      <td id="T_89e0e_row11_col1" class="data row11 col1" >anomaly-default-name</td>
+    </tr>
+    <tr>
+      <th id="T_89e0e_level0_row12" class="row_heading level0 row12" >12</th>
+      <td id="T_89e0e_row12_col0" class="data row12 col0" >USI</td>
+      <td id="T_89e0e_row12_col1" class="data row12 col1" >7e0b</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="output text_html"></div><div class="output text_html"></div><div class="output text_html"></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+      <th>Anomaly</th>
+      <th>Anomaly_Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5.1</td>
+      <td>3.5</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>0</td>
+      <td>0.141421</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.9</td>
+      <td>3.0</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>0</td>
+      <td>0.173205</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.7</td>
+      <td>3.2</td>
+      <td>1.3</td>
+      <td>0.2</td>
+      <td>0</td>
+      <td>0.264575</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.6</td>
+      <td>3.1</td>
+      <td>1.5</td>
+      <td>0.2</td>
+      <td>0</td>
+      <td>0.264575</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.0</td>
+      <td>3.6</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>0</td>
+      <td>0.244949</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>145</th>
+      <td>6.7</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.3</td>
+      <td>0</td>
+      <td>0.374166</td>
+    </tr>
+    <tr>
+      <th>146</th>
+      <td>6.3</td>
+      <td>2.5</td>
+      <td>5.0</td>
+      <td>1.9</td>
+      <td>0</td>
+      <td>0.479583</td>
+    </tr>
+    <tr>
+      <th>147</th>
+      <td>6.5</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.0</td>
+      <td>0</td>
+      <td>0.387298</td>
+    </tr>
+    <tr>
+      <th>148</th>
+      <td>6.2</td>
+      <td>3.4</td>
+      <td>5.4</td>
+      <td>2.3</td>
+      <td>0</td>
+      <td>0.624500</td>
+    </tr>
+    <tr>
+      <th>149</th>
+      <td>5.9</td>
+      <td>3.0</td>
+      <td>5.1</td>
+      <td>1.8</td>
+      <td>0</td>
+      <td>0.360555</td>
+    </tr>
+  </tbody>
+</table>
+<p>150 rows × 6 columns</p>
+</div></div></div>
+</div>
+<section id="id1">
+<h3>Data IRIS Clean<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>Data Tanpa Outliers</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clean_iris_knn</span> <span class="o">=</span> <span class="n">df_knn</span><span class="p">[</span><span class="n">df_knn</span><span class="p">[</span><span class="s2">&quot;Anomaly&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">iris_df</span><span class="p">[</span><span class="s2">&quot;species&quot;</span><span class="p">],</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)[[</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="s2">&quot;sepal_width&quot;</span><span class="p">,</span> <span class="s2">&quot;petal_length&quot;</span><span class="p">,</span> <span class="s2">&quot;petal_width&quot;</span><span class="p">,</span> <span class="s2">&quot;species&quot;</span><span class="p">]]</span>
+<span class="n">clean_iris_knn</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+      <th>species</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5.1</td>
+      <td>3.5</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.9</td>
+      <td>3.0</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.7</td>
+      <td>3.2</td>
+      <td>1.3</td>
+      <td>0.2</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.6</td>
+      <td>3.1</td>
+      <td>1.5</td>
+      <td>0.2</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.0</td>
+      <td>3.6</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>145</th>
+      <td>6.7</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.3</td>
+      <td>Iris-virginica</td>
+    </tr>
+    <tr>
+      <th>146</th>
+      <td>6.3</td>
+      <td>2.5</td>
+      <td>5.0</td>
+      <td>1.9</td>
+      <td>Iris-virginica</td>
+    </tr>
+    <tr>
+      <th>147</th>
+      <td>6.5</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.0</td>
+      <td>Iris-virginica</td>
+    </tr>
+    <tr>
+      <th>148</th>
+      <td>6.2</td>
+      <td>3.4</td>
+      <td>5.4</td>
+      <td>2.3</td>
+      <td>Iris-virginica</td>
+    </tr>
+    <tr>
+      <th>149</th>
+      <td>5.9</td>
+      <td>3.0</td>
+      <td>5.1</td>
+      <td>1.8</td>
+      <td>Iris-virginica</td>
+    </tr>
+  </tbody>
+</table>
+<p>142 rows × 5 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="id2">
+<h3>Menyimpan File CSV<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>Download Hasil: <a class="reference download internal" download="" href="_downloads/aa648aa2a547702edc6e34cba50b6fb8/knn_iris_clean.csv"><span class="xref download myst">Download data knn_iris_clean.csv</span></a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clean_iris_knn</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;knn_iris_clean.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="model-lof">
+<h2>Model LOF<a class="headerlink" href="#model-lof" title="Link to this heading">#</a></h2>
+<p>Membuat model LOF dengan fraction (proporsi data yang akan di anggap sebagai outlier) sama dengan 0.05 atau 5%</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pycaret.anomaly</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="n">setup</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">numeric_iris_df</span><span class="p">)</span>
+
+<span class="n">lof_model</span> <span class="o">=</span> <span class="n">create_model</span><span class="p">(</span><span class="s2">&quot;lof&quot;</span><span class="p">,</span> <span class="n">fraction</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+
+<span class="n">df_lof</span> <span class="o">=</span> <span class="n">assign_model</span><span class="p">(</span><span class="n">lof_model</span><span class="p">)</span>
+
+<span class="n">df_lof</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+#T_1691a_row4_col1 {
+  background-color: lightgreen;
+}
+</style>
+<table id="T_1691a">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_1691a_level0_col0" class="col_heading level0 col0" >Description</th>
+      <th id="T_1691a_level0_col1" class="col_heading level0 col1" >Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_1691a_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_1691a_row0_col0" class="data row0 col0" >Session id</td>
+      <td id="T_1691a_row0_col1" class="data row0 col1" >2191</td>
+    </tr>
+    <tr>
+      <th id="T_1691a_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_1691a_row1_col0" class="data row1 col0" >Original data shape</td>
+      <td id="T_1691a_row1_col1" class="data row1 col1" >(150, 4)</td>
+    </tr>
+    <tr>
+      <th id="T_1691a_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_1691a_row2_col0" class="data row2 col0" >Transformed data shape</td>
+      <td id="T_1691a_row2_col1" class="data row2 col1" >(150, 4)</td>
+    </tr>
+    <tr>
+      <th id="T_1691a_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_1691a_row3_col0" class="data row3 col0" >Numeric features</td>
+      <td id="T_1691a_row3_col1" class="data row3 col1" >4</td>
+    </tr>
+    <tr>
+      <th id="T_1691a_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_1691a_row4_col0" class="data row4 col0" >Preprocess</td>
+      <td id="T_1691a_row4_col1" class="data row4 col1" >True</td>
+    </tr>
+    <tr>
+      <th id="T_1691a_level0_row5" class="row_heading level0 row5" >5</th>
+      <td id="T_1691a_row5_col0" class="data row5 col0" >Imputation type</td>
+      <td id="T_1691a_row5_col1" class="data row5 col1" >simple</td>
+    </tr>
+    <tr>
+      <th id="T_1691a_level0_row6" class="row_heading level0 row6" >6</th>
+      <td id="T_1691a_row6_col0" class="data row6 col0" >Numeric imputation</td>
+      <td id="T_1691a_row6_col1" class="data row6 col1" >mean</td>
+    </tr>
+    <tr>
+      <th id="T_1691a_level0_row7" class="row_heading level0 row7" >7</th>
+      <td id="T_1691a_row7_col0" class="data row7 col0" >Categorical imputation</td>
+      <td id="T_1691a_row7_col1" class="data row7 col1" >mode</td>
+    </tr>
+    <tr>
+      <th id="T_1691a_level0_row8" class="row_heading level0 row8" >8</th>
+      <td id="T_1691a_row8_col0" class="data row8 col0" >CPU Jobs</td>
+      <td id="T_1691a_row8_col1" class="data row8 col1" >-1</td>
+    </tr>
+    <tr>
+      <th id="T_1691a_level0_row9" class="row_heading level0 row9" >9</th>
+      <td id="T_1691a_row9_col0" class="data row9 col0" >Use GPU</td>
+      <td id="T_1691a_row9_col1" class="data row9 col1" >False</td>
+    </tr>
+    <tr>
+      <th id="T_1691a_level0_row10" class="row_heading level0 row10" >10</th>
+      <td id="T_1691a_row10_col0" class="data row10 col0" >Log Experiment</td>
+      <td id="T_1691a_row10_col1" class="data row10 col1" >False</td>
+    </tr>
+    <tr>
+      <th id="T_1691a_level0_row11" class="row_heading level0 row11" >11</th>
+      <td id="T_1691a_row11_col0" class="data row11 col0" >Experiment Name</td>
+      <td id="T_1691a_row11_col1" class="data row11 col1" >anomaly-default-name</td>
+    </tr>
+    <tr>
+      <th id="T_1691a_level0_row12" class="row_heading level0 row12" >12</th>
+      <td id="T_1691a_row12_col0" class="data row12 col0" >USI</td>
+      <td id="T_1691a_row12_col1" class="data row12 col1" >ded7</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="output text_html"></div><div class="output text_html"></div><div class="output text_html"></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+      <th>Anomaly</th>
+      <th>Anomaly_Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5.1</td>
+      <td>3.5</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>0</td>
+      <td>0.976302</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.9</td>
+      <td>3.0</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>0</td>
+      <td>1.008758</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.7</td>
+      <td>3.2</td>
+      <td>1.3</td>
+      <td>0.2</td>
+      <td>0</td>
+      <td>1.019841</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.6</td>
+      <td>3.1</td>
+      <td>1.5</td>
+      <td>0.2</td>
+      <td>0</td>
+      <td>1.049882</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.0</td>
+      <td>3.6</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>0</td>
+      <td>0.958473</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>145</th>
+      <td>6.7</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.3</td>
+      <td>0</td>
+      <td>0.978474</td>
+    </tr>
+    <tr>
+      <th>146</th>
+      <td>6.3</td>
+      <td>2.5</td>
+      <td>5.0</td>
+      <td>1.9</td>
+      <td>0</td>
+      <td>1.004232</td>
+    </tr>
+    <tr>
+      <th>147</th>
+      <td>6.5</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.0</td>
+      <td>0</td>
+      <td>0.980847</td>
+    </tr>
+    <tr>
+      <th>148</th>
+      <td>6.2</td>
+      <td>3.4</td>
+      <td>5.4</td>
+      <td>2.3</td>
+      <td>0</td>
+      <td>1.021819</td>
+    </tr>
+    <tr>
+      <th>149</th>
+      <td>5.9</td>
+      <td>3.0</td>
+      <td>5.1</td>
+      <td>1.8</td>
+      <td>0</td>
+      <td>1.011326</td>
+    </tr>
+  </tbody>
+</table>
+<p>150 rows × 6 columns</p>
+</div></div></div>
+</div>
+<section id="id3">
+<h3>Data IRIS clean<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>Data Tanpa Outliers</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clean_iris_lof</span> <span class="o">=</span> <span class="n">df_lof</span><span class="p">[</span><span class="n">df_lof</span><span class="p">[</span><span class="s2">&quot;Anomaly&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">iris_df</span><span class="p">[</span><span class="s2">&quot;species&quot;</span><span class="p">],</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)[[</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="s2">&quot;sepal_width&quot;</span><span class="p">,</span> <span class="s2">&quot;petal_length&quot;</span><span class="p">,</span> <span class="s2">&quot;petal_width&quot;</span><span class="p">,</span> <span class="s2">&quot;species&quot;</span><span class="p">]]</span>
+<span class="n">clean_iris_lof</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+      <th>species</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5.1</td>
+      <td>3.5</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.9</td>
+      <td>3.0</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.7</td>
+      <td>3.2</td>
+      <td>1.3</td>
+      <td>0.2</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.6</td>
+      <td>3.1</td>
+      <td>1.5</td>
+      <td>0.2</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.0</td>
+      <td>3.6</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>145</th>
+      <td>6.7</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.3</td>
+      <td>Iris-virginica</td>
+    </tr>
+    <tr>
+      <th>146</th>
+      <td>6.3</td>
+      <td>2.5</td>
+      <td>5.0</td>
+      <td>1.9</td>
+      <td>Iris-virginica</td>
+    </tr>
+    <tr>
+      <th>147</th>
+      <td>6.5</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.0</td>
+      <td>Iris-virginica</td>
+    </tr>
+    <tr>
+      <th>148</th>
+      <td>6.2</td>
+      <td>3.4</td>
+      <td>5.4</td>
+      <td>2.3</td>
+      <td>Iris-virginica</td>
+    </tr>
+    <tr>
+      <th>149</th>
+      <td>5.9</td>
+      <td>3.0</td>
+      <td>5.1</td>
+      <td>1.8</td>
+      <td>Iris-virginica</td>
+    </tr>
+  </tbody>
+</table>
+<p>142 rows × 5 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="id4">
+<h3>Menyimpan File CSV<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>Download Hasil: <a class="reference download internal" download="" href="_downloads/1170aa0e0103c7c1f58ce907e07b15a7/lof_iris_clean.csv"><span class="xref download myst">Download data lof_iris_clean.csv</span></a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clean_iris_lof</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;lof_iris_clean.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="iris_data_eksplorasi.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Data Ekplorasi</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="penyeimbangan_data_ecoli.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Penyeimbangan data Ecoli</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-iris">Data Iris</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-abod">Model ABOD</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-iris-clean">Data IRIS clean</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menyimpan-file-csv">Menyimpan File CSV</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-knn">Model KNN</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Data IRIS Clean</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Menyimpan File CSV</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-lof">Model LOF</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Data IRIS clean</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Menyimpan File CSV</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Zanuar Rikza Aditiya
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
