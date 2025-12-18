@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -458,15 +458,18 @@ document.write(`
 <li><p><strong>Modulasi Amplitudo</strong>: Bayangan sayap yang memotong sinar laser menyebabkan fluktuasi intensitas cahaya yang diterima sensor. Fluktuasi ini direkam sebagai sinyal elektronik.</p></li>
 <li><p><strong>Pseudo-Acoustic</strong>: Sinyal elektronik akan direkam dengan MP3 recorder digital,  Sinyal yang dihasilkan murni berasal dari gerakan fisik sayap, bukan dari tekanan udara (suara). Oleh karena itu, data ini disebut pseudo-acoustic karena bentuk gelombangnya mirip suara, namun bebas dari noise lingkungan (seperti suara kendaraan, angin, atau percakapan manusia) yang biasanya mengganggu mikrofon.</p></li>
 </ul>
+<p>Untuk detail pembuatan dataset ada:<br />
+Jurnal: <a class="reference external" href="https://app.jove.com/t/52111/flying-insect-detection-and-classification-with-inexpensive-sensors">https://app.jove.com/t/52111/flying-insect-detection-and-classification-with-inexpensive-sensors</a><br />
+Video Youtube: <a class="reference external" href="https://youtu.be/Aw40IlXaRow?si=aN1TaKhk_REP6R-K">https://youtu.be/Aw40IlXaRow?si=aN1TaKhk_REP6R-K</a></p>
 </section>
 <section id="spesifikasi-teknis-data">
 <h2>Spesifikasi Teknis Data<a class="headerlink" href="#spesifikasi-teknis-data" title="Link to this heading">#</a></h2>
 <p>Setiap instans data merepresentasikan satu kejadian “lewatnya serangga” di depan sensor. Berikut detail teknisnya:</p>
 <ul class="simple">
-<li><p><strong>Sampling Rate</strong>: 6.000 Hz (6 kHz). Artinya, sensor mencatat 6.000 titik data per detik.Durasi Sinyal: 10 milidetik (0.01 detik). Durasi ini sangat singkat, hanya cukup untuk menangkap sekitar 2-6 kali kepakan sayap penuh (tergantung spesies).</p></li>
+<li><p><strong>Sampling Rate</strong>: 6.000 Hz (6 kHz). Artinya, sensor mencatat 6.000 titik data per detik.Durasi Sinyal: 100 milidetik (0.1 detik). Durasi ini sangat singkat, hanya cukup untuk menangkap sekitar 2-6 kali kepakan sayap penuh (tergantung spesies).</p></li>
 <li><p><strong>Dimensi Data</strong>: Setiap baris data terdiri dari 600 titik data (<span class="math notranslate nohighlight">\(6000 \text{ Hz} \times 0.01 \text{ s} = 600\)</span>).</p></li>
-<li><p><strong>Resolusi</strong>: Sinyal mentah telah dinormalisasi untuk menghilangkan komponen DC (Direct Current) akibat intensitas cahaya latar belakang.</p></li>
 </ul>
+<p>Karena Perinstan Data Suara serangga ada 600 titik data maka per titik data diambil dalam waktu 0.167 milidetik</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -917,17 +920,17 @@ Kelas                Mean         Std Dev      Max Amplitude
 Aedes_female         -0.000862    0.092253     0.552242    
 Aedes_male           -0.000651    0.083548     0.543439    
 Fruit_flies          0.000101     0.095400     0.545201    
+House_flies          -0.000281    0.089546     0.541944    
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>House_flies          -0.000281    0.089546     0.541944    
-Quinx_female         -0.000549    0.096680     0.622156    
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Quinx_female         -0.000549    0.096680     0.622156    
 Quinx_male           -0.000275    0.082105     0.596989    
 Stigma_female        -0.000928    0.115045     0.594136    
 Stigma_male          0.000268     0.106537     0.586131    
+Tarsalis_female      0.000439     0.081466     0.509389    
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tarsalis_female      0.000439     0.081466     0.509389    
-Tarsalis_male        -0.000323    0.082095     0.590772    
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tarsalis_male        -0.000323    0.082095     0.590772    
 </pre></div>
 </div>
 </div>
